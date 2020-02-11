@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css";
-import { Grid } from "@material-ui/core";
+import Routes from "routes/route";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "theme";
 
 const App = () => {
   return (
-    <Grid container>
-      <Grid item xs={12}></Grid>
-    </Grid>
-  )
+    <ThemeProvider theme={theme}>
+      <Routes />
+    </ThemeProvider>
+  );
 };
 
 export default App;
