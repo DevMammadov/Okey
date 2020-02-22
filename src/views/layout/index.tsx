@@ -1,6 +1,6 @@
 import React from "react";
 import AppRouter from "routes/app-router";
-import { Header, Aside } from "components/layout";
+import { Header, Menu } from "components/layout";
 import { useStyles } from "./layout.style";
 
 interface IProps {
@@ -12,13 +12,13 @@ export const App = ({ ...props }: IProps) => {
 
   return (
     <div className={classes.root}>
-      <header>
+      <header className={classes.header}>
         <Header />
       </header>
+      <nav>
+        <Menu />
+      </nav>
       <main>
-        <aside>
-          <Aside />
-        </aside>
         <section>
           <AppRouter />
         </section>

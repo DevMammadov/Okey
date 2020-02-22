@@ -3,12 +3,12 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 // A custom theme for this app
 const theme = createMuiTheme({
+  props: {
+    MuiMenuItem: {
+      disableRipple: true
+    }
+  },
   overrides: {
-    MuiTypography: {
-      body1: {
-        color: "#666"
-      }
-    },
     MuiIconButton: {
       root: {
         borderRadius: "5px"
@@ -21,19 +21,16 @@ const theme = createMuiTheme({
     }
   },
   palette: {
-    general: {
-      main: "#2F4163",
-      mainLight: "#9FA2B4",
-      text: "rgba(255, 255, 255, 0.49)",
-      back: "#f5f5f5",
-      blue: "#1F97DD"
-    },
+    general: {},
     color: {
-      danger: "#F1543F",
-      primary: "#3548ED",
-      white: "#fff",
-      lightGray: "rgba(196, 196, 196, 0.19)",
-      gray: "rgba(191, 182, 182, 0.45)"
+      black: "#1F1F1F",
+      lightBlack: "#363636"
+    },
+    primary: {
+      main: "#0883C6"
+    },
+    warning: {
+      main: "#F26C37"
     }
   }
 });
