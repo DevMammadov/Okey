@@ -2,32 +2,29 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles(theme => {
   return {
-    root: {},
-    header: {
-      padding: "0 100px"
+    root: {
+      "& nav": {
+        background: theme.palette.common.black
+      }
     },
     [theme.breakpoints.down("xl")]: {
       root: {
-        padding: "0 200px"
+        "& nav": {
+          padding: "0 150px"
+        }
       }
     },
     [theme.breakpoints.down("lg")]: {
-      root: {
-        padding: "0 150px"
-      },
+      root: {},
       header: {
         padding: 0
       }
     },
     [theme.breakpoints.down("md")]: {
-      root: {
-        padding: "0 100px"
-      }
+      root: {}
     },
     [theme.breakpoints.down("sm")]: {
-      root: {
-        padding: "0"
-      }
+      root: {}
     }
   };
 });

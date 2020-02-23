@@ -44,7 +44,7 @@ const ContextMenu: FC<IContextMenu> = ({
 
   const renderList = (list: IGoods[]) => {
     return list.map((goods: IGoods) => (
-      <CustomItem key={goods.id} img={goods.img} text={goods.name} />
+      <CustomItem key={goods.id} text={goods.name} />
     ));
   };
 

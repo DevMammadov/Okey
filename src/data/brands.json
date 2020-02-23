@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Huawei",
+    "enabled": true
+  },
+  {
+    "id": 2,
+    "name": "Samsung",
+    "enabled": true
+  },
+  {
+    "id": 3,
+    "name": "Apple",
+    "enabled": true
+  },
+  {
+    "id": 4,
+    "name": "Xiaomi",
+    "enabled": true
+  },
+  {
+    "id": 5,
+    "name": "Panasonic",
+    "enabled": true
+  },
+  {
+    "id": 6,
+    "name": "Trust",
+    "enabled": true
+  }
+]

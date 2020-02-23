@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Qulaqlıqlar",
+    "nameRu": "Наушники",
+    "enabled": true,
+    "deleted": false
+  },
+  {
+    "id": 2,
+    "name": "Power Bank",
+    "nameRu": "Повер банки",
+    "enabled": true,
+    "deleted": false
+  },
+  {
+    "id": 3,
+    "name": "Çexollar",
+    "nameRu": "Чехолы",
+    "enabled": true,
+    "deleted": false
+  },
+  {
+    "id": 4,
+    "name": "Adapterlər",
+    "nameRu": "Адаптеры",
+    "enabled": true,
+    "deleted": false
+  },
+  {
+    "id": 5,
+    "name": "Digər",
+    "nameRu": "Другие",
+    "enabled": true,
+    "deleted": false
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "name": "USB kabellər",
+    "nameRu": "УСБ кабель",
+    "categoryId": 5,
+    "icon": "",
+    "enabled": true,
+    "deleted": false
+  }
+]
