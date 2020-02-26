@@ -12,27 +12,44 @@ import {
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
+import { CardBadges } from "./card-badges";
+import clsx from "clsx";
 
 export interface ICard {
   item: IGoods;
   image: IImages | undefined;
   className?: string;
   style?: CSSProperties;
+  showBadge?: boolean;
 }
 
-export const Card: FC<ICard> = ({ item, image, className, style }) => {
+export const Card: FC<ICard> = ({
+  item,
+  image,
+  className,
+  style,
+  showBadge = true
+}) => {
   const classes = useStyles();
 
   return (
-    <MaterialCard className={classes.root}>
+    <MaterialCard
+      className={clsx(classes.root, className && className)}
+      style={style}
+    >
       <CardMedia
         className={classes.media}
         image={image?.name ? image.name : okeyLogo}
-        title="Paella dish"
+        title={item.name}
       />
-      <CardContent>
+      {showBadge && <CardBadges item={item} />}
+      <CardContent className={classes.cardContent}>
         <Typography variant="body2" color="textSecondary" component="div">
-          <h3> {item.name} </h3>
+          <h3>
+            {item.name?.length > 25
+              ? `${item.name.substr(0, 28)}... `
+              : item.name}
+          </h3>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

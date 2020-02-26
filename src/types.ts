@@ -7,8 +7,11 @@ export interface IGoods {
   like: number;
   price: number;
   discount: number;
-  stock: number;
   enabled: boolean;
+  badge: string;
+  warranty: string;
+  atStore: boolean;
+  buyCount: number;
   categoryId: number;
   brandId: number;
 }
@@ -34,6 +37,6 @@ export interface ISubCategory {
 export interface IImages {
   id: number;
   name: string;
-  color: string;
+  colorId: number;
   productId: number;
 }
