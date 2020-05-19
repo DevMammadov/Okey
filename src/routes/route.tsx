@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Router, Switch, Route } from "react-router-dom";
-import { App } from "views/layout";
+import App from "views/layout";
 import { createBrowserHistory } from "history";
 import { Spinner } from "components/shared";
 

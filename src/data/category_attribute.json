@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "categoryId": 2,
+    "attributeId": 1
+  },
+  {
+    "id": 2,
+    "categoryId": 2,
+    "attributeId": 2
+  },
+  {
+    "id": 3,
+    "categoryId": 2,
+    "attributeId": 3
+  },
+  {
+    "id": 4,
+    "categoryId": 2,
+    "attributeId": 4
+  },
+  {
+    "id": 5,
+    "categoryId": 2,
+    "attributeId": 5
+  },
+  {
+    "id": 6,
+    "categoryId": 2,
+    "attributeId": 6
+  },
+  {
+    "id": 7,
+    "categoryId": 2,
+    "attributeId": 7
+  },
+  {
+    "id": 8,
+    "categoryId": 2,
+    "attributeId": 8
+  },
+  {
+    "id": 9,
+    "categoryId": 2,
+    "attributeId": 9
+  },
+  {
+    "id": 10,
+    "categoryId": 2,
+    "attributeId": 10
+  },
+  {
+    "id": 11,
+    "categoryId": 2,
+    "attributeId": 11
+  },
+  {
+    "id": 12,
+    "categoryId": 2,
+    "attributeId": 12
+  },
+  {
+    "id": 13,
+    "categoryId": 2,
+    "attributeId": 13
+  },
+  {
+    "id": 14,
+    "categoryId": 2,
+    "attributeId": 14
+  }
+]

@@ -78,7 +78,7 @@
     "discount": 1,
     "warranty": "1 il",
     "enabled": true,
-    "badge": "",
+    "badge": "bonus!",
     "buyCount": 12,
     "atStore": true,
     "categoryId": 2,

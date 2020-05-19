@@ -3,54 +3,63 @@
     "id": 1,
     "name": "Huawei",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   },
   {
     "id": 2,
     "name": "Samsung",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   },
   {
     "id": 3,
     "name": "Apple",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   },
   {
     "id": 4,
     "name": "Xiaomi",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   },
   {
     "id": 5,
     "name": "Panasonic",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   },
   {
     "id": 6,
     "name": "Trust",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   },
   {
     "id": 7,
     "name": "Ttec",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   },
   {
     "id": 8,
     "name": "Baseus",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   },
   {
     "id": 9,
     "name": "2E",
     "logo": "",
+    "isFilter": true,
     "enabled": true
   }
 ]

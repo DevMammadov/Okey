@@ -4,7 +4,7 @@ import { useStyles } from "./header.style";
 import bigLogoBorderLess from "dist/BigBorderLess.png";
 import logoBorderLess from "dist/okeySmallBorderLess.jpg";
 import { ContextMenu, SearchBar } from "./components";
-import goodList from "data/goodList.json";
+import goodList from "data/products.json";
 import withWidth, {
   isWidthUp,
   WithWidthProps,
