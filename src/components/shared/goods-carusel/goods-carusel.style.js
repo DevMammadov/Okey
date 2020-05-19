@@ -1,23 +1,26 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles(theme => {
+export const useStyles = makeStyles((theme) => {
   return {
     sliderContainer: {
       position: "relative",
-      textAlign: "center"
+      textAlign: "center",
     },
     slider: {
       "& .slick-next": {
-        right: "10px"
+        right: "10px",
       },
       "& .slick-prev": {
         left: "10px",
-        zIndex: "55"
-      }
+        zIndex: "55",
+      },
+    },
+    card: {
+      height: "100%",
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {},
-    [theme.breakpoints.down("sm")]: {}
+    [theme.breakpoints.down("sm")]: {},
   };
 });

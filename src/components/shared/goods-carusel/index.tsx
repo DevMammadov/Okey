@@ -5,6 +5,7 @@ import { useStyles } from "./goods-carusel.style";
 import { Card } from "../card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import clsx from "clsx";
 
 export interface IGoodCaruselProps {
   list: IGoods[];
@@ -19,7 +20,7 @@ export const GoodCarusel: FC<IGoodCaruselProps> = ({
   images,
   title,
   style,
-  className
+  className,
 }) => {
   const classes = useStyles();
   const settings = {
@@ -28,8 +29,7 @@ export const GoodCarusel: FC<IGoodCaruselProps> = ({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    swipeToSlide: false,
-    arrows: true
+    arrows: true,
   };
 
   const renderImage = (id: number) => {
@@ -38,11 +38,16 @@ export const GoodCarusel: FC<IGoodCaruselProps> = ({
   };
 
   return (
-    <div className={`${className} ${classes.sliderContainer}`} style={style}>
+    <div className={clsx(className, classes.sliderContainer)} style={style}>
       {title && <h2>{title}</h2>}
       <Slider {...settings} className={classes.slider}>
         {list.map((good: IGoods) => (
-          <Card key={good.id} item={good} image={renderImage(good.id)} />
+          <Card
+            key={good.id}
+            className={classes.card}
+            item={good}
+            image={renderImage(good.id)}
+          />
         ))}
       </Slider>
     </div>

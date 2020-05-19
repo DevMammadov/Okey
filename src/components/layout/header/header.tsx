@@ -7,8 +7,9 @@ import { ContextMenu, SearchBar } from "./components";
 import goodList from "data/goodList.json";
 import withWidth, {
   isWidthUp,
-  WithWidthProps
+  WithWidthProps,
 } from "@material-ui/core/withWidth";
+import { Link } from "react-router-dom";
 
 interface IHeader extends WithWidthProps {
   width: any;
@@ -32,11 +33,13 @@ const Header: FC<IHeader> = ({ width }) => {
 
   const renderLogo = () => {
     return (
-      <img
-        src={isWidthUp("sm", width) ? bigLogoBorderLess : logoBorderLess}
-        alt="logo"
-        className={classes.logo}
-      />
+      <Link to="/">
+        <img
+          src={isWidthUp("sm", width) ? bigLogoBorderLess : logoBorderLess}
+          alt="logo"
+          className={classes.logo}
+        />
+      </Link>
     );
   };
 

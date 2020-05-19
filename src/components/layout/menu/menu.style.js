@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles(theme => {
+export const useStyles = makeStyles((theme) => {
   return {
     root: {
       padding: 0,
@@ -19,15 +19,19 @@ export const useStyles = makeStyles(theme => {
           "&:hover": {
             background: theme.palette.warning.main,
             "& > a": {
-              color: theme.palette.common.black
+              color: theme.palette.common.black,
             },
             "& > ul": {
-              display: "block"
-            }
-          }
+              display: "block",
+            },
+          },
         },
         "& li:last-child": {
-          border: "none"
+          border: "none",
+        },
+        "& li a.active": {
+          background: theme.palette.warning.main,
+          color: theme.palette.common.black,
         },
         "& li a": {
           display: "block",
@@ -35,7 +39,7 @@ export const useStyles = makeStyles(theme => {
           fontSize: "18px",
           color: theme.palette.warning.main,
           fontWeight: "bold",
-          textDecoration: "none"
+          textDecoration: "none",
         },
         "& li ul": {
           position: "absolute",
@@ -45,24 +49,24 @@ export const useStyles = makeStyles(theme => {
           transform: "translateX(-50%)",
           "& li": {
             borderRight: "none",
-            borderBottom: "1px solid"
+            borderBottom: "1px solid",
           },
           "& li:last-child": {
-            border: "none"
+            border: "none",
           },
           "& a": {
-            padding: theme.spacing(2)
-          }
-        }
-      }
+            padding: theme.spacing(2),
+          },
+        },
+      },
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {},
     [theme.breakpoints.down("sm")]: {
       root: {
-        display: "none"
-      }
-    }
+        display: "none",
+      },
+    },
   };
 });

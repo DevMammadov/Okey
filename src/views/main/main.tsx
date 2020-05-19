@@ -14,7 +14,7 @@ export const Main = () => {
       <Grid item xs={12} className={classes.sliderContainer}>
         <Slider />
       </Grid>
-      <Grid item xs={12} className={classes.caruselContainer}>
+      <Grid item xs={12} className={classes.section}>
         <GoodCarusel
           list={goodList}
           images={imgList}

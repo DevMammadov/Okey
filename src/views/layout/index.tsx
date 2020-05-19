@@ -1,6 +1,6 @@
 import React from "react";
 import AppRouter from "routes/app-router";
-import { Header, Menu } from "components/layout";
+import { Header, Menu, Footer } from "components/layout";
 import { useStyles } from "./layout.style";
 
 interface IProps {
@@ -15,7 +15,7 @@ export const App = ({ ...props }: IProps) => {
       <header className={classes.header}>
         <Header />
       </header>
-      <nav>
+      <nav className={classes.menuNav}>
         <Menu />
       </nav>
       <main>
@@ -23,6 +23,9 @@ export const App = ({ ...props }: IProps) => {
           <AppRouter />
         </section>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

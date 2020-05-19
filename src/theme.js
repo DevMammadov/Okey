@@ -5,34 +5,34 @@ import { createMuiTheme } from "@material-ui/core/styles";
 const theme = createMuiTheme({
   props: {
     MuiMenuItem: {
-      disableRipple: true
-    }
+      disableRipple: true,
+    },
   },
   overrides: {
     MuiIconButton: {
       root: {
-        borderRadius: "5px"
-      }
+        borderRadius: "5px",
+      },
     },
     MuiGrid: {
       item: {
-        padding: "15px"
-      }
-    }
+        padding: "15px",
+      },
+    },
   },
   palette: {
     general: {},
     color: {
       black: "#1F1F1F",
-      lightBlack: "#363636"
+      lightBlack: "#363636",
     },
     primary: {
-      main: "#0883C6"
+      main: "#0883C6",
     },
     warning: {
-      main: "#F26C37"
-    }
-  }
+      main: "#F26C37",
+    },
+  },
 });
 
 export default theme;

@@ -5,7 +5,7 @@ import { useStyles } from "./context-menu.style";
 import { IGoods } from "types";
 import withWidth, {
   isWidthUp,
-  WithWidthProps
+  WithWidthProps,
 } from "@material-ui/core/withWidth";
 
 export interface IContextMenu extends WithWidthProps {
@@ -25,7 +25,7 @@ const ContextMenu: FC<IContextMenu> = ({
   style,
   buttonText,
   onOpen,
-  width
+  width,
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const classes = useStyles();
@@ -59,7 +59,7 @@ const ContextMenu: FC<IContextMenu> = ({
   };
 
   const renderBadge = () => {
-    console.log(list.length);
+    //console.log(list.length);
     return (
       <Badge
         badgeContent={list.length || 0}
@@ -91,11 +91,11 @@ const ContextMenu: FC<IContextMenu> = ({
         getContentAnchorEl={null}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "center"
+          horizontal: "center",
         }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "center"
+          horizontal: "center",
         }}
         classes={{ paper: classes.menu }}
         open={Boolean(anchorEl)}
