@@ -1,3 +1,3 @@
 export { Spinner } from "./spinner";
-export { GoodCarusel } from "./goods-carusel";
+export { default as GoodCarusel } from "./goods-carusel";
 export { Card } from "./card";

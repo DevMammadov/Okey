@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "code": "#000",
+    "name": "black"
+  },
+  {
+    "id": 2,
+    "code": "#fff",
+    "name": "white"
+  },
+  {
+    "id": 3,
+    "code": "#ac10b6",
+    "name": "violet"
+  },
+  {
+    "id": 4,
+    "code": "#10acb6",
+    "name": "green blue"
+  },
+  {
+    "id": 5,
+    "code": "#e21414",
+    "name": "red"
+  }
+]

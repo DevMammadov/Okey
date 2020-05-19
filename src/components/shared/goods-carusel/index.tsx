@@ -1,34 +1,54 @@
-import React, { FC, CSSProperties } from "react";
+import { isWidthUp, withWidth, isWidthDown } from "@material-ui/core";
+import React, { CSSProperties, FC } from "react";
 import Slider from "react-slick";
-import { IGoods, IImages } from "types";
-import { useStyles } from "./goods-carusel.style";
-import { Card } from "../card";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { IGoods, IImages } from "types";
+import { Card } from "../card";
+import { useStyles } from "./goods-carusel.style";
 import clsx from "clsx";
+interface ICaruselClasses {
+  card?: string;
+  carusel?: string;
+  root?: string;
+}
 
 export interface IGoodCaruselProps {
   list: IGoods[];
   images: IImages[];
   title?: string;
-  className?: string;
+  classList?: ICaruselClasses;
   style?: CSSProperties;
+  width: any;
 }
 
-export const GoodCarusel: FC<IGoodCaruselProps> = ({
+const GoodCarusel: FC<IGoodCaruselProps> = ({
   list,
   images,
   title,
   style,
-  className,
+  width,
+  classList,
 }) => {
   const classes = useStyles();
+
+  const itemToShow = () => {
+    let items = 0;
+    if (isWidthDown("xl", width)) items = 4;
+    if (isWidthDown("md", width)) items = 3;
+    if (isWidthDown("sm", width)) items = 2;
+    if (isWidthDown("xs", width)) items = 1;
+    return items;
+  };
+
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: itemToShow(),
     slidesToScroll: 1,
+    swipe: !isWidthUp("sm", width),
+    touchmove: true,
     arrows: true,
   };
 
@@ -38,14 +58,26 @@ export const GoodCarusel: FC<IGoodCaruselProps> = ({
   };
 
   return (
-    <div className={clsx(className, classes.sliderContainer)} style={style}>
+    <div
+      className={clsx(
+        classList?.root && classList?.root,
+        classes.caruselContainer
+      )}
+      style={style}
+    >
       {title && <h2>{title}</h2>}
-      <Slider {...settings} className={classes.slider}>
+      <Slider
+        {...settings}
+        className={clsx(
+          classes.slider,
+          classList?.carusel && classList.carusel
+        )}
+      >
         {list.map((good: IGoods) => (
           <Card
             key={good.id}
-            className={classes.card}
             item={good}
+            className={classList?.card}
             image={renderImage(good.id)}
           />
         ))}
@@ -53,3 +85,5 @@ export const GoodCarusel: FC<IGoodCaruselProps> = ({
     </div>
   );
 };
+
+export default withWidth()(GoodCarusel);

@@ -32,6 +32,9 @@ const theme = createMuiTheme({
     warning: {
       main: "#F26C37",
     },
+    danger: {
+      main: "#EA2227",
+    },
   },
 });
 

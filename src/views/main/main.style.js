@@ -9,9 +9,15 @@ export const useStyles = makeStyles((theme) => {
     section: {
       padding: theme.spacing(2, 0),
     },
+    sliderCard: {
+      height: "360px",
+    },
     [theme.breakpoints.down("xl")]: {
       caruselContainer: {
-        padding: "0 150px",
+        padding: "0 150px 50px 150px",
+      },
+      slider: {
+        padding: "10px 0",
       },
     },
     [theme.breakpoints.down("lg")]: {},

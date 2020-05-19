@@ -5,9 +5,11 @@ import { useStyles } from "./main.style";
 import { GoodCarusel } from "components/shared";
 import goodList from "data/goodList.json";
 import imgList from "data/images.json";
+import { translator } from "translation";
 
 export const Main = () => {
   const classes = useStyles();
+  const lang = translator().main;
 
   return (
     <Grid container>
@@ -18,7 +20,11 @@ export const Main = () => {
         <GoodCarusel
           list={goodList}
           images={imgList}
-          title="Ən çox baxılan mallar"
+          title={lang.mostViewedGoods}
+          classList={{
+            card: classes.sliderCard,
+            carusel: classes.slider
+          }}
         />
       </Grid>
     </Grid>

@@ -2,11 +2,14 @@ import React, { useState, MouseEvent, FC } from "react";
 import { Badge, Button, Menu, Icon } from "@material-ui/core";
 import { CustomItem } from "./styled-components";
 import { useStyles } from "./context-menu.style";
-import { IGoods } from "types";
+import { IGoods, IImages } from "types";
 import withWidth, {
   isWidthUp,
   WithWidthProps,
 } from "@material-ui/core/withWidth";
+// TODO: will be removed
+import imageList from "data/images.json";
+import logo from "dist/smallLogo.png";
 
 export interface IContextMenu extends WithWidthProps {
   icon?: string;
@@ -42,9 +45,16 @@ const ContextMenu: FC<IContextMenu> = ({
     setAnchorEl(null);
   };
 
+  // TODO: Well be removed!
+  const scrapImage = (id: number) => {
+    return (
+      imageList.filter((img: IImages) => img.productId === id)[0].name || logo
+    );
+  };
+
   const renderList = (list: IGoods[]) => {
     return list.map((goods: IGoods) => (
-      <CustomItem key={goods.id} text={goods.name} />
+      <CustomItem key={goods.id} img={scrapImage(goods.id)} text={goods.name} />
     ));
   };
 
