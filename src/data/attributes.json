@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Seriya"
+  },
+  {
+    "id": 2,
+    "name": "Növ"
+  },
+  {
+    "id": 3,
+    "name": "Akkumulyator növü"
+  },
+  {
+    "id": 4,
+    "name": "Akkumulyatorun həcmi, mAh"
+  },
+  {
+    "id": 5,
+    "name": "Dəyişən cərəyanın giriş/ çıxışı, A"
+  },
+  {
+    "id": 6,
+    "name": "Çıxış"
+  },
+  {
+    "id": 7,
+    "name": "Uyğunluq"
+  },
+  {
+    "id": 8,
+    "name": "Quraşdırılmış fənər"
+  },
+  {
+    "id": 9,
+    "name": "Enerjinin dərəcə indikatoru"
+  },
+  {
+    "id": 10,
+    "name": "Enerjinin qəbulu üçün giriş"
+  },
+  {
+    "id": 11,
+    "name": "Enerjinin verilməsi üçün çıxış"
+  },
+  {
+    "id": 12,
+    "name": "Akkumulyatorun enerji yığma üsulu"
+  },
+  {
+    "id": 13,
+    "name": "Korpusun materialı"
+  },
+  {
+    "id": 14,
+    "name": "Xüsusiyyətlər"
+  }
+]

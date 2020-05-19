@@ -3,7 +3,7 @@ import { Slider } from "./components";
 import { Grid } from "@material-ui/core";
 import { useStyles } from "./main.style";
 import { GoodCarusel } from "components/shared";
-import goodList from "data/goodList.json";
+import goodList from "data/products.json";
 import imgList from "data/images.json";
 import { translator } from "translation";
 
@@ -17,15 +17,15 @@ export const Main = () => {
         <Slider />
       </Grid>
       <Grid item xs={12} className={classes.section}>
-        <GoodCarusel
+        {/* <GoodCarusel
           list={goodList}
           images={imgList}
           title={lang.mostViewedGoods}
           classList={{
             card: classes.sliderCard,
-            carusel: classes.slider
+            carusel: classes.slider,
           }}
-        />
+        /> */}
       </Grid>
     </Grid>
   );

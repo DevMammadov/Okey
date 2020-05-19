@@ -4,57 +4,39 @@ export const useStyles = makeStyles((theme) => {
   return {
     root: {
       maxWidth: 345,
+      height: "100%",
       position: "relative",
-    },
-    media: {
-      height: 0,
-      paddingTop: "56.25%",
-      backgroundSize: "contain",
-    },
-    cardContent: {},
-    expand: {
-      transform: "rotate(0deg)",
-      marginLeft: "auto",
-      transition: theme.transitions.create("transform", {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-    badgeContainer: {
-      position: "absolute",
-      top: theme.spacing(2),
-      right: theme.spacing(2),
-      color: theme.palette.common.white,
-      width: "75px",
-      flexWrap: "wrap",
-      "& > div": {
-        fontWeight: 600,
-        width: "100%",
-        borderRadius: "50%",
-        display: "webkit-box",
-        display: "flex",
-        justifyContent: "center",
-        WebkitBoxOrient: "vertical",
-        WebkitBoxDirection: "normal",
-        WebkitBoxPack: "center",
-        flexDirection: "column",
-        textAlign: "center",
-        height: "75px",
-        width: "75px",
-      },
-      "& > div + div": {
-        marginTop: "-5px",
+      "& .MuiCardMedia-root": {
+        height: 0,
+        paddingTop: "56.25%",
+        backgroundSize: "contain",
       },
     },
-    warrantyBadge: {
-      background: theme.palette.warning.main,
-      opacity: 0.9,
+    listCard: {
+      maxWidth: "100%",
+      display: "flex",
+      justifyContent: "space-between",
+      padding: theme.spacing(1),
+      "& .MuiCardMedia-root": {
+        height: 300,
+        width: 300,
+        padding: theme.spacing(1),
+        backgroundSize: "contain",
+      },
+      "& .MuiCardContent-root": {
+        flex: "auto",
+        minWidth: "450px",
+      },
+      "& .MuiCardActions-root": {
+        flex: 1,
+      },
     },
-    customBadge: {
-      background: theme.palette.danger.main,
-      opacity: 0.8,
-    },
-    expandOpen: {
-      transform: "rotate(180deg)",
+    attributeTable: {
+      "& .MuiTableCell-root": {
+        padding: theme.spacing(1),
+        fontSize: "0.9rem",
+        fontStyle: "italic",
+      },
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},

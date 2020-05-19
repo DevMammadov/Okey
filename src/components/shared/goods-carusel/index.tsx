@@ -3,7 +3,7 @@ import React, { CSSProperties, FC } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { IGoods, IImages } from "types";
+import { IProduct, IImages } from "types";
 import { Card } from "../card";
 import { useStyles } from "./goods-carusel.style";
 import clsx from "clsx";
@@ -14,7 +14,7 @@ interface ICaruselClasses {
 }
 
 export interface IGoodCaruselProps {
-  list: IGoods[];
+  list: IProduct[];
   images: IImages[];
   title?: string;
   classList?: ICaruselClasses;
@@ -22,14 +22,7 @@ export interface IGoodCaruselProps {
   width: any;
 }
 
-const GoodCarusel: FC<IGoodCaruselProps> = ({
-  list,
-  images,
-  title,
-  style,
-  width,
-  classList,
-}) => {
+const GoodCarusel: FC<IGoodCaruselProps> = ({ list, images, title, style, width, classList }) => {
   const classes = useStyles();
 
   const itemToShow = () => {
@@ -52,34 +45,12 @@ const GoodCarusel: FC<IGoodCaruselProps> = ({
     arrows: true,
   };
 
-  const renderImage = (id: number) => {
-    let image = images.filter((img: IImages) => img.productId === id)[0];
-    return image ? image : undefined;
-  };
-
   return (
-    <div
-      className={clsx(
-        classList?.root && classList?.root,
-        classes.caruselContainer
-      )}
-      style={style}
-    >
+    <div className={clsx(classList?.root && classList?.root, classes.caruselContainer)} style={style}>
       {title && <h2>{title}</h2>}
-      <Slider
-        {...settings}
-        className={clsx(
-          classes.slider,
-          classList?.carusel && classList.carusel
-        )}
-      >
-        {list.map((good: IGoods) => (
-          <Card
-            key={good.id}
-            item={good}
-            className={classList?.card}
-            image={renderImage(good.id)}
-          />
+      <Slider {...settings} className={clsx(classes.slider, classList?.carusel && classList.carusel)}>
+        {list.map((good: IProduct) => (
+          <Card key={good.id} item={good} className={classList?.card} />
         ))}
       </Slider>
     </div>

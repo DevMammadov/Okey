@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "value": "AlumiSlim",
+    "attributeId": 1,
+    "deleted": false
+  },
+  {
+    "id": 2,
+    "value": "daşına bilən enerjiyığma cihazı",
+    "attributeId": 2,
+    "deleted": false
+  },
+  {
+    "id": 3,
+    "value": "Li-Ion",
+    "attributeId": 3,
+    "deleted": false
+  },
+  {
+    "id": 4,
+    "value": "4500",
+    "attributeId": 4,
+    "deleted": false
+  },
+  {
+    "id": 5,
+    "value": "2.1",
+    "attributeId": 5,
+    "deleted": false
+  },
+  {
+    "id": 6,
+    "value": "USB, micro-USB",
+    "attributeId": 6,
+    "deleted": false
+  },
+  {
+    "id": 7,
+    "value": "smartfonlar, planşetlər, mobil telefonlar və s.",
+    "attributeId": 7,
+    "deleted": false
+  },
+  {
+    "id": 8,
+    "value": "yox",
+    "attributeId": 8,
+    "deleted": false
+  },
+  {
+    "id": 9,
+    "value": "var, LED",
+    "attributeId": 9,
+    "deleted": false
+  },
+  {
+    "id": 10,
+    "value": "micro-USB",
+    "attributeId": 10,
+    "deleted": false
+  },
+  {
+    "id": 11,
+    "value": "2 x USB",
+    "attributeId": 11,
+    "deleted": false
+  },
+  {
+    "id": 12,
+    "value": "standart (elektrik şəbəkədən)",
+    "attributeId": 12,
+    "deleted": false
+  },
+  {
+    "id": 13,
+    "value": "alümin/ ABS plastik",
+    "attributeId": 13,
+    "deleted": false
+  },
+  {
+    "id": 14,
+    "value": "təhlükəsiz enerji yığılması üçün qısa qapanmadan qorunma, maksimum səməriliklə eyni zaman iki cihazın enerji ilə dolması",
+    "attributeId": 14,
+    "deleted": false
+  }
+]

@@ -1,15 +1,15 @@
-import React, { CSSProperties, FC } from "react";
-import { useStyles } from "./card.style";
-import { IGoods } from "types";
+import React, { FC } from "react";
+import { useStyles } from "./card-badge.style";
+import { IProduct } from "types";
 import clsx from "clsx";
 import { translator } from "translation";
 
 export interface ICardPadges {
-  item: IGoods;
+  item: IProduct;
   className?: string;
 }
 
-export const CardBadges: FC<ICardPadges> = ({ item, className }) => {
+export const CardBadge: FC<ICardPadges> = ({ item, className }) => {
   const classes = useStyles();
   const lang = translator().item;
   return (
