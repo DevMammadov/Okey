@@ -1,6 +1,5 @@
 import React, { FC, CSSProperties } from "react";
 import { useStyles } from "./card.style";
-import { IProduct, IAttribute } from "types";
 import okeyLogo from "dist/smallLogo.png";
 import {
   Card as MaterialCard,
@@ -18,6 +17,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import clsx from "clsx";
 import { CardBadge } from "./components";
+import { IAttribute, IProduct } from "views/category/types";
 
 export interface ICard {
   item: IProduct;

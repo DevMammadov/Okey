@@ -82,5 +82,11 @@
     "value": "təhlükəsiz enerji yığılması üçün qısa qapanmadan qorunma, maksimum səməriliklə eyni zaman iki cihazın enerji ilə dolması",
     "attributeId": 14,
     "deleted": false
+  },
+  {
+    "id": 15,
+    "value": "DL511 (+2)",
+    "attributeId": 1,
+    "deleted": false
   }
 ]

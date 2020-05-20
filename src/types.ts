@@ -26,6 +26,7 @@ export interface IImages {
 export interface IAttributes {
   id: number;
   name: string;
+  isfilter: boolean;
 }
 
 export interface IBrands {
@@ -41,11 +42,6 @@ export interface IProductAttribute {
   productId: number;
   attributeId: number;
   valueId: number;
-}
-
-export interface IFilterField {
-  name: string;
-  count: number;
 }
 
 export interface IGoods {
@@ -83,23 +79,4 @@ export interface ICategory {
   enabled: boolean;
   deleted: boolean;
   subCategory: ISubCategory[];
-}
-
-export interface IAttribute {
-  name: string;
-  value: string;
-}
-
-export interface IProduct {
-  id: number;
-  name: string;
-  view: number;
-  like: number;
-  price: number;
-  discount: number;
-  enabled: boolean;
-  badge: string;
-  warranty: string;
-  image: string;
-  attributes: IAttribute[];
 }

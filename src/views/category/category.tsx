@@ -7,21 +7,22 @@ import React, { FC, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { IAppState } from "store/reducers";
-import { ICategory, IFilterField, IProduct } from "types";
+import { ICategory } from "types";
 import { useStyles } from "./category.style";
 import { Aside } from "./components";
 import { categoryActions } from "./store/action";
-import brands from "data/brands.json";
-import productList from "data/products.json";
+import { ICategoryState } from "./store/reducer";
+import { IProduct } from "./types";
 
 export interface ICategoryPage {
   match: any;
-  products: IProduct[];
+  category: ICategoryState;
   categories: ICategory[];
   getProducts(id: number): void;
+  getFilters(id: number): void;
 }
 
-const Category: FC<ICategoryPage> = ({ match, getProducts, products, categories }) => {
+const Category: FC<ICategoryPage> = ({ match, getProducts, category, categories, getFilters }) => {
   const classes = useStyles();
   const [isApp, setViewMode] = useState(true);
 
@@ -31,13 +32,13 @@ const Category: FC<ICategoryPage> = ({ match, getProducts, products, categories 
       ?.id;
 
     getProducts(categId);
-    console.log(products);
-  }, []);
+    getFilters(categId);
+  }, [match.params?.category]);
 
   const renderCards = () => {
     return (
       <Grid container>
-        {products.map((product: IProduct) => (
+        {category.products.map((product: IProduct) => (
           <Grid key={product.id} item xs={12} md={!isApp ? 3 : 12}>
             <Card item={product} list={isApp} />
           </Grid>
@@ -66,49 +67,14 @@ const Category: FC<ICategoryPage> = ({ match, getProducts, products, categories 
   const handleBrandSelect = () => {};
   const handlePriceSelect = () => {};
 
-  // from back
-  const findFilters = (filter: "brands" | "attributes") => {
-    const queryString = match.params?.category;
-    const categId = categories.filter((c) => c.name.toLowerCase() === queryString.replace("-", " ").toLowerCase())[0]
-      ?.id;
-
-    const categProducts = productList.filter((p: any) => p.categoryId === categId);
-
-    const brandList: IFilterField[] = [];
-    // const attrList: IFilterField[] = [];
-
-    for (let brand of brands) {
-      brandList.push({
-        name: brand.name,
-        count: categProducts.filter((cp: any) => cp.brandId === brand.id).length,
-      });
-    }
-
-    for (let brand of brands) {
-      brandList.push({
-        name: brand.name,
-        count: categProducts.filter((cp: any) => cp.brandId === brand.id).length,
-      });
-    }
-
-    // for (let attr of attributes) {
-    //   attrList.push({
-    //     name: attr.name,
-    //     count: categProducts.filter((cp) => cp.brandId === brand.id).length,
-    //   });
-    // }
-
-    return filter === "brands" ? brandList : [];
-  };
-
   return (
     <Grid container className={classes.container}>
-      {products.length > 0 ? (
+      {category.products.length > 0 ? (
         <>
           <Grid item xs={3}>
             <Aside
-              attributes={findFilters("brands")}
-              brands={findFilters("brands")}
+              attributes={category.filterFields}
+              categName={match.params?.category}
               onAttrSelect={handleAttributeSelect}
               onBrandSelect={handleBrandSelect}
               onPriceSelect={handlePriceSelect}
@@ -129,7 +95,7 @@ const Category: FC<ICategoryPage> = ({ match, getProducts, products, categories 
 };
 
 const mapStateToProps = (state: IAppState) => ({
-  products: state.category.products,
+  category: state.category,
   categories: state.layout.category,
 });
 export default withRouter(connect(mapStateToProps, categoryActions)(Category));

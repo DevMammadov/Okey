@@ -3,10 +3,11 @@ import React, { CSSProperties, FC } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { IProduct, IImages } from "types";
 import { Card } from "../card";
 import { useStyles } from "./goods-carusel.style";
 import clsx from "clsx";
+import { IProduct } from "views/category/types";
+import { IImages } from "types";
 interface ICaruselClasses {
   card?: string;
   carusel?: string;

@@ -1,58 +1,72 @@
 [
   {
     "id": 1,
-    "name": "Seriya"
+    "name": "Seriya",
+    "isFilter": true
   },
   {
     "id": 2,
-    "name": "Növ"
+    "name": "Növ",
+    "isFilter": true
   },
   {
     "id": 3,
-    "name": "Akkumulyator növü"
+    "name": "Akkumulyator növü",
+    "isFilter": false
   },
   {
     "id": 4,
-    "name": "Akkumulyatorun həcmi, mAh"
+    "name": "Akkumulyatorun həcmi, mAh",
+    "isFilter": false
   },
   {
     "id": 5,
-    "name": "Dəyişən cərəyanın giriş/ çıxışı, A"
+    "name": "Dəyişən cərəyanın giriş/ çıxışı, A",
+    "isFilter": false
   },
   {
     "id": 6,
-    "name": "Çıxış"
+    "name": "Çıxış",
+    "isFilter": false
   },
   {
     "id": 7,
-    "name": "Uyğunluq"
+    "name": "Uyğunluq",
+    "isFilter": false
   },
   {
     "id": 8,
-    "name": "Quraşdırılmış fənər"
+    "name": "Quraşdırılmış fənər",
+    "isFilter": false
   },
   {
     "id": 9,
-    "name": "Enerjinin dərəcə indikatoru"
+    "name": "Enerjinin dərəcə indikatoru",
+    "isFilter": false
   },
   {
     "id": 10,
-    "name": "Enerjinin qəbulu üçün giriş"
+    "name": "Enerjinin qəbulu üçün giriş",
+    "isFilter": false
   },
   {
     "id": 11,
-    "name": "Enerjinin verilməsi üçün çıxış"
+    "name": "Enerjinin verilməsi üçün çıxış",
+    "isFilter": false
   },
   {
     "id": 12,
-    "name": "Akkumulyatorun enerji yığma üsulu"
+    "name": "Akkumulyatorun enerji yığma üsulu",
+    "isFilter": false
   },
   {
     "id": 13,
-    "name": "Korpusun materialı"
+    "name": "Korpusun materialı",
+    "isFilter": true
   },
   {
     "id": 14,
-    "name": "Xüsusiyyətlər"
+    "name": "Xüsusiyyətlər",
+    "isFilter": false
   }
 ]

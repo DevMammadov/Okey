@@ -118,5 +118,11 @@
     "productId": 6,
     "attributeId": 6,
     "valueId": 6
+  },
+  {
+    "id": 21,
+    "productId": 7,
+    "attributeId": 1,
+    "valueId": 15
   }
 ]

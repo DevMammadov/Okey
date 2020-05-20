@@ -8,4 +8,9 @@ export function* categorySaga() {
     categoryActions.getProducts,
     bindAsyncActions(categoryActions.getProductsAsync)(categoryApi.getProducts)
   );
+
+  yield takeEvery(
+    categoryActions.getFilters,
+    bindAsyncActions(categoryActions.getFiltersAsync)(categoryApi.getFilterFields)
+  );
 }

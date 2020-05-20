@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { useStyles } from "./card-badge.style";
-import { IProduct } from "types";
 import clsx from "clsx";
 import { translator } from "translation";
+import { IProduct } from "views/category/types";
 
 export interface ICardPadges {
   item: IProduct;
