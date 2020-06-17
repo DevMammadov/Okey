@@ -19,11 +19,23 @@ export const useStyles = makeStyles((theme) => {
         WebkitBoxPack: "center",
         flexDirection: "column",
         textAlign: "center",
-        height: "75px",
-        width: "75px",
+        height: "70px",
+        width: "70px",
+        fontSize: "0.8rem",
+        padding: theme.spacing(1),
       },
       "& > div + div": {
         marginTop: "-5px",
+      },
+    },
+    listBadge: {
+      display: "flex",
+      justifyContent: "flex-end",
+      width: "140px",
+      "& > div": {},
+      "& > div + div": {
+        marginLeft: "-5px",
+        marginTop: "0",
       },
     },
     warrantyBadge: {

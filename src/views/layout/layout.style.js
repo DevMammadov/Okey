@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { grey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) => {
   return {
@@ -12,8 +13,12 @@ export const useStyles = makeStyles((theme) => {
       display: "flex",
       flexDirection: "column",
     },
+    header: {
+      paddingBottom: theme.spacing(2),
+    },
     menuNav: {
-      background: theme.palette.common.black,
+      //borderBottom: `1px solid ${grey[200]}`,
+      boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 2px 0px rgba(0,0,0,0.12)",
     },
     main: {
       flex: 1,
@@ -29,16 +34,12 @@ export const useStyles = makeStyles((theme) => {
         padding: "0 150px",
       },
     },
-    [theme.breakpoints.down("lg")]: {
+    [theme.breakpoints.down("lg")]: {},
+    [theme.breakpoints.down("md")]: {
       header: {
         padding: 0,
       },
     },
-    [theme.breakpoints.down("md")]: {
-      root: {},
-    },
-    [theme.breakpoints.down("sm")]: {
-      root: {},
-    },
+    [theme.breakpoints.down("sm")]: {},
   };
 });

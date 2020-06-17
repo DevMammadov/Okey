@@ -2,18 +2,20 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => {
   return {
-    container: {
-      padding: theme.spacing(1, 0),
-      height: "100%",
+    root: {
+      width: "100%",
     },
-    cardContainer: {
-      height: "100%",
+    formGroup: {
+      display: "flex",
+      marginBottom: theme.spacing(3),
     },
-    noItem: {
-      height: "100%",
+    seperator: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      margin: theme.spacing(0, 2),
+      color: theme.palette.primary.main,
+      paddingTop: theme.spacing(1.5),
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},

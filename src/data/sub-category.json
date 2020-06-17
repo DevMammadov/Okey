@@ -4,7 +4,7 @@
     "name": "USB kabellər",
     "nameRu": "УСБ кабель",
     "categoryId": 5,
-    "icon": "",
+    "icon": "usb",
     "enabled": true,
     "deleted": false
   }

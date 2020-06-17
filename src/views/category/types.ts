@@ -9,10 +9,25 @@ export interface IValue {
   count: number;
 }
 
-export interface IFilterField {
+export interface IFilterAttribute {
   attribute: string;
   attributeId: number;
   values: IValue[];
+}
+
+export interface IFilterField {
+  price: number[];
+  attributes: IFilterAttribute[];
+}
+
+export interface ICheckedAttribute {
+  valueId: number;
+  attributeId: number;
+}
+
+export interface ISearchFilter {
+  price: number[];
+  attributes: ICheckedAttribute[];
 }
 
 export interface IAttribute {
@@ -32,4 +47,11 @@ export interface IProduct {
   warranty: string;
   image: string;
   attributes: IAttribute[];
+}
+
+export interface IProductPayload {
+  categId: number;
+  filters: ISearchFilter;
+  limit: number;
+  offset: number;
 }

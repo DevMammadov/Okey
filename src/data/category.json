@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Qulaqlıqlar",
     "nameRu": "Наушники",
-    "icon": "",
+    "icon": "headset",
     "enabled": true,
     "deleted": false
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "name": "Power Bank",
     "nameRu": "Повер банки",
-    "icon": "",
+    "icon": "battery_charging_full",
     "enabled": true,
     "deleted": false
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "name": "Çexollar",
     "nameRu": "Чехолы",
-    "icon": "",
+    "icon": "stay_current_portrait",
     "enabled": true,
     "deleted": false
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "name": "Adapterlər",
     "nameRu": "Адаптеры",
-    "icon": "",
+    "icon": "power",
     "enabled": true,
     "deleted": false
   },
@@ -35,7 +35,7 @@
     "id": 5,
     "name": "Digər",
     "nameRu": "Другие",
-    "icon": "",
+    "icon": "keyboard_arrow_down",
     "enabled": true,
     "deleted": false
   }

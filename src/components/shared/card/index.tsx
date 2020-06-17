@@ -1,23 +1,15 @@
 import React, { FC, CSSProperties } from "react";
 import { useStyles } from "./card.style";
 import okeyLogo from "dist/smallLogo.png";
-import {
-  Card as MaterialCard,
-  IconButton,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions,
-  TableContainer,
-  TableRow,
-  TableBody,
-  TableCell,
-} from "@material-ui/core";
+import { Card as MaterialCard, IconButton, CardMedia, CardContent, CardActions, Button } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import clsx from "clsx";
-import { CardBadge } from "./components";
-import { IAttribute, IProduct } from "views/category/types";
+import { CardBadge, Price, Attributes } from "./components";
+import { stringCutter } from "helpers";
+import { Link } from "react-router-dom";
+import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
+import { IProduct } from "views/category/types";
 
 export interface ICard {
   item: IProduct;
@@ -30,47 +22,44 @@ export interface ICard {
 export const Card: FC<ICard> = ({ item, className, style, list = false, showBadge = true }) => {
   const classes = useStyles();
 
-  const sliceArray = (start: number, end: number, arr: any[] | undefined) => {
-    if (arr && arr.length > end) {
-      return arr.slice(start, end);
-    }
-    return arr || [];
-  };
-
-  const renderAttributes = () => {
-    return (
-      list && (
-        <TableContainer component="table" className={classes.attributeTable}>
-          <TableBody>
-            {sliceArray(0, 5, item.attributes).map((v: IAttribute, i: number) => (
-              <TableRow key={i}>
-                <TableCell>{v.name}</TableCell>
-                <TableCell align="right">{v.value}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </TableContainer>
-      )
-    );
+  const handleImageClick = (e: any) => {
+    e.preventDefault();
   };
 
   return (
-    <MaterialCard style={style} className={clsx(classes.root, className, list && classes.listCard)}>
-      <CardMedia image={item.image ? item.image : okeyLogo} title={item.name} />
-      {showBadge && <CardBadge item={item} />}
+    <MaterialCard
+      style={style}
+      className={clsx(classes.root, className, list ? classes.listCard : classes.portraitCard)}
+    >
+      <CardMedia
+        component="a"
+        onClick={(e: any) => handleImageClick(e)}
+        image={item.image ? item.image : okeyLogo}
+        title={item.name}
+      />
+      {showBadge && <CardBadge isList={list} item={item} />}
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="div">
-          <h3>{item.name?.length > 25 && !list ? `${item.name.substr(0, 28)}... ` : item.name}</h3>
-        </Typography>
-        {renderAttributes()}
+        <Link to={"/product"} className={classes.itemName}>
+          {list ? item.name : stringCutter(item.name, 60)}
+        </Link>
+        <Price isList={list} price={item.price} discount={item.discount} />
+        {list && <Attributes list={item.attributes} />}
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+        <div>
+          <Button variant="contained" color="primary">
+            Səbətə
+          </Button>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <CompareArrowsIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </div>
       </CardActions>
     </MaterialCard>
   );

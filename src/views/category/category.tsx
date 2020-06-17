@@ -1,9 +1,6 @@
-import { Grid, IconButton } from "@material-ui/core";
-import AppsIcon from "@material-ui/icons/Apps";
-import ViewListIcon from "@material-ui/icons/ViewList";
-import clsx from "clsx";
+import { Grid } from "@material-ui/core";
 import { Card } from "components/shared";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { IAppState } from "store/reducers";
@@ -12,83 +9,93 @@ import { useStyles } from "./category.style";
 import { Aside } from "./components";
 import { categoryActions } from "./store/action";
 import { ICategoryState } from "./store/reducer";
-import { IProduct } from "./types";
+import { IProduct, ICheckedAttribute, IProductPayload } from "./types";
+import { FilterBar, ChipBar } from "./components";
 
 export interface ICategoryPage {
   match: any;
   category: ICategoryState;
   categories: ICategory[];
-  getProducts(id: number): void;
+  getProducts(payload: IProductPayload): void;
   getFilters(id: number): void;
+  togglePrice(price: number[]): void;
+  toggleAttribute(attributes: ICheckedAttribute[]): void;
+  clearSearchFilters(): void;
+  toggleViewMode(isApp: boolean): void;
 }
 
-const Category: FC<ICategoryPage> = ({ match, getProducts, category, categories, getFilters }) => {
+const Category: FC<ICategoryPage> = ({
+  match,
+  getProducts,
+  category,
+  categories,
+  getFilters,
+  togglePrice,
+  toggleAttribute,
+  clearSearchFilters,
+  toggleViewMode,
+}) => {
   const classes = useStyles();
-  const [isApp, setViewMode] = useState(true);
 
   useEffect(() => {
     const queryString = match.params?.category;
     const categId = categories.filter((c) => c.name.toLowerCase() === queryString.replace("-", " ").toLowerCase())[0]
       ?.id;
-
-    getProducts(categId);
+    getProducts({ categId: categId, filters: category.searchFilter, limit: 10, offset: 0 });
     getFilters(categId);
-  }, [match.params?.category]);
+  }, [match.params, categories, category.searchFilter, getFilters, getProducts, clearSearchFilters]);
 
-  const renderCards = () => {
-    return (
-      <Grid container>
-        {category.products.map((product: IProduct) => (
-          <Grid key={product.id} item xs={12} md={!isApp ? 3 : 12}>
-            <Card item={product} list={isApp} />
-          </Grid>
-        ))}
-      </Grid>
-    );
+  useEffect(() => {
+    return () => {
+      clearSearchFilters();
+    };
+  }, [match.params, clearSearchFilters]);
+
+  const handleAttributeSelect = (attrs: ICheckedAttribute[]) => {
+    toggleAttribute(attrs);
   };
 
-  const renderFilterBar = () => {
-    return (
-      <Grid item xs={12} className={classes.filterBar}>
-        <div></div>
-        <div>
-          <IconButton onClick={() => setViewMode(true)} className={clsx(isApp && classes.activeViewMode)}>
-            <AppsIcon />
-          </IconButton>
-          <IconButton onClick={() => setViewMode(false)} className={clsx(!isApp && classes.activeViewMode)}>
-            <ViewListIcon />
-          </IconButton>
-        </div>
-      </Grid>
-    );
+  const handlePriceChange = (price: number[]) => {
+    togglePrice(price);
   };
-
-  const handleAttributeSelect = () => {};
-  const handleBrandSelect = () => {};
-  const handlePriceSelect = () => {};
 
   return (
     <Grid container className={classes.container}>
-      {category.products.length > 0 ? (
-        <>
-          <Grid item xs={3}>
-            <Aside
-              attributes={category.filterFields}
-              categName={match.params?.category}
-              onAttrSelect={handleAttributeSelect}
-              onBrandSelect={handleBrandSelect}
-              onPriceSelect={handlePriceSelect}
-            />
+      <Grid item xs={3}>
+        <Aside
+          fields={category.filterFields}
+          categName={match.params?.category}
+          defaultAttributes={category.searchFilter.attributes || []}
+          onAttrSelect={handleAttributeSelect}
+          onPriceChange={handlePriceChange}
+          defaultPrice={category.searchFilter.price}
+        />
+      </Grid>
+      <Grid item xs={9} className={classes.cardContainer}>
+        {category.products.length > 0 ? (
+          <>
+            <FilterBar onChange={(mode) => toggleViewMode(mode)} isApp={category.viewModeisApp} />
+            {category.searchFilter?.attributes?.length > 0 && (
+              <ChipBar
+                fields={category.filterFields}
+                attributes={category.searchFilter.attributes}
+                onClose={handleAttributeSelect}
+              />
+            )}
+            <Grid container>
+              {category.products.map((product: IProduct, index: number) => (
+                <Grid key={index} item xs={12} md={category.viewModeisApp ? 3 : 12}>
+                  <Card item={product} list={!category.viewModeisApp} />
+                </Grid>
+              ))}
+            </Grid>
+          </>
+        ) : (
+          <Grid item xs={12} className={classes.noItem}>
+            Teesufki bu kateqoriyada heleki mal yoxdur
           </Grid>
-          <Grid item xs={9} className={classes.cardContainer}>
-            {renderFilterBar()}
-            {renderCards()}
-          </Grid>
-        </>
-      ) : (
-        <Grid item xs={12} className={classes.noItem}>
-          Teesufki bu kateqoriyada heleki mal yoxdur
-        </Grid>
+        )}
+      </Grid>
       )}
     </Grid>
   );

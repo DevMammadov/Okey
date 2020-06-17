@@ -1,4 +1,4 @@
-export interface IGoods {
+export interface IGood {
   id: number;
   name: string;
   code: string;
@@ -42,24 +42,6 @@ export interface IProductAttribute {
   productId: number;
   attributeId: number;
   valueId: number;
-}
-
-export interface IGoods {
-  id: number;
-  name: string;
-  code: string;
-  income: number;
-  view: number;
-  like: number;
-  price: number;
-  discount: number;
-  enabled: boolean;
-  badge: string;
-  warranty: string;
-  atStore: boolean;
-  buyCount: number;
-  categoryId: number;
-  brandId: number;
 }
 
 // ---------- Response types

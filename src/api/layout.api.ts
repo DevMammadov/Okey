@@ -7,13 +7,11 @@ export default class LayoutApi {
     let categs: ICategory[] = [];
 
     for (let categ of categoryList) {
-      let subCategs = subCategoryList.filter(
-        (sb) => sb.categoryId === categ.id
-      );
+      let subCategs = subCategoryList.filter((sb) => sb.categoryId === categ.id);
       categs.push({
         id: categ.id,
         name: categ.name,
-        icon: "",
+        icon: categ.icon,
         subCategory: subCategs,
         deleted: categ.deleted,
         enabled: categ.enabled,

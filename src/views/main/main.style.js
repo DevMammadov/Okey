@@ -7,10 +7,10 @@ export const useStyles = makeStyles((theme) => {
       position: "relative",
     },
     section: {
-      padding: theme.spacing(2, 0),
+      padding: "16px 150px",
     },
     sliderCard: {
-      height: "360px",
+      // height: "360px",
     },
     [theme.breakpoints.down("xl")]: {
       caruselContainer: {

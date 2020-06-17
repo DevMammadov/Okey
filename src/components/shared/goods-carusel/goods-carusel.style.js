@@ -3,21 +3,26 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme) => {
   return {
     caruselContainer: {
-      position: "relative",
-      textAlign: "center",
-    },
-    slider: {
-      userSelect: "text",
-      "& .slick-next": {
-        right: "10px",
-        background: "black",
+      //height: "400px",
+      "& .alice-carousel": {
+        marginRight: "-5px",
+        "& ul li": {
+          padding: theme.spacing(1, 0),
+        },
       },
-      "& .slick-track": {
-        padding: "15px 0 15px 30px",
+      "& .alice-carousel__prev-btn": {
+        position: "absolute",
+        left: 0,
+        top: "50%",
+        padding: 0,
+        width: "unset",
       },
-      "& .slick-prev": {
-        left: "10px",
-        zIndex: "55",
+      "& .alice-carousel__next-btn": {
+        position: "absolute",
+        right: 0,
+        top: "50%",
+        padding: 0,
+        width: "unset",
       },
     },
     card: {

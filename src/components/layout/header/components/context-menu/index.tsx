@@ -2,11 +2,8 @@ import React, { useState, MouseEvent, FC } from "react";
 import { Badge, Button, Menu, Icon } from "@material-ui/core";
 import { CustomItem } from "./styled-components";
 import { useStyles } from "./context-menu.style";
-import { IGoods, IImages } from "types";
-import withWidth, {
-  isWidthUp,
-  WithWidthProps,
-} from "@material-ui/core/withWidth";
+import { IGood, IImages } from "types";
+import withWidth, { isWidthUp, WithWidthProps } from "@material-ui/core/withWidth";
 // TODO: will be removed
 import imageList from "data/images.json";
 import logo from "dist/smallLogo.png";
@@ -14,22 +11,14 @@ import logo from "dist/smallLogo.png";
 export interface IContextMenu extends WithWidthProps {
   icon?: string;
   onOpen(): void;
-  list: IGoods[];
+  list: IGood[];
   className?: string;
   style?: any;
   buttonText?: string;
   width: any;
 }
 
-const ContextMenu: FC<IContextMenu> = ({
-  icon,
-  list,
-  className,
-  style,
-  buttonText,
-  onOpen,
-  width,
-}) => {
+const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonText, onOpen, width }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const classes = useStyles();
 
@@ -47,15 +36,11 @@ const ContextMenu: FC<IContextMenu> = ({
 
   // TODO: Well be removed!
   const scrapImage = (id: number) => {
-    return (
-      imageList.filter((img: IImages) => img.productId === id)[0].name || logo
-    );
+    return imageList.filter((img: IImages) => img.productId === id)[0].name || logo;
   };
 
-  const renderList = (list: IGoods[]) => {
-    return list.map((goods: IGoods) => (
-      <CustomItem key={goods.id} img={scrapImage(goods.id)} text={goods.name} />
-    ));
+  const renderList = (list: IGood[]) => {
+    return list.map((goods: IGood) => <CustomItem key={goods.id} img={scrapImage(goods.id)} text={goods.name} />);
   };
 
   const renderOpenButton = () => {
@@ -71,14 +56,8 @@ const ContextMenu: FC<IContextMenu> = ({
   const renderBadge = () => {
     //console.log(list.length);
     return (
-      <Badge
-        badgeContent={list.length || 0}
-        color="secondary"
-        invisible={!list.length}
-      >
-        <Icon fontSize={isWidthUp("sm", width) ? "large" : "default"}>
-          {icon ? icon : "favorite"}
-        </Icon>
+      <Badge badgeContent={list.length || 0} color="secondary" invisible={!list.length}>
+        <Icon fontSize={isWidthUp("sm", width) ? "large" : "default"}>{icon ? icon : "favorite"}</Icon>
       </Badge>
     );
   };

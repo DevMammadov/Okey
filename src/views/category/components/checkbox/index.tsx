@@ -3,12 +3,13 @@ import { FormControlLabel, FormGroup, Checkbox, CheckboxProps } from "@material-
 
 export interface ICheckBox {
   label: string;
+  labelClass?: string;
 }
 
-export const CheckBox: FC<CheckboxProps & ICheckBox> = ({ label, ...rest }) => {
+export const CheckBox: FC<CheckboxProps & ICheckBox> = ({ label, labelClass, ...rest }) => {
   return (
     <FormGroup row>
-      <FormControlLabel control={<Checkbox name="checkedA" {...rest} />} label={label} />
+      <FormControlLabel className={labelClass} control={<Checkbox name="checkedA" {...rest} />} label={label} />
     </FormGroup>
   );
 };

@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { grey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) => {
   return {
@@ -7,21 +8,18 @@ export const useStyles = makeStyles((theme) => {
       "& ul": {
         zIndex: "555",
         listStyle: "none",
-        background: theme.palette.common.black,
+        //background: theme.palette.warning.main,
         display: "flex",
         padding: 0,
         margin: 0,
         "& li": {
           position: "relative",
-          padding: theme.spacing(0, 1),
-          borderRight: "1px solid",
-          borderColor: theme.palette.common.black,
           "&:hover": {
-            background: theme.palette.warning.main,
             "& > a": {
-              color: theme.palette.common.black,
+              color: theme.palette.warning.main,
+              //background: theme.palette.warning.light,
             },
-            "& > ul": {
+            "& > div": {
               display: "block",
             },
           },
@@ -30,35 +28,51 @@ export const useStyles = makeStyles((theme) => {
           border: "none",
         },
         "& li a.active": {
-          background: theme.palette.warning.main,
-          color: theme.palette.common.black,
+          //background: theme.palette.warning.light,
+          color: theme.palette.warning.main,
         },
         "& li a": {
-          display: "block",
-          padding: theme.spacing(2),
+          display: "flex",
+          alignItems: "center",
+          padding: theme.spacing(1),
           fontSize: "18px",
-          color: theme.palette.warning.main,
-          fontWeight: "bold",
+          color: grey[800],
           textDecoration: "none",
+          justifyContent: "center",
+        },
+        "& li > div": {
+          display: "none",
+          position: "absolute",
+          transform: "translateX(-50%)",
+          left: "50%",
+          zIndex: 5,
         },
         "& li ul": {
-          position: "absolute",
+          position: "relative",
+          paddingTop: "10px",
+          top: "-10px",
           minWidth: "200px",
-          left: "50%",
-          display: "none",
-          transform: "translateX(-50%)",
+          background: theme.palette.common.white,
           "& li": {
             borderRight: "none",
             borderBottom: "1px solid",
+            width: "100%",
           },
           "& li:last-child": {
             border: "none",
           },
           "& a": {
-            padding: theme.spacing(2),
+            textAlign: "center",
+            width: "100%",
+            padding: theme.spacing(1, 3),
           },
         },
       },
+    },
+    icon: {
+      fontSize: "1.7rem",
+      marginRight: theme.spacing(1),
+      marginTop: theme.spacing(0.2),
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},

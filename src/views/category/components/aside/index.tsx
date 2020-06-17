@@ -1,21 +1,30 @@
 import React, { FC } from "react";
-import { List, ListSubheader, ListItem, ListItemText, Collapse } from "@material-ui/core";
+import { List, ListSubheader, ListItem, ListItemText, Collapse, Paper } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import { useStyles } from "./aside.style";
-import { IFilterField, IValue } from "../../types";
+import { IFilterField, IValue, IFilterAttribute, ICheckedAttribute } from "../../types";
 import { CheckBox } from "../checkbox";
+import { stringCutter } from "helpers";
+import { PriceFilter } from "../price-filter";
 
 export interface ICategoryAside {
-  attributes: IFilterField[];
-  categName: string[];
-  onBrandSelect(brandId: number): void;
-  onAttrSelect(attrId: number): void;
-  onPriceSelect(start: number, end: number): void;
+  categName: string;
+  onAttrSelect(attributes: ICheckedAttribute[]): void;
+  onPriceChange(price: number[]): void;
+  fields: IFilterField;
+  defaultPrice: number[];
+  defaultAttributes: ICheckedAttribute[];
 }
 
-export const Aside: FC<ICategoryAside> = ({ attributes, categName, onAttrSelect, onBrandSelect, onPriceSelect }) => {
+export const Aside: FC<ICategoryAside> = ({
+  categName,
+  onAttrSelect,
+  onPriceChange,
+  fields,
+  defaultPrice,
+  defaultAttributes,
+}) => {
   const [closedList, setClosed] = React.useState<string[]>([]);
-  const [checkedList, setChecked] = React.useState<{ val: string; attr: string }[]>([]);
   const classes = useStyles();
 
   const handleCollapse = (attr: string) => {
@@ -27,12 +36,12 @@ export const Aside: FC<ICategoryAside> = ({ attributes, categName, onAttrSelect,
     }
   };
 
-  const handleCheckBoxCheck = (val: string, attr: string) => {
-    if (checkedList.some((cl) => cl.val === val && cl.attr === attr)) {
-      let removeChecked = checkedList.filter((ch) => ch.attr !== val && ch.val !== val);
-      setChecked([...removeChecked]);
+  const handleCheckBoxCheck = (valueId: number, attributeId: number) => {
+    if (defaultAttributes.some((cl) => cl.valueId === valueId && cl.attributeId === attributeId)) {
+      let removeChecked = defaultAttributes.filter((ch) => ch.attributeId !== attributeId || ch.valueId !== valueId);
+      onAttrSelect([...removeChecked]);
     } else {
-      setChecked([...checkedList, { val, attr }]);
+      onAttrSelect([...defaultAttributes, { valueId, attributeId }]);
     }
   };
 
@@ -42,35 +51,58 @@ export const Aside: FC<ICategoryAside> = ({ attributes, categName, onAttrSelect,
       aria-labelledby="nested-list-subheader"
       subheader={
         <ListSubheader component="div" id="nested-list-subheader">
-          {categName}
+          {categName.replace("-", " ")}
         </ListSubheader>
       }
       className={classes.root}
     >
-      {attributes.map((attr: IFilterField, index: number) => (
-        <div key={index}>
-          <ListItem button onClick={() => handleCollapse(attr.attribute)}>
+      <Paper className={classes.CollapseItem}>
+        <ListItem className={classes.listHeader} button onClick={() => handleCollapse("Qiymet")}>
+          <ListItemText primary="Qiymet" />
+          {!closedList.includes("Qiymet") ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={!closedList.includes("Qiymet")} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding className={classes.nestedList}>
+            <ListItem>
+              <PriceFilter
+                defaultValue={defaultPrice}
+                onChange={(price) => onPriceChange(price)}
+                price={fields.price}
+              />
+            </ListItem>
+          </List>
+        </Collapse>
+      </Paper>
+      {fields.attributes?.map((attr: IFilterAttribute, index: number) => (
+        <Paper className={classes.CollapseItem} key={index}>
+          <ListItem className={classes.listHeader} button onClick={() => handleCollapse(attr.attribute)}>
             <ListItemText primary={attr.attribute} />
             {!closedList.includes(attr.attribute) ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          {attr.values.map((val: IValue, index: number) => (
-            <Collapse key={index} in={!closedList.includes(attr.attribute)} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItem className={classes.nested}>
+          <Collapse in={!closedList.includes(attr.attribute)} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding className={classes.nestedList}>
+              {attr.values.map((val: IValue, index: number) => (
+                <ListItem key={index}>
                   <CheckBox
-                    onChange={() => handleCheckBoxCheck(val.value, attr.attribute)}
-                    label={val.value}
-                    checked={checkedList.some((cl) => cl.val === val.value && cl.attr === attr.attribute)}
+                    onChange={() => handleCheckBoxCheck(val.valueId, attr.attributeId)}
+                    label={stringCutter(val.value, 32)}
+                    checked={defaultAttributes.some(
+                      (cl) => cl.valueId === val.valueId && cl.attributeId === attr.attributeId
+                    )}
                     tabIndex={-1}
+                    className={classes.filterCheckbox}
+                    labelClass={classes.checkBoxLabel}
                     disableRipple
                     color="primary"
                   />
-                  <ListItemText primary={val.count} />
+                  <div className={classes.countBadge}>
+                    <span>{val.count} </span>
+                  </div>
                 </ListItem>
-              </List>
-            </Collapse>
-          ))}
-        </div>
+              ))}
+            </List>
+          </Collapse>
+        </Paper>
       ))}
     </List>
   );

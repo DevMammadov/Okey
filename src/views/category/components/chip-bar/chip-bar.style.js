@@ -2,18 +2,15 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => {
   return {
-    container: {
-      padding: theme.spacing(1, 0),
-      height: "100%",
+    chipBar: {
+      padding: theme.spacing(1, 1),
+      "& .MuiChip-root": {
+        marginRight: theme.spacing(1),
+      },
     },
-    cardContainer: {
-      height: "100%",
-    },
-    noItem: {
-      height: "100%",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
+    chipContainer: {
+      paddingTop: 0,
+      paddingBottom: 0,
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},

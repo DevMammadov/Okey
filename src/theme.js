@@ -31,6 +31,7 @@ const theme = createMuiTheme({
     },
     warning: {
       main: "#F26C37",
+      light: "#f28a61",
     },
     danger: {
       main: "#EA2227",
