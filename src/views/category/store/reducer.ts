@@ -44,13 +44,16 @@ export default handleActions(
       filterFields: action.payload,
       loading: false,
     }),
-    [toggleAttribute]: (state, action: any) => ({
-      ...state,
-      searchFilter: {
-        ...state.searchFilter,
-        attributes: action.payload,
-      },
-    }),
+    [toggleAttribute]: (state, action: any) => {
+      // console.log(action.payload);
+      return {
+        ...state,
+        searchFilter: {
+          ...state.searchFilter,
+          attributes: action.payload,
+        },
+      };
+    },
     [togglePrice]: (state, action: any) => ({
       ...state,
       searchFilter: {

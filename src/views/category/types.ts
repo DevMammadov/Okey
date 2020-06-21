@@ -51,7 +51,7 @@ export interface IProduct {
 
 export interface IProductPayload {
   categId: number;
-  filters: ISearchFilter;
+  filters?: ISearchFilter | null;
   limit: number;
   offset: number;
 }

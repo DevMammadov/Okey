@@ -10,7 +10,8 @@ export const useStyles = makeStyles((theme) => {
       padding: "16px 150px",
     },
     sliderCard: {
-      // height: "360px",
+      width: "100%",
+      maxWidth: "unset",
     },
     [theme.breakpoints.down("xl")]: {
       caruselContainer: {
@@ -25,6 +26,9 @@ export const useStyles = makeStyles((theme) => {
     [theme.breakpoints.down("sm")]: {
       caruselContainer: {
         padding: "0",
+      },
+      section: {
+        padding: "16px 50px",
       },
     },
   };

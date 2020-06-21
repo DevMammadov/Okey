@@ -10,7 +10,7 @@ import { Aside } from "./components";
 import { categoryActions } from "./store/action";
 import { ICategoryState } from "./store/reducer";
 import { IProduct, ICheckedAttribute, IProductPayload } from "./types";
-import { FilterBar, ChipBar } from "./components";
+import { FilterBar } from "./components";
 
 export interface ICategoryPage {
   match: any;
@@ -36,20 +36,25 @@ const Category: FC<ICategoryPage> = ({
   toggleViewMode,
 }) => {
   const classes = useStyles();
+  const queryString = match.params?.category;
+  const categId = categories.filter((c) => c.name.toLowerCase() === queryString.replace("-", " ").toLowerCase())[0]?.id;
 
   useEffect(() => {
-    const queryString = match.params?.category;
-    const categId = categories.filter((c) => c.name.toLowerCase() === queryString.replace("-", " ").toLowerCase())[0]
-      ?.id;
-    getProducts({ categId: categId, filters: category.searchFilter, limit: 10, offset: 0 });
-    getFilters(categId);
-  }, [match.params, categories, category.searchFilter, getFilters, getProducts, clearSearchFilters]);
+    if (categId) {
+      getProducts({ categId: categId, limit: 10, offset: 0 });
+      getFilters(categId);
+    }
+  }, [match.params, getProducts]);
 
   useEffect(() => {
     return () => {
       clearSearchFilters();
     };
   }, [match.params, clearSearchFilters]);
+
+  useEffect(() => {
+    getProducts({ categId: categId, filters: category.searchFilter, limit: 10, offset: 0 });
+  }, [category.searchFilter, getProducts]);
 
   const handleAttributeSelect = (attrs: ICheckedAttribute[]) => {
     toggleAttribute(attrs);
@@ -74,14 +79,13 @@ const Category: FC<ICategoryPage> = ({
       <Grid item xs={9} className={classes.cardContainer}>
         {category.products.length > 0 ? (
           <>
-            <FilterBar onChange={(mode) => toggleViewMode(mode)} isApp={category.viewModeisApp} />
-            {category.searchFilter?.attributes?.length > 0 && (
-              <ChipBar
-                fields={category.filterFields}
-                attributes={category.searchFilter.attributes}
-                onClose={handleAttributeSelect}
-              />
-            )}
+            <FilterBar
+              onChipClose={handleAttributeSelect}
+              fields={category.filterFields}
+              attributes={category.searchFilter.attributes}
+              onChange={(mode) => toggleViewMode(mode)}
+              isApp={category.viewModeisApp}
+            />
             <Grid container>
               {category.products.map((product: IProduct, index: number) => (
                 <Grid key={index} item xs={12} md={category.viewModeisApp ? 3 : 12}>

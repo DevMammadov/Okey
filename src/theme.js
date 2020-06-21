@@ -1,4 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import { grey } from "@material-ui/core/colors";
 // import { green, orange } from "@material-ui/core/colors";
 
 // A custom theme for this app
@@ -21,9 +22,8 @@ const theme = createMuiTheme({
     },
   },
   palette: {
-    general: {},
     color: {
-      black: "#1F1F1F",
+      black: grey[800],
       lightBlack: "#363636",
     },
     primary: {

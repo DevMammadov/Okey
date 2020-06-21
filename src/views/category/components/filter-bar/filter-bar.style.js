@@ -14,6 +14,13 @@ export const useStyles = makeStyles((theme) => {
         color: theme.palette.danger.main,
       },
     },
+    chipContainer: {
+      display: "flex",
+      alignItems: "center",
+    },
+    chip: {
+      marginRight: theme.spacing(1),
+    },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {},

@@ -17,7 +17,8 @@ export const useStyles = makeStyles((theme) => {
       fontWeight: "bold",
       position: "relative",
       fontSize: "0.9rem",
-      lineHeight: "2rem",
+      display: "flex",
+      alignItems: "flex-end",
       color: grey[600],
       "&::after": {
         content: "''",
@@ -26,7 +27,7 @@ export const useStyles = makeStyles((theme) => {
         width: "80%",
         backgroundColor: grey[600],
         left: 0,
-        bottom: "50%",
+        bottom: "35%",
         transform: "rotateZ(20deg)",
       },
     },

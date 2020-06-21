@@ -16,25 +16,28 @@ export default class CategoryApi {
 
     // filter by filters
     let filteredByFilter: IGood[] = [];
-    if (filters?.attributes?.length > 0) {
-      for (let filter of filters.attributes) {
-        if (filter.attributeId > 0) {
-          productAttributeList
-            .filter((pa) => pa.attributeId === filter.attributeId && pa.valueId === filter.valueId)
-            .map((pl) => pl.productId)
-            .map((p) => {
-              return filteredByFilter.push(categProducts.filter((cp) => cp.id === p)[0]);
-            });
-        } else {
-          filteredByFilter = [...filteredByFilter, ...categProducts.filter((cp) => cp.brandId === filter.valueId)];
+    if (filters) {
+      if (filters?.attributes?.length > 0) {
+        for (let filter of filters.attributes) {
+          if (filter.attributeId > 0) {
+            productAttributeList
+              .filter((pa) => pa.attributeId === filter.attributeId && pa.valueId === filter.valueId)
+              .map((p) => {
+                return filteredByFilter.concat(categProducts.filter((cp) => cp.id === p.productId));
+              });
+          } else {
+            filteredByFilter = [...filteredByFilter, ...categProducts.filter((cp) => cp.brandId === filter.valueId)];
+          }
         }
+        categProducts = filteredByFilter;
       }
-      categProducts = filteredByFilter;
     }
 
     //filter products by price
-    if (filters?.price?.length > 0) {
-      categProducts = categProducts.filter((p) => p.price >= filters.price[0] && p.price <= filters.price[1]);
+    if (filters) {
+      if (filters?.price?.length > 0) {
+        categProducts = categProducts.filter((p) => p.price >= filters.price[0] && p.price <= filters.price[1]);
+      }
     }
 
     // adding attributes to every product

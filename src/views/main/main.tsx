@@ -1,20 +1,27 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Slider } from "./components";
 import { Grid } from "@material-ui/core";
 import { useStyles } from "./main.style";
-import { GoodCarusel } from "components/shared";
+import { ProductCarusel } from "components/shared";
 import { translator } from "translation";
 import { IAppState } from "store/reducers";
 import { connect } from "react-redux";
-import { IProduct } from "views/category/types";
+import { mainPageActions } from "./store/action";
+import { IMainPageState } from "./store/reducer";
+import { useTranslator } from "localization";
 
 export interface IMainPage {
-  products: IProduct[];
+  main: IMainPageState;
+  getMostViewed(): void;
 }
 
-const Main: FC<IMainPage> = ({ products }) => {
+const Main: FC<IMainPage> = ({ main, getMostViewed }) => {
   const classes = useStyles();
-  const lang = translator().main;
+  const lang = useTranslator("main");
+
+  useEffect(() => {
+    getMostViewed();
+  }, []);
 
   return (
     <Grid container>
@@ -22,9 +29,19 @@ const Main: FC<IMainPage> = ({ products }) => {
         <Slider />
       </Grid>
       <Grid item xs={12} className={classes.section}>
-        <GoodCarusel
-          list={products}
-          title={lang.mostViewedGoods}
+        <ProductCarusel
+          list={main.mostViewed}
+          title={lang.newProducts}
+          classList={{
+            card: classes.sliderCard,
+            carusel: classes.slider,
+          }}
+        />
+      </Grid>
+      <Grid item xs={12} className={classes.section}>
+        <ProductCarusel
+          list={main.mostViewed}
+          title={lang.mostViewedProducts}
           classList={{
             card: classes.sliderCard,
             carusel: classes.slider,
@@ -36,6 +53,6 @@ const Main: FC<IMainPage> = ({ products }) => {
 };
 
 const mapStateToProps = (state: IAppState) => ({
-  products: state.category.products,
+  main: state.mainPage,
 });
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, mainPageActions)(Main);

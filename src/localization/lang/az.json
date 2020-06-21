@@ -1,0 +1,10 @@
+{
+  "main": {
+    "mostViewedProducts": "Ən çox baxılan mallar",
+    "newProducts": "Yeni mallar"
+  },
+  "item": {
+    "manat": "manat",
+    "warranty": "zəmanət"
+  }
+}

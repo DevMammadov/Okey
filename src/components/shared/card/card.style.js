@@ -94,7 +94,11 @@ export const useStyles = makeStyles((theme) => {
     itemName: {},
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
-    [theme.breakpoints.down("md")]: {},
+    [theme.breakpoints.down("md")]: {
+      portraitCard: {
+        maxWidth: 100,
+      },
+    },
     [theme.breakpoints.down("sm")]: {},
   };
 });

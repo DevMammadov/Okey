@@ -29,7 +29,7 @@ export const Card: FC<ICard> = ({ item, className, style, list = false, showBadg
   return (
     <MaterialCard
       style={style}
-      className={clsx(classes.root, className, list ? classes.listCard : classes.portraitCard)}
+      className={clsx(classes.root, list ? classes.listCard : classes.portraitCard, className)}
     >
       <CardMedia
         component="a"
