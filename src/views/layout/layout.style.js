@@ -18,6 +18,7 @@ export const useStyles = makeStyles((theme) => {
     },
     menuNav: {
       //borderBottom: `1px solid ${grey[200]}`,
+      padding: "16px 150px",
       boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 2px 0px rgba(0,0,0,0.12)",
     },
     main: {
@@ -28,12 +29,10 @@ export const useStyles = makeStyles((theme) => {
     },
     footer: {
       flexShrink: 0,
+      padding: "16px 150px",
+      background: theme.palette.color.black,
     },
-    [theme.breakpoints.down("xl")]: {
-      menuNav: {
-        padding: "0 150px",
-      },
-    },
+    [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {
       header: {

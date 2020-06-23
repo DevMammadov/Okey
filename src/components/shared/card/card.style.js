@@ -58,6 +58,17 @@ export const useStyles = makeStyles((theme) => {
         },
         "& .MuiButton-contained": {
           marginRight: theme.spacing(1),
+          padding: "6px 8px",
+          fontSize: "0.8rem",
+          "& .MuiSvgIcon-root": {
+            fontSize: "1rem",
+            lineHeight: 0.8,
+            marginRight: theme.spacing(0.4),
+          },
+        },
+        "& $inBasketButton": {
+          background: theme.palette.success.main,
+          marginRight: theme.spacing(0),
         },
       },
     },
@@ -83,6 +94,9 @@ export const useStyles = makeStyles((theme) => {
           width: "100%",
           marginBottom: theme.spacing(1),
         },
+        "& $inBasketButton": {
+          background: theme.palette.success.main,
+        },
         "& .MuiIconButton-root": {
           //width: "50%",
         },
@@ -92,6 +106,7 @@ export const useStyles = makeStyles((theme) => {
       },
     },
     itemName: {},
+    inBasketButton: {},
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {

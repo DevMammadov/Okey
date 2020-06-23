@@ -13,9 +13,27 @@ export const useStyles = makeStyles((theme) => {
       },
     },
     carouselTitle: {
-      textAlign: "center",
+      display: "flex",
+      position: "relative",
+      justifyContent: "space-between",
       color: theme.palette.color.black,
-      background: grey[100],
+      marginBottom: theme.spacing(2),
+      padding: theme.spacing(1, 0),
+      "& h2": {
+        margin: 0,
+        textAlign: "center",
+        flex: 1,
+      },
+      "& button": {
+        position: "absolute",
+        right: 0,
+        fontWeight: "bold",
+        color: theme.palette.primary.main,
+        textTransform: "capitalize",
+        "& .MuiSvgIcon-root": {
+          //fontSize: "1.2rem",
+        },
+      },
     },
     arrow: {
       position: "absolute",

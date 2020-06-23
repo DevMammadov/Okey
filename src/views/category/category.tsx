@@ -11,29 +11,35 @@ import { categoryActions } from "./store/action";
 import { ICategoryState } from "./store/reducer";
 import { IProduct, ICheckedAttribute, IProductPayload } from "./types";
 import { FilterBar } from "./components";
+import { IBasketProduct } from "components/layout/header/types";
+import { toggleBasket } from "components/layout/header/store/action";
 
 export interface ICategoryPage {
   match: any;
   category: ICategoryState;
   categories: ICategory[];
+  basket: IBasketProduct[];
   getProducts(payload: IProductPayload): void;
   getFilters(id: number): void;
   togglePrice(price: number[]): void;
   toggleAttribute(attributes: ICheckedAttribute[]): void;
   clearSearchFilters(): void;
   toggleViewMode(isApp: boolean): void;
+  toggleBasket(product: IBasketProduct): void;
 }
 
 const Category: FC<ICategoryPage> = ({
   match,
   getProducts,
   category,
+  basket,
   categories,
   getFilters,
   togglePrice,
   toggleAttribute,
   clearSearchFilters,
   toggleViewMode,
+  toggleBasket,
 }) => {
   const classes = useStyles();
   const queryString = match.params?.category;
@@ -89,7 +95,13 @@ const Category: FC<ICategoryPage> = ({
             <Grid container>
               {category.products.map((product: IProduct, index: number) => (
                 <Grid key={index} item xs={12} md={category.viewModeisApp ? 3 : 12}>
-                  <Card item={product} list={!category.viewModeisApp} />
+                  <Card
+                    item={product}
+                    onToggleBasket={(product) => toggleBasket(product)}
+                    inBasket={basket.some((p) => p.id === product.id)}
+                    list={!category.viewModeisApp}
+                    className={classes.categoryCard}
+                  />
                 </Grid>
               ))}
             </Grid>
@@ -108,5 +120,6 @@ const Category: FC<ICategoryPage> = ({
 const mapStateToProps = (state: IAppState) => ({
   category: state.category,
   categories: state.layout.category,
+  basket: state.header.basket,
 });
-export default withRouter(connect(mapStateToProps, categoryActions)(Category));
+export default withRouter(connect(mapStateToProps, { ...categoryActions, toggleBasket })(Category));

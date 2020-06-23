@@ -10,21 +10,38 @@ import { stringCutter } from "helpers";
 import { Link } from "react-router-dom";
 import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import { IProduct } from "views/category/types";
+import { useTranslator } from "localization";
+import { IBasketProduct } from "components/layout/header/types";
+import AddIcon from "@material-ui/icons/Add";
+import DoneIcon from "@material-ui/icons/Done";
 
 export interface ICard {
   item: IProduct;
   className?: string;
   style?: CSSProperties;
   showBadge?: boolean;
+  onToggleBasket?(product: IBasketProduct): void;
+  inBasket?: boolean;
   list?: boolean;
 }
 
-export const Card: FC<ICard> = ({ item, className, style, list = false, showBadge = true }) => {
+export const Card: FC<ICard> = ({
+  item,
+  className,
+  style,
+  list = false,
+  showBadge = true,
+  onToggleBasket = () => {},
+  inBasket = false,
+}) => {
   const classes = useStyles();
+  const lang = useTranslator("item");
 
   const handleImageClick = (e: any) => {
     e.preventDefault();
   };
+
+  console.log(inBasket);
 
   return (
     <MaterialCard
@@ -47,8 +64,23 @@ export const Card: FC<ICard> = ({ item, className, style, list = false, showBadg
       </CardContent>
       <CardActions disableSpacing>
         <div>
-          <Button variant="contained" color="primary">
-            Səbətə
+          <Button
+            variant="contained"
+            onClick={() => onToggleBasket({ id: item.id, name: item.name, price: item.price, image: item.image })}
+            color="primary"
+            className={clsx(classes.basketButton, inBasket && classes.inBasketButton)}
+          >
+            {inBasket ? (
+              <>
+                <DoneIcon />
+                <span>{lang.inBasket}</span>
+              </>
+            ) : (
+              <>
+                <AddIcon />
+                <span>{lang.toBasket}</span>
+              </>
+            )}
           </Button>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />

@@ -4,18 +4,19 @@ import { useStyles } from "./header.style";
 import bigLogoBorderLess from "dist/BigBorderLess.png";
 import logoBorderLess from "dist/okeySmallBorderLess.jpg";
 import { ContextMenu, SearchBar } from "./components";
-import goodList from "data/products.json";
-import withWidth, {
-  isWidthUp,
-  WithWidthProps,
-} from "@material-ui/core/withWidth";
+import withWidth, { isWidthUp, WithWidthProps } from "@material-ui/core/withWidth";
 import { Link } from "react-router-dom";
+import { IAppState } from "store/reducers";
+import { connect } from "react-redux";
+import { IHeaderState } from "./store/reducer";
+import { headerActions } from "./store/action";
 
-interface IHeader extends WithWidthProps {
+interface IHeaderPage extends WithWidthProps {
   width: any;
+  header: IHeaderState;
 }
 
-const Header: FC<IHeader> = ({ width }) => {
+const Header: FC<IHeaderPage> = ({ width, header }) => {
   const classes = useStyles();
   const [visible, setVisible] = useState<boolean>(false);
 
@@ -34,11 +35,7 @@ const Header: FC<IHeader> = ({ width }) => {
   const renderLogo = () => {
     return (
       <Link to="/">
-        <img
-          src={isWidthUp("sm", width) ? bigLogoBorderLess : logoBorderLess}
-          alt="logo"
-          className={classes.logo}
-        />
+        <img src={isWidthUp("sm", width) ? bigLogoBorderLess : logoBorderLess} alt="logo" className={classes.logo} />
       </Link>
     );
   };
@@ -48,8 +45,7 @@ const Header: FC<IHeader> = ({ width }) => {
       return (
         <div className={classes.infoBar}>
           <span>
-            <Icon fontSize="small">location_on</Icon> 40 İnşaatçılar prospekti,
-            Bakı 1065
+            <Icon fontSize="small">location_on</Icon> 40 İnşaatçılar prospekti, Bakı 1065
           </span>
           <span>
             <Icon fontSize="small">phone_iphone</Icon> (+994) 55 888 88 88
@@ -69,16 +65,8 @@ const Header: FC<IHeader> = ({ width }) => {
             <SearchBar onIconClick={handleSrachShow} />
           </div>
           <div className={classes.icons}>
-            <ContextMenu
-              icon="favorite"
-              list={goodList}
-              onOpen={handleFavoriteOpen}
-            />
-            <ContextMenu
-              icon="shopping_basket"
-              list={goodList}
-              onOpen={handleBasketOpen}
-            />
+            {/* <ContextMenu icon="favorite" list={goodList} onOpen={handleFavoriteOpen} /> */}
+            <ContextMenu icon="shopping_basket" list={header.basket} onOpen={handleBasketOpen} />
           </div>
         </div>
       </Grid>
@@ -91,4 +79,6 @@ const Header: FC<IHeader> = ({ width }) => {
   );
 };
 
-export default withWidth()(Header);
+const mapStateToProps = (state: IAppState) => ({ header: state.header });
+
+export default connect(mapStateToProps, headerActions)(withWidth()(Header));

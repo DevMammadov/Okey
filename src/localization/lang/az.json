@@ -1,10 +1,16 @@
 {
   "main": {
     "mostViewedProducts": "Ən çox baxılan mallar",
-    "newProducts": "Yeni mallar"
+    "newProducts": "Yeni mallar",
+    "lookAll": "hamısına bax"
+  },
+  "header": {
+    "complateOrder": "Sifarişi rəsmiləşdir"
   },
   "item": {
     "manat": "manat",
-    "warranty": "zəmanət"
+    "warranty": "zəmanət",
+    "toBasket": "Səbətə",
+    "inBasket": "Səbətdə"
   }
 }

@@ -1,33 +1,34 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles(theme => {
+export const useStyles = makeStyles((theme) => {
   return {
     root: {
       background: theme.palette.common.white,
+      padding: "0 150px",
       "& .MuiGrid-item": {
-        display: "flex"
-      }
+        display: "flex",
+      },
     },
     logo: {
       height: "56px",
-      width: "130px"
+      width: "130px",
     },
     headerContainer: {
       display: "flex",
       width: "100%",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
     },
     searchContainer: {
       width: "100%",
       display: "flex",
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
     },
     icons: {
-      display: "flex"
+      display: "flex",
     },
     gridItemSearch: {
-      paddingTop: 0
+      paddingTop: 0,
     },
     infoBar: {
       maxWidth: "280px",
@@ -37,40 +38,40 @@ export const useStyles = makeStyles(theme => {
         color: theme.palette.color.lightBlack,
         display: "flex",
         "& .MuiIcon-root": {
-          color: theme.palette.warning.main
-        }
+          color: theme.palette.warning.main,
+        },
       },
-      "& > span + span": { marginTop: "5px" }
+      "& > span + span": { marginTop: "5px" },
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {
       searchContainer: {
-        padding: "0 20px"
-      }
+        padding: "0 20px",
+      },
     },
     [theme.breakpoints.down("sm")]: {
       logo: {
         height: "40px",
-        width: "100px"
+        width: "100px",
       },
       root: {
         background: theme.palette.color.lightBlack,
         "& .MuiGrid-item": {
           paddingBottom: theme.spacing(1),
-          justifyContent: "space-between"
-        }
+          justifyContent: "space-between",
+        },
       },
       mobileSearchButton: {
-        color: theme.palette.common.white
+        color: theme.palette.common.white,
       },
       headerContainer: {
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
       },
       searchContainer: {
         justifyContent: "flex-end",
-        alignItems: "flex-start"
-      }
-    }
+        alignItems: "flex-start",
+      },
+    },
   };
 });

@@ -1,17 +1,15 @@
 import React, { useState, MouseEvent, FC } from "react";
-import { Badge, Button, Menu, Icon } from "@material-ui/core";
+import { Badge, Button, Menu, Icon, ListSubheader } from "@material-ui/core";
 import { CustomItem } from "./styled-components";
 import { useStyles } from "./context-menu.style";
-import { IGood, IImages } from "types";
 import withWidth, { isWidthUp, WithWidthProps } from "@material-ui/core/withWidth";
-// TODO: will be removed
-import imageList from "data/images.json";
-import logo from "dist/smallLogo.png";
+import { IBasketProduct } from "../../types";
+import { useTranslator } from "localization";
 
 export interface IContextMenu extends WithWidthProps {
   icon?: string;
   onOpen(): void;
-  list: IGood[];
+  list: IBasketProduct[];
   className?: string;
   style?: any;
   buttonText?: string;
@@ -21,6 +19,7 @@ export interface IContextMenu extends WithWidthProps {
 const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonText, onOpen, width }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const classes = useStyles();
+  const lang = useTranslator("header");
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     if (isWidthUp("sm", width)) {
@@ -34,31 +33,19 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
     setAnchorEl(null);
   };
 
-  // TODO: Well be removed!
-  const scrapImage = (id: number) => {
-    return imageList.filter((img: IImages) => img.productId === id)[0].name || logo;
-  };
-
-  const renderList = (list: IGood[]) => {
-    return list.map((goods: IGood) => <CustomItem key={goods.id} img={scrapImage(goods.id)} text={goods.name} />);
+  const renderList = (list: IBasketProduct[]) => {
+    return list?.map((product: IBasketProduct) => (
+      <CustomItem key={product.id} img={product.image} text={product.name} />
+    ));
   };
 
   const renderOpenButton = () => {
     return (
-      <CustomItem className={classes.buttonItem}>
+      <div className={classes.listFooter}>
         <Button onClick={onOpen} color="primary">
-          {buttonText ? buttonText : "Siyahıya keç"}
+          {buttonText ? buttonText : lang.complateOrder}
         </Button>
-      </CustomItem>
-    );
-  };
-
-  const renderBadge = () => {
-    //console.log(list.length);
-    return (
-      <Badge badgeContent={list.length || 0} color="secondary" invisible={!list.length}>
-        <Icon fontSize={isWidthUp("sm", width) ? "large" : "default"}>{icon ? icon : "favorite"}</Icon>
-      </Badge>
+      </div>
     );
   };
 
@@ -71,7 +58,9 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
         onClick={handleClick}
         className={classes.button}
       >
-        {renderBadge()}
+        <Badge badgeContent={list.length || 0} color="secondary" invisible={!list.length}>
+          <Icon fontSize={isWidthUp("sm", width) ? "large" : "default"}>{icon ? icon : "favorite"}</Icon>
+        </Badge>
       </Button>
       <Menu
         id="customized-menu"
@@ -90,6 +79,9 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <ListSubheader className={classes.listHeader}>
+          <span>Səbətdə {list.length} mehsul var</span>
+        </ListSubheader>
         {renderList(list)}
         {renderOpenButton()}
       </Menu>
