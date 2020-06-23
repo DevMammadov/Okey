@@ -2,12 +2,17 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => {
   return {
-    footer: {
+    root: {
       color: theme.palette.common.white,
+      padding: "8px 120px",
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
-    [theme.breakpoints.down("md")]: {},
+    [theme.breakpoints.down("md")]: {
+      root: {
+        padding: "8px 16px",
+      },
+    },
     [theme.breakpoints.down("sm")]: {},
   };
 });

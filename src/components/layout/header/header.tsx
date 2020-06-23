@@ -66,7 +66,7 @@ const Header: FC<IHeaderPage> = ({ width, header }) => {
           </div>
           <div className={classes.icons}>
             {/* <ContextMenu icon="favorite" list={goodList} onOpen={handleFavoriteOpen} /> */}
-            <ContextMenu icon="shopping_basket" list={header.basket} onOpen={handleBasketOpen} />
+            <ContextMenu icon="shopping_cart" list={header.basket} onOpen={handleBasketOpen} />
           </div>
         </div>
       </Grid>

@@ -7,7 +7,7 @@ import { Categs, Contacts, Info } from "./components";
 export const Footer = () => {
   const classes = useStyles();
   return (
-    <Grid container className={classes.footer}>
+    <Grid container className={classes.root}>
       <Grid item xs={4}>
         <Contacts />
       </Grid>

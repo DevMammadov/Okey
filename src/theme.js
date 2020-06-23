@@ -15,6 +15,20 @@ const theme = createMuiTheme({
         borderRadius: "5px",
       },
     },
+    MuiButton: {
+      root: {
+        textTransform: "capitalize",
+        padding: "4px 8px",
+      },
+      contained: {
+        backgroundColor: "#F26C37",
+        color: "#fff",
+        "&:hover": {
+          backgroundColor: "#f28a61",
+          textDecoration: "unset",
+        },
+      },
+    },
     MuiGrid: {
       item: {
         padding: "15px",

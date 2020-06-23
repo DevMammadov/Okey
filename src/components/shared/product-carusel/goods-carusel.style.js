@@ -59,7 +59,18 @@ export const useStyles = makeStyles((theme) => {
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
-    [theme.breakpoints.down("md")]: {},
+    [theme.breakpoints.down("md")]: {
+      carouselTitle: {
+        "& h2": {
+          fontSize: "0.9rem",
+          textAlign: "left",
+          flex: 1,
+        },
+        "& button": {
+          padding: 0,
+        },
+      },
+    },
     [theme.breakpoints.down("xs")]: {
       slider: {
         "& .slick-track": {

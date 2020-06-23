@@ -20,11 +20,6 @@ export const useStyles = makeStyles((theme) => {
           textDecoration: "underline",
         },
       },
-      "& .MuiCardActions-root": {
-        "& .MuiButton-contained": {
-          background: theme.palette.warning.main,
-        },
-      },
     },
     portraitCard: {
       display: "flex",
@@ -88,7 +83,6 @@ export const useStyles = makeStyles((theme) => {
         minWidth: "450px",
       },
       "& .MuiCardActions-root": {
-        flex: 1,
         flexWrap: "wrap",
         "& .MuiButton-contained": {
           width: "100%",
@@ -109,11 +103,7 @@ export const useStyles = makeStyles((theme) => {
     inBasketButton: {},
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
-    [theme.breakpoints.down("md")]: {
-      portraitCard: {
-        maxWidth: 100,
-      },
-    },
+    [theme.breakpoints.down("md")]: {},
     [theme.breakpoints.down("sm")]: {},
   };
 });

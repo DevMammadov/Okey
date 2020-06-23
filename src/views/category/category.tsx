@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid, withWidth, isWidthUp } from "@material-ui/core";
 import { Card } from "components/shared";
 import React, { FC, useEffect } from "react";
 import { connect } from "react-redux";
@@ -16,6 +16,7 @@ import { toggleBasket } from "components/layout/header/store/action";
 
 export interface ICategoryPage {
   match: any;
+  width: any;
   category: ICategoryState;
   categories: ICategory[];
   basket: IBasketProduct[];
@@ -30,6 +31,7 @@ export interface ICategoryPage {
 
 const Category: FC<ICategoryPage> = ({
   match,
+  width,
   getProducts,
   category,
   basket,
@@ -72,29 +74,33 @@ const Category: FC<ICategoryPage> = ({
 
   return (
     <Grid container className={classes.container}>
-      <Grid item xs={3}>
-        <Aside
-          fields={category.filterFields}
-          categName={match.params?.category}
-          defaultAttributes={category.searchFilter.attributes || []}
-          onAttrSelect={handleAttributeSelect}
-          onPriceChange={handlePriceChange}
-          defaultPrice={category.searchFilter.price}
-        />
-      </Grid>
-      <Grid item xs={9} className={classes.cardContainer}>
+      {isWidthUp("sm", width) && (
+        <Grid item xs={3}>
+          <Aside
+            fields={category.filterFields}
+            categName={match.params?.category}
+            defaultAttributes={category.searchFilter.attributes || []}
+            onAttrSelect={handleAttributeSelect}
+            onPriceChange={handlePriceChange}
+            defaultPrice={category.searchFilter.price}
+          />
+        </Grid>
+      )}
+      <Grid item xs={isWidthUp("sm", width) ? 9 : 12} className={classes.cardContainer}>
         {category.products.length > 0 ? (
           <>
-            <FilterBar
-              onChipClose={handleAttributeSelect}
-              fields={category.filterFields}
-              attributes={category.searchFilter.attributes}
-              onChange={(mode) => toggleViewMode(mode)}
-              isApp={category.viewModeisApp}
-            />
+            {isWidthUp("sm", width) && (
+              <FilterBar
+                onChipClose={handleAttributeSelect}
+                fields={category.filterFields}
+                attributes={category.searchFilter.attributes}
+                onChange={(mode) => toggleViewMode(mode)}
+                isApp={category.viewModeisApp}
+              />
+            )}
             <Grid container>
               {category.products.map((product: IProduct, index: number) => (
-                <Grid key={index} item xs={12} md={category.viewModeisApp ? 3 : 12}>
+                <Grid key={index} item xs={12} md={category.viewModeisApp ? 4 : 12}>
                   <Card
                     item={product}
                     onToggleBasket={(product) => toggleBasket(product)}
@@ -112,7 +118,6 @@ const Category: FC<ICategoryPage> = ({
           </Grid>
         )}
       </Grid>
-      )}
     </Grid>
   );
 };
@@ -122,4 +127,4 @@ const mapStateToProps = (state: IAppState) => ({
   categories: state.layout.category,
   basket: state.header.basket,
 });
-export default withRouter(connect(mapStateToProps, { ...categoryActions, toggleBasket })(Category));
+export default withRouter(connect(mapStateToProps, { ...categoryActions, toggleBasket })(withWidth()(Category)));

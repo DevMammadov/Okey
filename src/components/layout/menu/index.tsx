@@ -21,8 +21,8 @@ export const Menu: FC<IMenuPros> = ({ category }) => {
   };
 
   return (
-    <Grid container>
-      <Grid item xs={12} className={classes.root}>
+    <Grid container className={classes.root}>
+      <Grid item xs={12} className={classes.container}>
         <ul>
           <li>
             <NavLink exact to="/">

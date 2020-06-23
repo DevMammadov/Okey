@@ -3,8 +3,10 @@ import { grey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) => {
   return {
-    root: {
+    root: {},
+    container: {
       padding: 0,
+      padding: "8px 120px",
       "& ul": {
         zIndex: "555",
         listStyle: "none",
@@ -76,7 +78,11 @@ export const useStyles = makeStyles((theme) => {
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
-    [theme.breakpoints.down("md")]: {},
+    [theme.breakpoints.down("md")]: {
+      container: {
+        padding: "8px 16px",
+      },
+    },
     [theme.breakpoints.down("sm")]: {
       root: {
         display: "none",

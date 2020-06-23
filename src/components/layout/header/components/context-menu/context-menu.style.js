@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Opacity } from "@material-ui/icons";
+import { grey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) => {
   return {
@@ -20,7 +20,7 @@ export const useStyles = makeStyles((theme) => {
           display: "block",
           objectFit: "contain",
         },
-        "& div": {
+        "& > div": {
           width: "310px",
           marginLeft: theme.spacing(2),
           whiteSpace: "break-spaces",
@@ -30,6 +30,9 @@ export const useStyles = makeStyles((theme) => {
     listHeader: {
       background: theme.palette.common.white,
       pading: theme.spacing(1),
+      color: theme.palette.color.black,
+      display: "flex",
+      justifyContent: "space-between",
     },
     button: {
       background: "none",
@@ -45,10 +48,33 @@ export const useStyles = makeStyles((theme) => {
       position: "sticky",
       background: theme.palette.common.white,
       bottom: 0,
-      padding: theme.spacing(1, 0),
+      padding: theme.spacing(3, 2, 1, 2),
+      display: "flex",
+      justifyContent: "space-between",
       "& .MuiButton-root": {
-        width: "100%",
+        "& span": {
+          fontSize: "1rem",
+          marginRight: theme.spacing(1),
+        },
       },
+    },
+    noItem: {
+      padding: theme.spacing(5),
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexWrap: "wrap",
+    },
+    noItemIcon: {
+      width: "100%",
+      textAlign: "center",
+      "& span": {
+        fontSize: "3rem",
+        color: grey[700],
+      },
+    },
+    money: {
+      fontFamily: "JISAZNBold",
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},

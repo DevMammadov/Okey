@@ -41,8 +41,6 @@ export const Card: FC<ICard> = ({
     e.preventDefault();
   };
 
-  console.log(inBasket);
-
   return (
     <MaterialCard
       style={style}
@@ -66,8 +64,9 @@ export const Card: FC<ICard> = ({
         <div>
           <Button
             variant="contained"
-            onClick={() => onToggleBasket({ id: item.id, name: item.name, price: item.price, image: item.image })}
-            color="primary"
+            onClick={() =>
+              onToggleBasket({ id: item.id, name: item.name, price: item.price - item.discount, image: item.image })
+            }
             className={clsx(classes.basketButton, inBasket && classes.inBasketButton)}
           >
             {inBasket ? (

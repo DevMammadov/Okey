@@ -1,10 +1,10 @@
 import React, { useState, MouseEvent, FC } from "react";
-import { Badge, Button, Menu, Icon, ListSubheader } from "@material-ui/core";
-import { CustomItem } from "./styled-components";
+import { Badge, Button, Menu, Icon, ListSubheader, MenuItem } from "@material-ui/core";
 import { useStyles } from "./context-menu.style";
 import withWidth, { isWidthUp, WithWidthProps } from "@material-ui/core/withWidth";
 import { IBasketProduct } from "../../types";
 import { useTranslator } from "localization";
+import { stringCutter } from "helpers";
 
 export interface IContextMenu extends WithWidthProps {
   icon?: string;
@@ -33,17 +33,37 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
     setAnchorEl(null);
   };
 
+  const round = (number: number) => {
+    return Math.round((number + Number.EPSILON) * 100) / 100;
+  };
+
   const renderList = (list: IBasketProduct[]) => {
     return list?.map((product: IBasketProduct) => (
-      <CustomItem key={product.id} img={product.image} text={product.name} />
+      <MenuItem key={product.id}>
+        <img src={product.image} alt={product.name} />
+        <div>
+          {/* <span>{stringCutter(product.name, 30)}</span> */}
+          <span>{product.name}</span>
+          <div>
+            <b>
+              {product.price} <span className={classes.money}> M</span>
+            </b>
+          </div>
+        </div>
+      </MenuItem>
     ));
   };
 
   const renderOpenButton = () => {
     return (
       <div className={classes.listFooter}>
-        <Button onClick={onOpen} color="primary">
+        <Button variant="contained" onClick={onOpen}>
+          <Icon>local_mall</Icon>
           {buttonText ? buttonText : lang.complateOrder}
+        </Button>
+        <Button onClick={onOpen} color="primary">
+          <Icon>shopping_cart</Icon>
+          {buttonText ? buttonText : lang.gotToBasket}
         </Button>
       </div>
     );
@@ -51,13 +71,7 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
 
   return (
     <div className={className} style={style}>
-      <Button
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        variant="contained"
-        onClick={handleClick}
-        className={classes.button}
-      >
+      <Button aria-controls="customized-menu" aria-haspopup="true" onClick={handleClick} className={classes.button}>
         <Badge badgeContent={list.length || 0} color="secondary" invisible={!list.length}>
           <Icon fontSize={isWidthUp("sm", width) ? "large" : "default"}>{icon ? icon : "favorite"}</Icon>
         </Badge>
@@ -80,10 +94,28 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
         onClose={handleClose}
       >
         <ListSubheader className={classes.listHeader}>
-          <span>Səbətdə {list.length} mehsul var</span>
+          <span>
+            {lang.countOfProductInBasket} <b>{list.length}</b>
+          </span>
+          <span>
+            {" "}
+            {lang.totalCount}{" "}
+            <b>
+              {round(list.map((p) => p.price).reduce((acc, curr) => acc + curr, 0))}{" "}
+              <span className={classes.money}>M</span>
+            </b>
+          </span>
         </ListSubheader>
         {renderList(list)}
-        {renderOpenButton()}
+        {list.length === 0 && (
+          <div className={classes.noItem}>
+            <div className={classes.noItemIcon}>
+              <Icon>sentiment_dissatisfied</Icon>
+            </div>
+            <div>{lang.noProductInBasket}</div>
+          </div>
+        )}
+        {list.length > 0 && renderOpenButton()}
       </Menu>
     </div>
   );

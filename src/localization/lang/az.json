@@ -5,7 +5,11 @@
     "lookAll": "hamısına bax"
   },
   "header": {
-    "complateOrder": "Sifarişi rəsmiləşdir"
+    "complateOrder": "Rəsmiləşdir",
+    "gotToBasket": "Səbətə keç",
+    "countOfProductInBasket": "Səbətdəki məhsul sayı",
+    "totalCount": "Cəmi məbləğ",
+    "noProductInBasket": "Səbətdə hələki mal yoxdur"
   },
   "item": {
     "manat": "manat",

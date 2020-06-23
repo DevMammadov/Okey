@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => {
   return {
     root: {
       background: theme.palette.common.white,
-      padding: "0 150px",
+      padding: "8px 120px",
       "& .MuiGrid-item": {
         display: "flex",
       },
@@ -48,6 +48,9 @@ export const useStyles = makeStyles((theme) => {
     [theme.breakpoints.down("md")]: {
       searchContainer: {
         padding: "0 20px",
+      },
+      root: {
+        padding: "8px 16px",
       },
     },
     [theme.breakpoints.down("sm")]: {
