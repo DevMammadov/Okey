@@ -13,6 +13,7 @@ export interface IGood {
   atStore: boolean;
   buyCount: number;
   categoryId: number;
+  subCategId: number | null;
   brandId: number;
 }
 

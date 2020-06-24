@@ -5,6 +5,8 @@ import productAttributeList from "data/product_attribute.json";
 import attributeList from "data/attributes.json";
 import values from "data/value.json";
 import imgList from "data/images.json";
+import categoryList from "data/category.json";
+import subCategList from "data/sub-category.json";
 
 export default class MainApi {
   static getMostViewed = () => {
@@ -31,6 +33,8 @@ export default class MainApi {
         like: product.like,
         view: product.view,
         warranty: product.warranty,
+        categoryId: categoryList.filter((c) => c.id === product.categoryId)[0]?.id,
+        subCategId: subCategList.filter((c) => c.id === product.subCategId)[0]?.id,
         image: imgList.filter((img) => img.productId === product.id)[0].name,
         attributes: productAttributes,
       });

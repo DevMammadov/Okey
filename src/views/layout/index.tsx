@@ -30,7 +30,7 @@ const App: FC<ILayoutPage> = ({ category, getCategory }) => {
         </nav>
         <main className={classes.main}>
           <section>
-            <AppRouter />
+            <AppRouter category={category} />
           </section>
         </main>
       </div>

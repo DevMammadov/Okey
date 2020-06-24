@@ -3,7 +3,6 @@ import { useStyles } from "./menu.style";
 import { Grid, Icon, Paper } from "@material-ui/core";
 import { ICategory, ISubCategory } from "types";
 import { NavLink } from "react-router-dom";
-import { links } from "links";
 
 interface IMenuPros {
   category: ICategory[];
@@ -12,12 +11,12 @@ interface IMenuPros {
 export const Menu: FC<IMenuPros> = ({ category }) => {
   const classes = useStyles();
 
-  const handleLinkClick = (link: string, id: number) => {
-    if (category.filter((c) => c.id === id)[0].subCategory.length > 0) {
-      return "#";
-    } else {
-      return `/${links.category}/${link.replace(" ", "-").toLowerCase()}`;
-    }
+  const handleCategClick = (categ: string) => {
+    return `/${categ.replace(/ /g, "-").toLowerCase()}`;
+  };
+
+  const handleSubcategClick = (categ: string, subcateg: string) => {
+    return `/${categ.replace(/ /g, "-").toLowerCase()}/${subcateg.replace(/ /g, "-").toLowerCase()}`;
   };
 
   return (
@@ -32,7 +31,7 @@ export const Menu: FC<IMenuPros> = ({ category }) => {
           </li>
           {category.map((categ: ICategory) => (
             <li key={categ.id}>
-              <NavLink exact to={() => handleLinkClick(categ.name, categ.id)}>
+              <NavLink exact to={() => handleCategClick(categ.name)}>
                 {categ.icon && <Icon className={classes.icon}>{categ.icon}</Icon>}
                 <span>{categ.name}</span>
               </NavLink>
@@ -41,7 +40,7 @@ export const Menu: FC<IMenuPros> = ({ category }) => {
                   <ul>
                     {categ.subCategory.map((subCateg: ISubCategory) => (
                       <li key={subCateg.id}>
-                        <NavLink exact to={() => handleLinkClick(subCateg.name, subCateg.id)}>
+                        <NavLink exact to={() => handleSubcategClick(categ.name, subCateg.name)}>
                           {subCateg.icon && <Icon className={classes.icon}>{subCateg.icon}</Icon>}
                           <span>{subCateg.name}</span>
                         </NavLink>

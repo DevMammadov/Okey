@@ -25,9 +25,18 @@ export interface IProductCarusel {
   classList?: ICaruselClasses;
   style?: CSSProperties;
   onToggleBasket?(product: IBasketProduct): void;
+  onCardClick?(name: string): void;
 }
 
-export const ProductCarusel: FC<IProductCarusel> = ({ list, title, style, classList, onToggleBasket, basket }) => {
+export const ProductCarusel: FC<IProductCarusel> = ({
+  list,
+  title,
+  style,
+  classList,
+  onToggleBasket,
+  basket,
+  onCardClick,
+}) => {
   const classes = useStyles();
   const lang = useTranslator("main");
   let Carousel: any;
@@ -81,6 +90,7 @@ export const ProductCarusel: FC<IProductCarusel> = ({ list, title, style, classL
             onToggleBasket={onToggleBasket}
             className={clsx(classes.card, classList?.card)}
             inBasket={elementInBasket(product.id)}
+            onClick={onCardClick}
           />
         ))}
         ref={(el) => (Carousel = el)}

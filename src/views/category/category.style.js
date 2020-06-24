@@ -4,7 +4,6 @@ export const useStyles = makeStyles((theme) => {
   return {
     container: {
       height: "100%",
-      padding: "8px 120px",
     },
     cardContainer: {
       height: "100%",

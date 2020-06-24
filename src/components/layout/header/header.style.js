@@ -4,7 +4,6 @@ export const useStyles = makeStyles((theme) => {
   return {
     root: {
       background: theme.palette.common.white,
-      padding: "8px 120px",
       "& .MuiGrid-item": {
         display: "flex",
       },

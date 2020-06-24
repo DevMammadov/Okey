@@ -10,24 +10,41 @@ import { IMainPageState } from "./store/reducer";
 import { useTranslator } from "localization";
 import { IBasketProduct } from "components/layout/header/types";
 import { toggleBasket } from "components/layout/header/store/action";
+import { ICategory } from "types";
+import { useHistory } from "react-router-dom";
 
 export interface IMainPage {
   main: IMainPageState;
   basket: IBasketProduct[];
+  category: ICategory[]; // from layout
   getMostViewed(): void;
   toggleBasket(product: IBasketProduct): void;
 }
 
-const Main: FC<IMainPage> = ({ main, basket, getMostViewed, toggleBasket }) => {
+const Main: FC<IMainPage> = ({ main, basket, getMostViewed, toggleBasket, category }) => {
   const classes = useStyles();
   const lang = useTranslator("main");
+  const history = useHistory();
 
   const handleAddToBasket = (product: IBasketProduct) => {
     toggleBasket(product);
   };
 
+  const handleCardClick = (name: string) => {
+    let product = main.mostViewed.filter((p) => p.name === name)[0];
+    let categ = category.filter((c) => c.id === product.categoryId)[0];
+
+    if (product.subCategId) {
+      let subCateg = categ.subCategory.filter((s) => s.id === product.subCategId)[0]?.name.toLocaleLowerCase();
+      history.push(`/${categ?.name.toLocaleLowerCase()}/${subCateg}/p/${product.name.toLocaleLowerCase()}`);
+    } else {
+      history.push(`/${categ?.name.toLocaleLowerCase()}/p/${product?.name.replace(/ /g, "-").toLocaleLowerCase()}`);
+    }
+  };
+
   useEffect(() => {
     getMostViewed();
+    console.log(category);
   }, []);
 
   return (
@@ -41,6 +58,7 @@ const Main: FC<IMainPage> = ({ main, basket, getMostViewed, toggleBasket }) => {
           title={lang.newProducts}
           basket={basket}
           onToggleBasket={handleAddToBasket}
+          onCardClick={handleCardClick}
           classList={{
             card: classes.sliderCard,
             carusel: classes.slider,

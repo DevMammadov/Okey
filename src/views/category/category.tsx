@@ -73,52 +73,54 @@ const Category: FC<ICategoryPage> = ({
   };
 
   return (
-    <Grid container className={classes.container}>
-      {isWidthUp("sm", width) && (
-        <Grid item xs={3}>
-          <Aside
-            fields={category.filterFields}
-            categName={match.params?.category}
-            defaultAttributes={category.searchFilter.attributes || []}
-            onAttrSelect={handleAttributeSelect}
-            onPriceChange={handlePriceChange}
-            defaultPrice={category.searchFilter.price}
-          />
-        </Grid>
-      )}
-      <Grid item xs={isWidthUp("sm", width) ? 9 : 12} className={classes.cardContainer}>
-        {category.products.length > 0 ? (
-          <>
-            {isWidthUp("sm", width) && (
-              <FilterBar
-                onChipClose={handleAttributeSelect}
-                fields={category.filterFields}
-                attributes={category.searchFilter.attributes}
-                onChange={(mode) => toggleViewMode(mode)}
-                isApp={category.viewModeisApp}
-              />
-            )}
-            <Grid container>
-              {category.products.map((product: IProduct, index: number) => (
-                <Grid key={index} item xs={12} md={category.viewModeisApp ? 4 : 12}>
-                  <Card
-                    item={product}
-                    onToggleBasket={(product) => toggleBasket(product)}
-                    inBasket={basket.some((p) => p.id === product.id)}
-                    list={!category.viewModeisApp}
-                    className={classes.categoryCard}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </>
-        ) : (
-          <Grid item xs={12} className={classes.noItem}>
-            Teesufki bu kateqoriyada heleki mal yoxdur
+    <section>
+      <Grid container className={classes.container}>
+        {isWidthUp("sm", width) && (
+          <Grid item xs={3}>
+            <Aside
+              fields={category.filterFields}
+              categName={match.params?.category}
+              defaultAttributes={category.searchFilter.attributes || []}
+              onAttrSelect={handleAttributeSelect}
+              onPriceChange={handlePriceChange}
+              defaultPrice={category.searchFilter.price}
+            />
           </Grid>
         )}
+        <Grid item xs={isWidthUp("sm", width) ? 9 : 12} className={classes.cardContainer}>
+          {category.products.length > 0 ? (
+            <>
+              {isWidthUp("sm", width) && (
+                <FilterBar
+                  onChipClose={handleAttributeSelect}
+                  fields={category.filterFields}
+                  attributes={category.searchFilter.attributes}
+                  onChange={(mode) => toggleViewMode(mode)}
+                  isApp={category.viewModeisApp}
+                />
+              )}
+              <Grid container>
+                {category.products.map((product: IProduct, index: number) => (
+                  <Grid key={index} item xs={12} md={category.viewModeisApp ? 4 : 12}>
+                    <Card
+                      item={product}
+                      onToggleBasket={(product) => toggleBasket(product)}
+                      inBasket={basket.some((p) => p.id === product.id)}
+                      list={!category.viewModeisApp}
+                      className={classes.categoryCard}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </>
+          ) : (
+            <Grid item xs={12} className={classes.noItem}>
+              Teesufki bu kateqoriyada heleki mal yoxdur
+            </Grid>
+          )}
+        </Grid>
       </Grid>
-    </Grid>
+    </section>
   );
 };
 

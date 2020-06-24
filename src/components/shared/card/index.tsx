@@ -1,28 +1,28 @@
 import React, { FC, CSSProperties } from "react";
 import { useStyles } from "./card.style";
 import okeyLogo from "dist/smallLogo.png";
-import { Card as MaterialCard, IconButton, CardMedia, CardContent, CardActions, Button } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
+import { Card as MaterialCard, IconButton, CardMedia, CardContent, CardActions, Button, Link } from "@material-ui/core";
 import clsx from "clsx";
 import { CardBadge, Price, Attributes } from "./components";
 import { stringCutter } from "helpers";
-import { Link } from "react-router-dom";
-import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import { IProduct } from "views/category/types";
 import { useTranslator } from "localization";
 import { IBasketProduct } from "components/layout/header/types";
+import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import AddIcon from "@material-ui/icons/Add";
 import DoneIcon from "@material-ui/icons/Done";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
 
 export interface ICard {
   item: IProduct;
   className?: string;
   style?: CSSProperties;
   showBadge?: boolean;
-  onToggleBasket?(product: IBasketProduct): void;
   inBasket?: boolean;
   list?: boolean;
+  onToggleBasket?(product: IBasketProduct): void;
+  onClick?(name: string): void;
 }
 
 export const Card: FC<ICard> = ({
@@ -33,6 +33,7 @@ export const Card: FC<ICard> = ({
   showBadge = true,
   onToggleBasket = () => {},
   inBasket = false,
+  onClick = () => {},
 }) => {
   const classes = useStyles();
   const lang = useTranslator("item");
@@ -54,7 +55,7 @@ export const Card: FC<ICard> = ({
       />
       {showBadge && <CardBadge isList={list} item={item} />}
       <CardContent>
-        <Link to={"/product"} className={classes.itemName}>
+        <Link onClick={() => onClick(item.name)} className={classes.itemName}>
           {list ? item.name : stringCutter(item.name, 60)}
         </Link>
         <Price isList={list} price={item.price} discount={item.discount} />

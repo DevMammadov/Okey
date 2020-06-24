@@ -45,6 +45,8 @@ export interface IProduct {
   enabled: boolean;
   badge: string;
   warranty: string;
+  categoryId: number;
+  subCategId: number | null;
   image: string;
   attributes: IAttribute[];
 }

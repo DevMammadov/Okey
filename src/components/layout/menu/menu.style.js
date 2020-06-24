@@ -6,7 +6,6 @@ export const useStyles = makeStyles((theme) => {
     root: {},
     container: {
       padding: 0,
-      padding: "8px 120px",
       "& ul": {
         zIndex: "555",
         listStyle: "none",

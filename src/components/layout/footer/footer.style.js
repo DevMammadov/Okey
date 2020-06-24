@@ -4,7 +4,6 @@ export const useStyles = makeStyles((theme) => {
   return {
     root: {
       color: theme.palette.common.white,
-      padding: "8px 120px",
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
