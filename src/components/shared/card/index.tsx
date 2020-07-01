@@ -1,16 +1,14 @@
 import React, { FC, CSSProperties } from "react";
 import { useStyles } from "./card.style";
 import okeyLogo from "dist/smallLogo.png";
-import { Card as MaterialCard, IconButton, CardMedia, CardContent, CardActions, Button, Link } from "@material-ui/core";
+import { Card as MaterialCard, IconButton, CardMedia, CardContent, CardActions, Link } from "@material-ui/core";
 import clsx from "clsx";
-import { CardBadge, Price, Attributes } from "./components";
+import { CardBadge, Price, Attributes, BasketButton } from "./components";
 import { stringCutter } from "helpers";
 import { IProduct } from "views/category/types";
-import { useTranslator } from "localization";
+//import { useTranslator } from "localization";
 import { IBasketProduct } from "components/layout/header/types";
 import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
-import AddIcon from "@material-ui/icons/Add";
-import DoneIcon from "@material-ui/icons/Done";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 
@@ -36,7 +34,7 @@ export const Card: FC<ICard> = ({
   onClick = () => {},
 }) => {
   const classes = useStyles();
-  const lang = useTranslator("item");
+  //const lang = useTranslator("item");
 
   const handleImageClick = (e: any) => {
     e.preventDefault();
@@ -63,25 +61,13 @@ export const Card: FC<ICard> = ({
       </CardContent>
       <CardActions disableSpacing>
         <div>
-          <Button
+          <BasketButton
             variant="contained"
             onClick={() =>
               onToggleBasket({ id: item.id, name: item.name, price: item.price - item.discount, image: item.image })
             }
-            className={clsx(classes.basketButton, inBasket && classes.inBasketButton)}
-          >
-            {inBasket ? (
-              <>
-                <DoneIcon />
-                <span>{lang.inBasket}</span>
-              </>
-            ) : (
-              <>
-                <AddIcon />
-                <span>{lang.toBasket}</span>
-              </>
-            )}
-          </Button>
+            inBasket={inBasket}
+          />
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>

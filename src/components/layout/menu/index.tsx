@@ -16,7 +16,8 @@ export const Menu: FC<IMenuPros> = ({ category }) => {
   };
 
   const handleSubcategClick = (categ: string, subcateg: string) => {
-    return `/${categ.replace(/ /g, "-").toLowerCase()}/${subcateg.replace(/ /g, "-").toLowerCase()}`;
+    const subCateg = `-${subcateg.replace(/ /g, "-").toLowerCase()}`;
+    return `/${categ.replace(/ /g, "-").toLowerCase()}/${subCateg}`;
   };
 
   return (
@@ -40,7 +41,7 @@ export const Menu: FC<IMenuPros> = ({ category }) => {
                   <ul>
                     {categ.subCategory.map((subCateg: ISubCategory) => (
                       <li key={subCateg.id}>
-                        <NavLink exact to={() => handleSubcategClick(categ.name, subCateg.name)}>
+                        <NavLink to={() => handleSubcategClick(categ.name, subCateg.name)} exact>
                           {subCateg.icon && <Icon className={classes.icon}>{subCateg.icon}</Icon>}
                           <span>{subCateg.name}</span>
                         </NavLink>

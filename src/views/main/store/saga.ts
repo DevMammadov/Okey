@@ -8,4 +8,6 @@ export function* mainPageSaga() {
     mainPageActions.getMostViewed,
     bindAsyncActions(mainPageActions.getMostViewedAsync)(mainApi.getMostViewed)
   );
+
+  yield takeEvery(mainPageActions.getServices, bindAsyncActions(mainPageActions.getServicesAsync)(mainApi.getServices));
 }

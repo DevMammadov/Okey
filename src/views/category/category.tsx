@@ -2,7 +2,6 @@ import { Grid, withWidth, isWidthUp } from "@material-ui/core";
 import { Card } from "components/shared";
 import React, { FC, useEffect } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { IAppState } from "store/reducers";
 import { ICategory } from "types";
 import { useStyles } from "./category.style";
@@ -13,9 +12,9 @@ import { IProduct, ICheckedAttribute, IProductPayload } from "./types";
 import { FilterBar } from "./components";
 import { IBasketProduct } from "components/layout/header/types";
 import { toggleBasket } from "components/layout/header/store/action";
+import { useParams } from "react-router-dom";
 
 export interface ICategoryPage {
-  match: any;
   width: any;
   category: ICategoryState;
   categories: ICategory[];
@@ -30,7 +29,6 @@ export interface ICategoryPage {
 }
 
 const Category: FC<ICategoryPage> = ({
-  match,
   width,
   getProducts,
   category,
@@ -44,25 +42,28 @@ const Category: FC<ICategoryPage> = ({
   toggleBasket,
 }) => {
   const classes = useStyles();
-  const queryString = match.params?.category;
+  const params: any = useParams();
+
+  const queryString = params.category;
   const categId = categories.filter((c) => c.name.toLowerCase() === queryString.replace("-", " ").toLowerCase())[0]?.id;
 
   useEffect(() => {
     if (categId) {
       getProducts({ categId: categId, limit: 10, offset: 0 });
       getFilters(categId);
+      console.log(params);
     }
-  }, [match.params, getProducts]);
+  }, [params, getProducts, getFilters, categId]);
 
   useEffect(() => {
     return () => {
       clearSearchFilters();
     };
-  }, [match.params, clearSearchFilters]);
+  }, [params, clearSearchFilters]);
 
   useEffect(() => {
     getProducts({ categId: categId, filters: category.searchFilter, limit: 10, offset: 0 });
-  }, [category.searchFilter, getProducts]);
+  }, [category.searchFilter, getProducts, categId]);
 
   const handleAttributeSelect = (attrs: ICheckedAttribute[]) => {
     toggleAttribute(attrs);
@@ -79,7 +80,7 @@ const Category: FC<ICategoryPage> = ({
           <Grid item xs={3}>
             <Aside
               fields={category.filterFields}
-              categName={match.params?.category}
+              categName={params?.category}
               defaultAttributes={category.searchFilter.attributes || []}
               onAttrSelect={handleAttributeSelect}
               onPriceChange={handlePriceChange}
@@ -129,4 +130,4 @@ const mapStateToProps = (state: IAppState) => ({
   categories: state.layout.category,
   basket: state.header.basket,
 });
-export default withRouter(connect(mapStateToProps, { ...categoryActions, toggleBasket })(withWidth()(Category)));
+export default connect(mapStateToProps, { ...categoryActions, toggleBasket })(withWidth()(Category));

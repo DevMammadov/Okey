@@ -4,10 +4,11 @@ import brands from "data/brands.json";
 import productAttributeList from "data/product_attribute.json";
 import attributeList from "data/attributes.json";
 import values from "data/value.json";
-import { IProductAttribute, IGood } from "types";
+import { IProductAttribute, IGood, IProductInfo } from "types";
 import { IFilterField, IValue, IProduct, IAttribute, IProductPayload } from "views/category/types";
 import categoryList from "data/category.json";
 import subCategList from "data/sub-category.json";
+import productInfoList from "data/productInfo.json";
 
 export default class CategoryApi {
   static getProducts = ({ categId, filters }: IProductPayload) => {
@@ -25,7 +26,7 @@ export default class CategoryApi {
             productAttributeList
               .filter((pa) => pa.attributeId === filter.attributeId && pa.valueId === filter.valueId)
               .map((p) => {
-                return filteredByFilter.concat(categProducts.filter((cp) => cp.id === p.productId));
+                return filteredByFilter.push(categProducts.filter((cp) => cp.id === p.productId)[0]);
               });
           } else {
             filteredByFilter = [...filteredByFilter, ...categProducts.filter((cp) => cp.brandId === filter.valueId)];
@@ -36,9 +37,18 @@ export default class CategoryApi {
     }
 
     //filter products by price
+    let filteredByPrice: IGood[] = [];
     if (filters) {
       if (filters?.price?.length > 0) {
-        categProducts = categProducts.filter((p) => p.price >= filters.price[0] && p.price <= filters.price[1]);
+        for (let categP of categProducts) {
+          let findedProduct = productInfoList.filter(
+            (pi) => pi.productId === categP.id && pi.price >= filters.price[0] && pi.price <= filters.price[1]
+          )[0];
+          if (findedProduct) {
+            filteredByPrice.push(categP);
+          }
+        }
+        categProducts = filteredByPrice;
       }
     }
 
@@ -46,6 +56,9 @@ export default class CategoryApi {
     for (let product of categProducts) {
       let productAttributes: IAttribute[] = [];
       const productAttrs = productAttributeList.filter((pa) => pa.productId === product.id);
+      const productInfo = productInfoList.filter(
+        (pi) => pi.productId === product.id && pi.colorId === product.colorId
+      )[0];
 
       productAttributes.push({ name: "Brand", value: brands.filter((b) => b.id === product.brandId)[0].name });
 
@@ -54,22 +67,22 @@ export default class CategoryApi {
         let value = values.filter((v) => v.id === pa.valueId)[0].value;
         productAttributes.push({ name, value });
       }
-
-      products.push({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        badge: product.badge,
-        discount: product.discount,
-        enabled: product.enabled,
-        like: product.like,
-        view: product.view,
-        warranty: product.warranty,
-        categoryId: categoryList.filter((c) => c.id === product.categoryId)[0]?.id,
-        subCategId: subCategList.filter((c) => c.id === product.subCategId)[0]?.id,
-        image: imgList.filter((img) => img.productId === product.id)[0].name,
-        attributes: productAttributes,
-      });
+      if (product.enabled && productInfo.enabled) {
+        products.push({
+          id: product.id,
+          name: product.name,
+          price: productInfo.price,
+          badge: product.badge,
+          discount: productInfo.discount,
+          like: product.like,
+          view: product.view,
+          warranty: product.warranty,
+          categoryId: categoryList.filter((c) => c.id === product.categoryId)[0]?.id,
+          subCategId: subCategList.filter((c) => c.id === product.subCategId)[0]?.id,
+          image: imgList.filter((img) => img.productId === product.id && img.colorId === product.colorId)[0].name,
+          attributes: productAttributes,
+        });
+      }
     }
 
     return products;
@@ -115,7 +128,15 @@ export default class CategoryApi {
     }
 
     // adding price filter
-    filterFelds.price = [Math.min(...unicProducts.map((p) => p.price)), Math.max(...unicProducts.map((p) => p.price))];
+    let productInfo: IProductInfo[] = [];
+
+    for (let product of unicProducts) {
+      productInfo.push(
+        productInfoList.filter((pi) => pi.productId === product.id && pi.colorId === product.colorId)[0]
+      );
+    }
+
+    filterFelds.price = [Math.min(...productInfo.map((p) => p.price)), Math.max(...productInfo.map((p) => p.price))];
 
     return filterFelds;
   };

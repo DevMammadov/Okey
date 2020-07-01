@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { grey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) => {
   return {
@@ -52,7 +51,7 @@ export const useStyles = makeStyles((theme) => {
       right: -42,
     },
     prevArrow: {
-      left: 0,
+      left: -10,
     },
     card: {
       marginRight: theme.spacing(1),

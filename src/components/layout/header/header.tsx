@@ -20,10 +20,6 @@ const Header: FC<IHeaderPage> = ({ width, header }) => {
   const classes = useStyles();
   const [visible, setVisible] = useState<boolean>(false);
 
-  const handleFavoriteOpen = () => {
-    console.log("open favorities");
-  };
-
   const handleBasketOpen = () => {
     console.log("open basket");
   };
@@ -65,7 +61,6 @@ const Header: FC<IHeaderPage> = ({ width, header }) => {
             <SearchBar onIconClick={handleSrachShow} />
           </div>
           <div className={classes.icons}>
-            {/* <ContextMenu icon="favorite" list={goodList} onOpen={handleFavoriteOpen} /> */}
             <ContextMenu icon="shopping_cart" list={header.basket} onOpen={handleBasketOpen} />
           </div>
         </div>

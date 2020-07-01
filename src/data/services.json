@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "icon": "local_shipping",
+    "text": "Sürətli çatdırılma",
+    "textRu": "Быстрая доставка"
+  },
+  {
+    "id": 2,
+    "icon": "verified_user",
+    "text": "Etibarlı zəmanət",
+    "textRu": "Доверенная гарантия"
+  },
+  {
+    "id": 3,
+    "icon": "local_mall",
+    "text": "Nəğd ödəniş",
+    "textRu": "Оплата наличным"
+  },
+  {
+    "id": 4,
+    "icon": "verified",
+    "text": "Mövcudluğa zəmanət",
+    "textRu": "Гарантированная доступность"
+  }
+]

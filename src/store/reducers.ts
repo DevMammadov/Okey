@@ -4,6 +4,7 @@ import category, { ICategoryState } from "views/category/store/reducer";
 import layout, { ILayoutState } from "views/layout/store/reducer";
 import mainPage, { IMainPageState } from "views/main/store/reducer";
 import header, { IHeaderState } from "components/layout/header/store/reducer";
+import product, { IProductPageState } from "views/product/store/reducer";
 
 export default (history: any) =>
   combineReducers({
@@ -12,6 +13,7 @@ export default (history: any) =>
     layout,
     mainPage,
     category,
+    product,
   });
 
 export interface IAppState {
@@ -20,4 +22,5 @@ export interface IAppState {
   mainPage: IMainPageState;
   layout: ILayoutState;
   header: IHeaderState;
+  product: IProductPageState;
 }

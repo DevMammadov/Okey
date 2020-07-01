@@ -15,6 +15,13 @@
     "manat": "manat",
     "warranty": "zəmanət",
     "toBasket": "Səbətə",
-    "inBasket": "Səbətdə"
+    "inBasket": "Səbətdə",
+    "atStore": "Mağazadan satılır",
+    "byOrder": "Sifarişlə gətirilir",
+    "atStock": "Stokda var",
+    "notAtStock": "Stokda bitib"
+  },
+  "product": {
+    "similiarProducts": "Bənzər mallar"
   }
 }

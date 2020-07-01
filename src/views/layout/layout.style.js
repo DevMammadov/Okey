@@ -19,17 +19,27 @@ export const useStyles = makeStyles((theme) => {
     },
     menuNav: {
       boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 2px 0px rgba(0,0,0,0.12)",
+      background: grey[200],
       "& > div": {
-        padding: "8px 120px",
+        width: "1300px",
+        margin: "0 auto",
+        background: theme.palette.common.white,
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        borderRadius: "6px",
       },
     },
     main: {
       flex: 1,
       "& section": {
-        height: "100%",
+        background: grey[200],
+        paddingBottom: theme.spacing(2),
         "& section": {
           // all pages expect main page
-          padding: "8px 120px",
+          width: "1300px",
+          margin: "0 auto",
+          background: theme.palette.common.white,
+          borderRadius: "6px",
         },
       },
     },

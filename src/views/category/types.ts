@@ -42,7 +42,6 @@ export interface IProduct {
   like: number;
   price: number;
   discount: number;
-  enabled: boolean;
   badge: string;
   warranty: string;
   categoryId: number;

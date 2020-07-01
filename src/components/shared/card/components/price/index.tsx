@@ -1,32 +1,40 @@
 import React, { FC } from "react";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./price.style";
+import { round } from "helpers";
 import clsx from "clsx";
+
+interface IClasses {
+  discount?: string;
+  price?: string;
+  root?: string;
+}
 
 export interface IPrice {
   price: number;
   discount: number;
   isList: boolean;
+  className?: string;
+  classes?: IClasses;
 }
 
-export const Price: FC<IPrice> = ({ discount, price, isList }) => {
-  const classes = useStyles();
-
-  const round = (number: number) => {
-    return Math.round((number + Number.EPSILON) * 100) / 100;
-  };
+export const Price: FC<IPrice> = ({ discount, price, isList, className, classes }) => {
+  const styles = useStyles();
 
   return (
-    <Typography component="div" className={clsx(classes.priceContainer, isList && classes.listPrice)}>
+    <Typography
+      component="div"
+      className={clsx(styles.priceContainer, isList && styles.listPrice, className, classes?.root)}
+    >
       {discount > 0 && (
-        <div className={classes.originalPrice}>
+        <div className={clsx(styles.discountPrice, classes?.discount)}>
           <span>{price}</span>
-          <span className={classes.money}>M</span>
+          <span className={styles.money}>M</span>
         </div>
       )}
-      <div className={classes.currentPrice}>
+      <div className={clsx(styles.currentPrice, classes?.price)}>
         <span>{round(price - discount)}</span>
-        <span className={classes.money}>M</span>
+        <span className={styles.money}>M</span>
       </div>
     </Typography>
   );

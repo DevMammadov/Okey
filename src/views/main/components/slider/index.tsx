@@ -10,10 +10,10 @@ import { Button } from "@material-ui/core";
 export const Slider = () => {
   const { Element } = BannerAnim;
   const BgElement = Element.BgElement;
-  const classes = useStyles();
+  const classes: any = useStyles();
 
   return (
-    <BannerAnim style={{ height: "400px" }}>
+    <BannerAnim style={{ height: "400px", borderRadius: "6px" }}>
       <Element key="aaa" prefixCls="banner-user-elem">
         <BgElement
           key="bg"
@@ -22,18 +22,14 @@ export const Slider = () => {
             background: `url(${image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: "100%"
+            height: "100%",
           }}
         />
         <QueueAnim className={classes.sliderContent}>
           <h1 key="h1">Ant Motion Demo</h1>
-          <p key="p">
-            Ant Motion Demo.Ant Motion Demo.Ant Motion Demo.Ant Motion Demo
-          </p>
+          <p key="p">Ant Motion Demo.Ant Motion Demo.Ant Motion Demo.Ant Motion Demo</p>
         </QueueAnim>
-        <TweenOne animation={{ y: 50, opacity: 0, type: "from", delay: 200 }}>
-          Ant Motion Demo.Ant Motion Demo
-        </TweenOne>
+        <TweenOne animation={{ y: 50, opacity: 0, type: "from", delay: 200 }}>Ant Motion Demo.Ant Motion Demo</TweenOne>
       </Element>
       <Element key="aaab" prefixCls="banner-user-elem">
         <BgElement
@@ -43,7 +39,7 @@ export const Slider = () => {
             background: `url(${image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: "100%"
+            height: "100%",
           }}
         />
         <QueueAnim className={classes.sliderContent}>
@@ -54,9 +50,7 @@ export const Slider = () => {
             </Button>
           </p>
         </QueueAnim>
-        <TweenOne animation={{ y: 50, opacity: 0, type: "from", delay: 200 }}>
-          Ant Motion Demo.Ant Motion Demo
-        </TweenOne>
+        <TweenOne animation={{ y: 50, opacity: 0, type: "from", delay: 200 }}>Ant Motion Demo.Ant Motion Demo</TweenOne>
       </Element>
     </BannerAnim>
   );

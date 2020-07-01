@@ -9,7 +9,6 @@ export const useStyles = makeStyles((theme) => {
       "& ul": {
         zIndex: "555",
         listStyle: "none",
-        //background: theme.palette.warning.main,
         display: "flex",
         padding: 0,
         margin: 0,
@@ -18,7 +17,6 @@ export const useStyles = makeStyles((theme) => {
           "&:hover": {
             "& > a": {
               color: theme.palette.warning.main,
-              //background: theme.palette.warning.light,
             },
             "& > div": {
               display: "block",
@@ -29,13 +27,16 @@ export const useStyles = makeStyles((theme) => {
           border: "none",
         },
         "& li a.active": {
-          //background: theme.palette.warning.light,
-          color: theme.palette.warning.main,
+          background: theme.palette.warning.main,
+          color: theme.palette.common.white,
+          "&:hover": {
+            color: theme.palette.common.white,
+          },
         },
         "& li a": {
           display: "flex",
           alignItems: "center",
-          padding: theme.spacing(1),
+          padding: theme.spacing(2),
           fontSize: "18px",
           color: grey[800],
           textDecoration: "none",

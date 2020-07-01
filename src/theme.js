@@ -49,6 +49,7 @@ const theme = createMuiTheme({
     },
     danger: {
       main: "#EA2227",
+      light: "#ff5256",
     },
   },
 });

@@ -4,7 +4,6 @@ import { useStyles } from "./context-menu.style";
 import withWidth, { isWidthUp, WithWidthProps } from "@material-ui/core/withWidth";
 import { IBasketProduct } from "../../types";
 import { useTranslator } from "localization";
-import { stringCutter } from "helpers";
 
 export interface IContextMenu extends WithWidthProps {
   icon?: string;

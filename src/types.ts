@@ -1,20 +1,28 @@
 export interface IGood {
   id: number;
   name: string;
-  code: string;
-  income: number;
   view: number;
   like: number;
-  price: number;
-  discount: number;
   enabled: boolean;
   badge: string;
   warranty: string;
-  atStore: boolean;
-  buyCount: number;
   categoryId: number;
   subCategId: number | null;
   brandId: number;
+  colorId: number; // selected color for showing element
+}
+
+export interface IProductInfo {
+  id: number;
+  price: number;
+  income: number;
+  atStore: boolean;
+  discount: number;
+  enabled: boolean;
+  stockCount: number;
+  productId: number;
+  colorId: number;
+  code: string;
 }
 
 export interface IImages {
@@ -43,6 +51,18 @@ export interface IProductAttribute {
   productId: number;
   attributeId: number;
   valueId: number;
+}
+
+export interface IService {
+  id: number;
+  text: string;
+  icon: string;
+}
+
+export interface IColor {
+  id: number;
+  name: string;
+  code: string;
 }
 
 // ---------- Response types

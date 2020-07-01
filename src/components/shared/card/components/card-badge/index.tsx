@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useStyles } from "./card-badge.style";
 import clsx from "clsx";
-import { translator } from "translation";
+import { useTranslator } from "localization";
 import { IProduct } from "views/category/types";
 
 export interface ICardPadges {
@@ -12,7 +12,7 @@ export interface ICardPadges {
 
 export const CardBadge: FC<ICardPadges> = ({ item, className, isList }) => {
   const classes = useStyles();
-  const lang = translator().item;
+  const lang = useTranslator("item");
   return (
     <div className={clsx(classes.badgeContainer, className, isList && classes.listBadge)}>
       {item.warranty !== "" && (

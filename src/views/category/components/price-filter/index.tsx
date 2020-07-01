@@ -47,7 +47,7 @@ export const PriceFilter: FC<IPriceFilter> = ({ price, onChange, defaultValue })
       <div className={classes.formGroup}>
         <TextField
           onChange={(e) => handleChange(e, [Number(e.target.value), value[1]])}
-          value={value[0]}
+          value={value[0] ? value[0] : 0}
           id="from-price"
           onBlur={(e) => handleCommit(e, [Number(e.target.value), value[1]])}
           label="from"
@@ -58,7 +58,7 @@ export const PriceFilter: FC<IPriceFilter> = ({ price, onChange, defaultValue })
         </div>
         <TextField
           onChange={(e) => handleChange(e, [value[0], Number(e.target.value)])}
-          value={value[1]}
+          value={value[1] ? value[1] : 0}
           id="to-price"
           onBlur={(e) => handleCommit(e, [value[0], Number(e.target.value)])}
           label="to"

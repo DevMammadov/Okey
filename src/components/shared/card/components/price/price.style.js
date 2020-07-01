@@ -13,12 +13,14 @@ export const useStyles = makeStyles((theme) => {
     money: {
       fontFamily: "JISAZNBold",
     },
-    originalPrice: {
+    discountPrice: {
       fontWeight: "bold",
       position: "relative",
       fontSize: "0.9rem",
+      lineHeight: "1.8",
       display: "flex",
       alignItems: "flex-end",
+      marginRight: theme.spacing(1),
       color: grey[600],
       "&::after": {
         content: "''",
@@ -35,7 +37,6 @@ export const useStyles = makeStyles((theme) => {
       fontSize: "1.3rem",
       fontWeight: "bold",
       color: theme.palette.warning.main,
-      marginLeft: theme.spacing(1),
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},

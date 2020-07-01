@@ -11,7 +11,7 @@ import { useTranslator } from "localization";
 import { IBasketProduct } from "components/layout/header/types";
 import { toggleBasket } from "components/layout/header/store/action";
 import { ICategory } from "types";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export interface IMainPage {
   main: IMainPageState;
@@ -25,6 +25,12 @@ const Main: FC<IMainPage> = ({ main, basket, getMostViewed, toggleBasket, catego
   const classes = useStyles();
   const lang = useTranslator("main");
   const history = useHistory();
+  const params = useParams();
+
+  useEffect(() => {
+    getMostViewed();
+    console.log(params);
+  }, [getMostViewed, params]);
 
   const handleAddToBasket = (product: IBasketProduct) => {
     toggleBasket(product);
@@ -36,46 +42,45 @@ const Main: FC<IMainPage> = ({ main, basket, getMostViewed, toggleBasket, catego
 
     if (product.subCategId) {
       let subCateg = categ.subCategory.filter((s) => s.id === product.subCategId)[0]?.name.toLocaleLowerCase();
-      history.push(`/${categ?.name.toLocaleLowerCase()}/${subCateg}/p/${product.name.toLocaleLowerCase()}`);
+      history.push(`/${categ?.name.toLocaleLowerCase()}/${subCateg}/${product.name.toLocaleLowerCase()}`);
     } else {
-      history.push(`/${categ?.name.toLocaleLowerCase()}/p/${product?.name.replace(/ /g, "-").toLocaleLowerCase()}`);
+      history.push(`/${categ?.name.toLocaleLowerCase()}/${product?.name.replace(/ /g, "-").toLocaleLowerCase()}`);
     }
   };
 
-  useEffect(() => {
-    getMostViewed();
-    console.log(category);
-  }, []);
-
   return (
-    <Grid container>
-      <Grid item xs={12} className={classes.sliderContainer}>
+    <>
+      <section className={classes.sliderContainer}>
         <Slider />
-      </Grid>
-      <Grid item xs={12} className={classes.section}>
-        <ProductCarusel
-          list={main.mostViewed}
-          title={lang.newProducts}
-          basket={basket}
-          onToggleBasket={handleAddToBasket}
-          onCardClick={handleCardClick}
-          classList={{
-            card: classes.sliderCard,
-            carusel: classes.slider,
-          }}
-        />
-      </Grid>
-      <Grid item xs={12} className={classes.section}>
-        <ProductCarusel
-          list={main.mostViewed}
-          title={lang.mostViewedProducts}
-          classList={{
-            card: classes.sliderCard,
-            carusel: classes.slider,
-          }}
-        />
-      </Grid>
-    </Grid>
+      </section>
+      <section>
+        <Grid container>
+          <Grid item xs={12} className={classes.section}>
+            <ProductCarusel
+              list={main.mostViewed}
+              title={lang.newProducts}
+              basket={basket}
+              onToggleBasket={handleAddToBasket}
+              onCardClick={handleCardClick}
+              classList={{
+                card: classes.sliderCard,
+                carusel: classes.slider,
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} className={classes.section}>
+            <ProductCarusel
+              list={main.mostViewed}
+              title={lang.mostViewedProducts}
+              classList={{
+                card: classes.sliderCard,
+                carusel: classes.slider,
+              }}
+            />
+          </Grid>
+        </Grid>
+      </section>
+    </>
   );
 };
 

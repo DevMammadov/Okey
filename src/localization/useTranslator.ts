@@ -1,9 +1,9 @@
 // import { useSelector } from "react-redux";
 // import { IAppState } from "store/reducers";
-import _ from "lodash";
+//import _ from "lodash";
 
 export const useTranslator = (
-  page?: "main" | "item" | "header",
+  page?: "main" | "item" | "header" | "product",
   other?: string[] // other pages you want include to lang object
 ) => {
   const langState = "az"; //useSelector((state: IAppState) => state.header.lang)
