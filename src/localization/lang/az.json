@@ -23,5 +23,13 @@
   },
   "product": {
     "similiarProducts": "Bənzər mallar"
+  },
+  "basket": {
+    "imageOf": "şəkli",
+    "nameOf": "adı",
+    "priceOf": "qiyməti",
+    "countOf": "miqdarı",
+    "totalCount": "Ümumi məbləğ",
+    "": ""
   }
 }

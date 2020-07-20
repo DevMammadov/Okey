@@ -10,6 +10,8 @@ import { IAppState } from "store/reducers";
 import { connect } from "react-redux";
 import { IHeaderState } from "./store/reducer";
 import { headerActions } from "./store/action";
+import { useHistory } from "react-router-dom";
+import { links } from "routes/links";
 
 interface IHeaderPage extends WithWidthProps {
   width: any;
@@ -19,6 +21,7 @@ interface IHeaderPage extends WithWidthProps {
 const Header: FC<IHeaderPage> = ({ width, header }) => {
   const classes = useStyles();
   const [visible, setVisible] = useState<boolean>(false);
+  const history = useHistory();
 
   const handleBasketOpen = () => {
     console.log("open basket");
@@ -61,7 +64,12 @@ const Header: FC<IHeaderPage> = ({ width, header }) => {
             <SearchBar onIconClick={handleSrachShow} />
           </div>
           <div className={classes.icons}>
-            <ContextMenu icon="shopping_cart" list={header.basket} onOpen={handleBasketOpen} />
+            <ContextMenu
+              icon="shopping_cart"
+              list={header.basket}
+              openBasket={() => history.push(links.basket.baseUrl)}
+              onOpen={handleBasketOpen}
+            />
           </div>
         </div>
       </Grid>

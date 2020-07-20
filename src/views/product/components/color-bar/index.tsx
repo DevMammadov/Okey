@@ -15,7 +15,7 @@ export const ColorBar: FC<IColorBar> = ({ colors, onSelect, selected }) => {
 
   return (
     <div className={classes.container}>
-      {colors.map((color: IColor) => (
+      {colors?.map((color: IColor) => (
         <IconButton
           style={{ backgroundColor: color.code }}
           key={color.id}

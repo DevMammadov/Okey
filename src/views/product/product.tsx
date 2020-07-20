@@ -47,14 +47,15 @@ const Product: FC<IProductPage> = ({
     getProductInfo({ name: params.product });
     getSimiliar(params.category);
     getServices();
-  }, [getProduct, getServices, getProductInfo, params]);
+  }, [getProduct, getServices, getProductInfo, params, getSimiliar]);
 
   const handleAddToBasket = () => {
     toggleBasket({
       id: productState.product.id,
-      image: productState.productInfo.images[0],
+      image: productState.productInfo.images && productState.productInfo.images[0],
       name: productState.product.name,
       price: productState.productInfo.price - productState.productInfo.discount,
+      count: 1,
     });
   };
 
@@ -105,17 +106,17 @@ const Product: FC<IProductPage> = ({
             <Grid item xs={5}>
               <Card
                 item={{
-                  id: productState.product.id,
-                  image: productState.productInfo.images[0],
-                  badge: productState.product.badge,
-                  discount: productState.productInfo.discount,
-                  name: productState.product.name,
-                  price: productState.productInfo.price,
-                  warranty: productState.product.warranty,
-                  view: productState.product.view,
-                  like: productState.product.like,
-                  categoryId: productState.product.categoryId,
-                  subCategId: productState.product.subCategId,
+                  id: productState.product?.id,
+                  image: productState.productInfo?.images && productState.productInfo?.images[0],
+                  badge: productState.product?.badge,
+                  discount: productState.productInfo?.discount,
+                  name: productState.product?.name,
+                  price: productState.productInfo?.price,
+                  warranty: productState.product?.warranty,
+                  view: productState.product?.view,
+                  like: productState.product?.like,
+                  categoryId: productState.product?.categoryId,
+                  subCategId: productState.product?.subCategId,
                   attributes: {} as any,
                 }}
                 onToggleBasket={handleAddToBasket}

@@ -7,7 +7,9 @@ import { useTranslator } from "localization";
 
 export interface IContextMenu extends WithWidthProps {
   icon?: string;
-  onOpen(): void;
+  onOpen?(): void;
+  openBasket?(): void;
+  onOrder?(): void;
   list: IBasketProduct[];
   className?: string;
   style?: any;
@@ -15,7 +17,17 @@ export interface IContextMenu extends WithWidthProps {
   width: any;
 }
 
-const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonText, onOpen, width }) => {
+const ContextMenu: FC<IContextMenu> = ({
+  icon,
+  list,
+  className,
+  style,
+  buttonText,
+  onOpen = () => {},
+  openBasket = () => {},
+  onOrder = () => {},
+  width,
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const classes = useStyles();
   const lang = useTranslator("header");
@@ -32,20 +44,15 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
     setAnchorEl(null);
   };
 
-  const round = (number: number) => {
-    return Math.round((number + Number.EPSILON) * 100) / 100;
-  };
-
   const renderList = (list: IBasketProduct[]) => {
     return list?.map((product: IBasketProduct) => (
       <MenuItem key={product.id}>
         <img src={product.image} alt={product.name} />
         <div>
-          {/* <span>{stringCutter(product.name, 30)}</span> */}
           <span>{product.name}</span>
           <div>
             <b>
-              {product.price} <span className={classes.money}> M</span>
+              {product.count} x {product.price} <span className={classes.money}> M</span>
             </b>
           </div>
         </div>
@@ -56,11 +63,11 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
   const renderOpenButton = () => {
     return (
       <div className={classes.listFooter}>
-        <Button variant="contained" onClick={onOpen}>
+        <Button variant="contained" onClick={onOrder}>
           <Icon>local_mall</Icon>
           {buttonText ? buttonText : lang.complateOrder}
         </Button>
-        <Button onClick={onOpen} color="primary">
+        <Button onClick={openBasket} color="primary">
           <Icon>shopping_cart</Icon>
           {buttonText ? buttonText : lang.gotToBasket}
         </Button>
@@ -100,7 +107,7 @@ const ContextMenu: FC<IContextMenu> = ({ icon, list, className, style, buttonTex
             {" "}
             {lang.totalCount}{" "}
             <b>
-              {round(list.map((p) => p.price).reduce((acc, curr) => acc + curr, 0))}{" "}
+              {list.map((p) => p.price * p.count).reduce((acc, curr) => acc + curr, 0)}{" "}
               <span className={classes.money}>M</span>
             </b>
           </span>

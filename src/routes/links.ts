@@ -1,4 +1,7 @@
+const basket = {
+  baseUrl: "/basket/",
+};
+
 export const links = {
-  main: "main",
-  category: "category",
+  basket,
 };

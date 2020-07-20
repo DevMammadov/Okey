@@ -11,7 +11,7 @@ interface ITable {
 export const Table: FC<ITable> = ({ data, show }) => {
   const styles = useStyles();
   const [open, setOpen] = useState(false);
-  const rows = show && show > 0 && data.length > show ? data.slice(0, show) : data;
+  const rows = show && show > 0 && data?.length > show ? data?.slice(0, show) : data;
   const lang = useTranslator("main");
 
   return (
@@ -19,7 +19,7 @@ export const Table: FC<ITable> = ({ data, show }) => {
       <TableContainer>
         <MuiTable className={styles.table} aria-label="customized table">
           <TableBody>
-            {rows.map((row: any, i: number) => (
+            {rows?.map((row: any, i: number) => (
               <TableRow className={styles.tableRow} key={i}>
                 <TableCell className={styles.tableCell} align="left">
                   {row[Object.keys(row)[0]]}
@@ -32,13 +32,13 @@ export const Table: FC<ITable> = ({ data, show }) => {
           </TableBody>
         </MuiTable>
       </TableContainer>
-      {show && show > 0 && data.length > show && (
+      {show && show > 0 && data?.length > show && (
         <>
           <Collapse in={open} style={{ width: "100%" }}>
             <TableContainer>
               <MuiTable>
                 <TableBody>
-                  {data.slice(show, data.length).map((row: any, i: number) => (
+                  {data?.slice(show, data.length).map((row: any, i: number) => (
                     <TableRow className={styles.tableRowCollapse} key={i}>
                       <TableCell className={styles.tableCell} align="left">
                         {row[Object.keys(row)[0]]}

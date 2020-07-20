@@ -3,7 +3,7 @@
 //import _ from "lodash";
 
 export const useTranslator = (
-  page?: "main" | "item" | "header" | "product",
+  page?: "main" | "item" | "header" | "product" | "basket",
   other?: string[] // other pages you want include to lang object
 ) => {
   const langState = "az"; //useSelector((state: IAppState) => state.header.lang)

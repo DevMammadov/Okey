@@ -6,11 +6,11 @@ import clsx from "clsx";
 import { CardBadge, Price, Attributes, BasketButton } from "./components";
 import { stringCutter } from "helpers";
 import { IProduct } from "views/category/types";
-//import { useTranslator } from "localization";
 import { IBasketProduct } from "components/layout/header/types";
 import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
+import { round } from "helpers";
 
 export interface ICard {
   item: IProduct;
@@ -34,7 +34,6 @@ export const Card: FC<ICard> = ({
   onClick = () => {},
 }) => {
   const classes = useStyles();
-  //const lang = useTranslator("item");
 
   const handleImageClick = (e: any) => {
     e.preventDefault();
@@ -64,7 +63,13 @@ export const Card: FC<ICard> = ({
           <BasketButton
             variant="contained"
             onClick={() =>
-              onToggleBasket({ id: item.id, name: item.name, price: item.price - item.discount, image: item.image })
+              onToggleBasket({
+                id: item.id,
+                name: item.name,
+                price: round(item.price - item.discount),
+                image: item.image,
+                count: 1,
+              })
             }
             inBasket={inBasket}
           />

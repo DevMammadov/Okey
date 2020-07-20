@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { toggleBasket } from "./action";
+import { toggleBasket, updateBasket } from "./action";
 import { IBasketProduct } from "../types";
 
 export interface IHeaderState {
@@ -19,6 +19,12 @@ export default handleActions(
       return {
         ...state,
         basket: product ? state.basket.filter((p) => p.id !== product.id) : [...state.basket, action.payload],
+      };
+    },
+    [updateBasket]: (state, action: any) => {
+      return {
+        ...state,
+        basket: action.payload,
       };
     },
   },
