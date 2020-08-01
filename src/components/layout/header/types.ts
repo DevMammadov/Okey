@@ -5,3 +5,11 @@ export interface IBasketProduct {
   image: string;
   count: number;
 }
+
+export interface ISearchResult {
+  id: number;
+  name: string;
+  img: string;
+  price: number;
+  discount: number;
+}

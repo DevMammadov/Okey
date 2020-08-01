@@ -42,9 +42,9 @@ const Main: FC<IMainPage> = ({ main, basket, getMostViewed, toggleBasket, catego
 
     if (product.subCategId) {
       let subCateg = categ.subCategory.filter((s) => s.id === product.subCategId)[0]?.name.toLocaleLowerCase();
-      history.push(`/${categ?.name.toLocaleLowerCase()}/${subCateg}/${product.name.toLocaleLowerCase()}`);
+      history.push(`/${categ?.name.toLocaleLowerCase()}/${subCateg}/p/${product.name.toLocaleLowerCase()}`);
     } else {
-      history.push(`/${categ?.name.toLocaleLowerCase()}/${product?.name.replace(/ /g, "-").toLocaleLowerCase()}`);
+      history.push(`/${categ?.name.toLocaleLowerCase()}/p/${product?.name.replace(/ /g, "-").toLocaleLowerCase()}`);
     }
   };
 

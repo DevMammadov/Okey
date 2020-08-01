@@ -14,8 +14,9 @@ export const useStyles = makeStyles((theme) => {
       flexDirection: "column",
     },
     header: {
-      paddingBottom: theme.spacing(2),
-      padding: "8px 120px",
+      width: "1300px",
+      margin: "0 auto",
+      padding: theme.spacing(3, 0, 2, 0),
     },
     menuNav: {
       boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 2px 0px rgba(0,0,0,0.12)",

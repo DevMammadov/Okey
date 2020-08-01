@@ -16,9 +16,10 @@ import { links } from "routes/links";
 interface IHeaderPage extends WithWidthProps {
   width: any;
   header: IHeaderState;
+  searchGood(text: string): void;
 }
 
-const Header: FC<IHeaderPage> = ({ width, header }) => {
+const Header: FC<IHeaderPage> = ({ width, header, searchGood }) => {
   const classes = useStyles();
   const [visible, setVisible] = useState<boolean>(false);
   const history = useHistory();
@@ -61,7 +62,7 @@ const Header: FC<IHeaderPage> = ({ width, header }) => {
         <div className={classes.headerContainer}>
           <div className={classes.searchContainer}>
             {renderInfoBar()}
-            <SearchBar onIconClick={handleSrachShow} />
+            <SearchBar onIconClick={handleSrachShow} resultList={header.result} onSearch={(val) => searchGood(val)} />
           </div>
           <div className={classes.icons}>
             <ContextMenu

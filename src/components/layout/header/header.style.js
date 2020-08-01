@@ -8,6 +8,9 @@ export const useStyles = makeStyles((theme) => {
         display: "flex",
       },
     },
+    gridItem: {
+      padding: 0,
+    },
     logo: {
       height: "56px",
       width: "130px",
@@ -18,10 +21,10 @@ export const useStyles = makeStyles((theme) => {
       justifyContent: "space-between",
     },
     searchContainer: {
-      width: "100%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      width: "100%",
     },
     icons: {
       display: "flex",

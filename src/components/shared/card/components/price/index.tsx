@@ -22,20 +22,17 @@ export const Price: FC<IPrice> = ({ discount, price, isList, className, classes 
   const styles = useStyles();
 
   return (
-    <Typography
-      component="div"
-      className={clsx(styles.priceContainer, isList && styles.listPrice, className, classes?.root)}
-    >
+    <span className={clsx(styles.priceContainer, isList && styles.listPrice, className, classes?.root)}>
       {discount > 0 && (
-        <div className={clsx(styles.discountPrice, classes?.discount)}>
+        <span className={clsx(styles.discountPrice, classes?.discount)}>
           <span>{price}</span>
           <span className={styles.money}>M</span>
-        </div>
+        </span>
       )}
-      <div className={clsx(styles.currentPrice, classes?.price)}>
+      <span className={clsx(styles.currentPrice, classes?.price)}>
         <span>{round(price - discount)}</span>
         <span className={styles.money}>M</span>
-      </div>
-    </Typography>
+      </span>
+    </span>
   );
 };

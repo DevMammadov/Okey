@@ -4,6 +4,7 @@ import { useStyles } from "./context-menu.style";
 import withWidth, { isWidthUp, WithWidthProps } from "@material-ui/core/withWidth";
 import { IBasketProduct } from "../../types";
 import { useTranslator } from "localization";
+import { round } from "helpers";
 
 export interface IContextMenu extends WithWidthProps {
   icon?: string;
@@ -107,7 +108,7 @@ const ContextMenu: FC<IContextMenu> = ({
             {" "}
             {lang.totalCount}{" "}
             <b>
-              {list.map((p) => p.price * p.count).reduce((acc, curr) => acc + curr, 0)}{" "}
+              {round(list.map((p) => p.price * p.count).reduce((acc, curr) => acc + curr, 0))}{" "}
               <span className={classes.money}>M</span>
             </b>
           </span>
