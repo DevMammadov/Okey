@@ -1,11 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { grey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) => {
   return {
     container: {
       position: "relative",
-      marginLeft: theme.spacing(10),
-      width: "80%",
+      margin: theme.spacing(0, 4),
+      width: "70%",
       display: "flex",
       justifyContent: "space-between",
     },
@@ -21,6 +22,9 @@ export const useStyles = makeStyles((theme) => {
       top: 36,
       width: "100%",
     },
+    originalPrice: {
+      fontSize: "1rem !important",
+    },
     avatar: {
       position: "relative",
       "& img": {
@@ -30,7 +34,7 @@ export const useStyles = makeStyles((theme) => {
       },
     },
     search: {
-      border: `1px solid ${theme.palette.color.black}`,
+      border: `1px solid ${grey[600]}`,
       borderRadius: theme.shape.borderRadius,
       background: theme.palette.common.white,
       width: "100%",
@@ -48,6 +52,7 @@ export const useStyles = makeStyles((theme) => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      color: grey[400],
     },
     inputRoot: {
       width: "100%",
@@ -58,10 +63,24 @@ export const useStyles = makeStyles((theme) => {
       height: "100%",
       width: "100%",
     },
+    lookAllButton: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      "& .MuiSvgIcon-root": {
+        position: "relative",
+        top: 2,
+        marginLeft: 10,
+      },
+    },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {},
     [theme.breakpoints.down("sm")]: {
+      container: {
+        margin: 0,
+        width: "100%",
+      },
       mobileSearchButton: {
         color: theme.palette.common.white,
       },

@@ -22,16 +22,7 @@ export const useStyles = makeStyles((theme) => {
       alignItems: "flex-end",
       marginRight: theme.spacing(1),
       color: grey[600],
-      "&::after": {
-        content: "''",
-        position: "absolute",
-        height: "1.5px",
-        width: "80%",
-        backgroundColor: grey[600],
-        left: 0,
-        bottom: "35%",
-        transform: "rotateZ(20deg)",
-      },
+      textDecoration: "line-through",
     },
     currentPrice: {
       fontSize: "1.3rem",

@@ -2,7 +2,10 @@
   "main": {
     "mostViewedProducts": "Ən çox baxılan mallar",
     "newProducts": "Yeni mallar",
-    "lookAll": "hamısına bax"
+    "lookAll": "hamısına bax",
+    "all": "hamısı",
+    "search": "Axtar",
+    "noProductInThisCategory": "Təəsüf ki, bu kateqoriyada hələki məhsul yoxdur "
   },
   "header": {
     "complateOrder": "Rəsmiləşdir",
@@ -31,5 +34,11 @@
     "countOf": "miqdarı",
     "totalCount": "Ümumi məbləğ",
     "": ""
+  },
+  "group": {
+    "similiarToWord": "sözünə uyğun",
+    "findedResult": "nəticə tapıldı",
+    "cheapFirst": "Öncə ucuzlar",
+    "typeSearchWord": "Lütfən axtarış yerinə bir açar sözü daxil edin"
   }
 }

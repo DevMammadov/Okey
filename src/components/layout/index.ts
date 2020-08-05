@@ -1,3 +1,3 @@
 export { Header } from "./header";
-export { Menu } from "./menu";
+export { default as Menu } from "./menu";
 export * from "./footer";

@@ -1,14 +1,16 @@
 import { handleActions } from "redux-actions";
 import { getCategoryAsync } from "./action";
-import { ICategory } from "types";
+import { ICategoryList, ICategory } from "types";
 
 export interface ILayoutState {
-  category: ICategory[];
+  categoryList: ICategoryList[];
+  categories: ICategory[];
   loading: boolean;
 }
 
 const initialState: ILayoutState = {
-  category: [],
+  categoryList: [],
+  categories: [],
   loading: false,
 };
 
@@ -16,9 +18,10 @@ export default handleActions(
   {
     [getCategoryAsync.started]: (state) => ({ ...state, loading: true }),
     [getCategoryAsync.failed]: (state) => ({ ...state, loading: false }),
-    [getCategoryAsync.success]: (state, action) => ({
+    [getCategoryAsync.success]: (state, action: any) => ({
       ...state,
-      category: action.payload as any,
+      categoryList: action.payload as any,
+      categories: action.payload?.reduce((acc: ICategory[], { categs }: any) => acc.concat(categs), []),
       loading: false,
     }),
   },

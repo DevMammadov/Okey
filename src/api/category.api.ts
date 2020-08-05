@@ -7,7 +7,6 @@ import values from "data/value.json";
 import { IProductAttribute, IGood, IProductInfo } from "types";
 import { IFilterField, IValue, IProduct, IAttribute, IProductPayload } from "views/category/types";
 import categoryList from "data/category.json";
-import subCategList from "data/sub-category.json";
 import productInfoList from "data/productInfo.json";
 
 export default class CategoryApi {
@@ -78,7 +77,6 @@ export default class CategoryApi {
           view: product.view,
           warranty: product.warranty,
           categoryId: categoryList.filter((c) => c.id === product.categoryId)[0]?.id,
-          subCategId: subCategList.filter((c) => c.id === product.subCategId)[0]?.id,
           image: imgList.filter((img) => img.productId === product.id && img.colorId === product.colorId)[0].name,
           attributes: productAttributes,
         });

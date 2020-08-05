@@ -22,7 +22,8 @@ export const useStyles = makeStyles((theme) => {
     },
     searchContainer: {
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "space-between",
+      alignItems: "flex-end",
       alignItems: "center",
       width: "100%",
     },
@@ -33,9 +34,10 @@ export const useStyles = makeStyles((theme) => {
       paddingTop: 0,
     },
     infoBar: {
-      maxWidth: "280px",
+      width: 350,
+      marginLeft: theme.spacing(4),
       "& > span": {
-        fontSize: "14px",
+        fontSize: 14,
         fontWeight: "bold",
         color: theme.palette.color.lightBlack,
         display: "flex",
@@ -43,7 +45,7 @@ export const useStyles = makeStyles((theme) => {
           color: theme.palette.warning.main,
         },
       },
-      "& > span + span": { marginTop: "5px" },
+      "& > span + span": { marginTop: 5 },
     },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
@@ -76,6 +78,7 @@ export const useStyles = makeStyles((theme) => {
       searchContainer: {
         justifyContent: "flex-end",
         alignItems: "flex-start",
+        padding: 0,
       },
     },
   };

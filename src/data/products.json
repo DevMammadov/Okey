@@ -8,7 +8,6 @@
     "warranty": "3 ay",
     "badge": "+1 hədiyyə",
     "categoryId": 1,
-    "subCategId": null,
     "brandId": 6,
     "colorId": 1
   },
@@ -21,7 +20,6 @@
     "warranty": "1 il",
     "badge": "+2 hədiyyə",
     "categoryId": 1,
-    "subCategId": null,
     "brandId": 5,
     "colorId": 1
   },
@@ -34,7 +32,6 @@
     "warranty": "3 ay",
     "badge": "",
     "categoryId": 1,
-    "subCategId": null,
     "brandId": 5,
     "colorId": 5
   },
@@ -47,7 +44,6 @@
     "warranty": "",
     "badge": "",
     "categoryId": 3,
-    "subCategId": null,
     "brandId": 1,
     "colorId": 1
   },
@@ -60,7 +56,6 @@
     "enabled": true,
     "badge": "",
     "categoryId": 2,
-    "subCategId": null,
     "brandId": 7,
     "colorId": 1
   },
@@ -73,7 +68,6 @@
     "warranty": "",
     "badge": "",
     "categoryId": 2,
-    "subCategId": null,
     "brandId": 7,
     "colorId": 4
   },
@@ -84,7 +78,6 @@
     "like": 6,
     "enabled": true,
     "categoryId": 2,
-    "subCategId": null,
     "badge": "",
     "warranty": "",
     "brandId": 8,
@@ -99,7 +92,6 @@
     "warranty": "",
     "badge": "",
     "categoryId": 3,
-    "subCategId": null,
     "brandId": 1,
     "colorId": 1
   },
@@ -112,7 +104,6 @@
     "warranty": "3 ay",
     "badge": "",
     "categoryId": 3,
-    "subCategId": null,
     "brandId": 4,
     "colorId": 1
   },
@@ -125,7 +116,6 @@
     "warranty": "",
     "badge": "",
     "categoryId": 3,
-    "subCategId": null,
     "brandId": 1,
     "colorId": 1
   },
@@ -138,7 +128,6 @@
     "warranty": "1 il",
     "badge": "",
     "categoryId": 4,
-    "subCategId": null,
     "brandId": 9,
     "colorId": 2
   },
@@ -151,7 +140,6 @@
     "warranty": "2 il",
     "badge": "",
     "categoryId": 4,
-    "subCategId": null,
     "brandId": 7,
     "colorId": 5
   },
@@ -164,7 +152,6 @@
     "warranty": "5 ay",
     "badge": "pulsuz !",
     "categoryId": 4,
-    "subCategId": null,
     "brandId": 9,
     "colorId": 1
   }

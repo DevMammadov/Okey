@@ -5,7 +5,8 @@
     "nameRu": "Наушники",
     "icon": "headset",
     "enabled": true,
-    "deleted": false
+    "deleted": false,
+    "groupId": null
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "nameRu": "Повер банки",
     "icon": "battery_charging_full",
     "enabled": true,
-    "deleted": false
+    "deleted": false,
+    "groupId": null
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "nameRu": "Чехолы",
     "icon": "stay_current_portrait",
     "enabled": true,
-    "deleted": false
+    "deleted": false,
+    "groupId": null
   },
   {
     "id": 4,
@@ -29,14 +32,16 @@
     "nameRu": "Адаптеры",
     "icon": "power",
     "enabled": true,
-    "deleted": false
+    "deleted": false,
+    "groupId": null
   },
   {
     "id": 5,
-    "name": "Digər",
-    "nameRu": "Другие",
-    "icon": "keyboard_arrow_down",
+    "name": "Usb kabellər",
+    "nameRu": "Усб кабель",
+    "icon": "usb",
     "enabled": true,
-    "deleted": false
+    "deleted": false,
+    "groupId": 1
   }
 ]

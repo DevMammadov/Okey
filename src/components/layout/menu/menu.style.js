@@ -1,74 +1,43 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { grey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) => {
   return {
     root: {},
+    hamburgerIcon: {
+      color: theme.palette.common.white,
+    },
     container: {
       padding: 0,
-      "& ul": {
-        zIndex: "555",
-        listStyle: "none",
-        display: "flex",
-        padding: 0,
-        margin: 0,
-        "& li": {
-          position: "relative",
-          "&:hover": {
-            "& > a": {
-              color: theme.palette.warning.main,
-            },
-            "& > div": {
-              display: "block",
-            },
-          },
+    },
+    hideOverflow: {
+      overflowX: "auto",
+    },
+    flatList: {
+      display: "flex",
+      padding: 0,
+    },
+    listItem: {
+      padding: theme.spacing(2),
+      "&:hover": {
+        "& $subList": {
+          display: "block",
         },
-        "& li:last-child": {
-          border: "none",
-        },
-        "& li a.active": {
-          background: theme.palette.warning.main,
-          color: theme.palette.common.white,
-          "&:hover": {
-            color: theme.palette.common.white,
-          },
-        },
-        "& li a": {
-          display: "flex",
-          alignItems: "center",
-          padding: theme.spacing(2),
-          fontSize: "18px",
-          color: grey[800],
-          textDecoration: "none",
-          justifyContent: "center",
-        },
-        "& li > div": {
-          display: "none",
-          position: "absolute",
-          transform: "translateX(-50%)",
-          left: "50%",
-          zIndex: 5,
-        },
-        "& li ul": {
-          position: "relative",
-          paddingTop: "10px",
-          top: "-10px",
-          minWidth: "200px",
-          background: theme.palette.common.white,
-          "& li": {
-            borderRight: "none",
-            borderBottom: "1px solid",
-            width: "100%",
-          },
-          "& li:last-child": {
-            border: "none",
-          },
-          "& a": {
-            textAlign: "center",
-            width: "100%",
-            padding: theme.spacing(1, 3),
-          },
-        },
+      },
+    },
+    subList: {
+      padding: 0,
+      position: "absolute",
+      width: "100%",
+      marginLeft: theme.spacing(-2),
+      top: 60,
+      zIndex: 5,
+      display: "none",
+    },
+    activeItem: {
+      backgroundColor: theme.palette.warning.main,
+      color: theme.palette.common.white,
+      "&:hover": {
+        backgroundColor: theme.palette.warning.light,
       },
     },
     icon: {
@@ -76,11 +45,14 @@ export const useStyles = makeStyles((theme) => {
       marginRight: theme.spacing(1),
       marginTop: theme.spacing(0.2),
     },
+    drawerPaper: {
+      maxHeight: 400,
+    },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {
       container: {
-        padding: "8px 16px",
+        padding: theme.spacing(1, 2),
       },
     },
     [theme.breakpoints.down("sm")]: {

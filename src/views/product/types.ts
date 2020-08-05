@@ -9,7 +9,6 @@ export interface ISingleProduct {
   badge: string;
   warranty: string;
   categoryId: number;
-  subCategId: number | null;
   colors: IColor[];
   attributes: IAttribute[];
 }

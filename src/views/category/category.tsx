@@ -1,4 +1,4 @@
-import { Grid, withWidth, isWidthUp } from "@material-ui/core";
+import { Grid, withWidth, isWidthUp, Icon } from "@material-ui/core";
 import { Card } from "components/shared";
 import React, { FC, useEffect } from "react";
 import { connect } from "react-redux";
@@ -13,6 +13,8 @@ import { FilterBar } from "./components";
 import { IBasketProduct } from "components/layout/header/types";
 import { toggleBasket } from "components/layout/header/store/action";
 import { useParams } from "react-router-dom";
+import { useTranslator } from "localization";
+import { unlink } from "routes/makeLink";
 
 export interface ICategoryPage {
   width: any;
@@ -43,17 +45,18 @@ const Category: FC<ICategoryPage> = ({
 }) => {
   const classes = useStyles();
   const params: any = useParams();
+  const lang = useTranslator();
 
   const queryString = params.category;
-  const categId = categories.filter((c) => c.name.toLowerCase() === queryString.replace("-", " ").toLowerCase())[0]?.id;
+
+  const categ = categories.filter((c) => c.name.toLowerCase() === unlink(queryString))[0];
 
   useEffect(() => {
-    if (categId) {
-      getProducts({ categId: categId, limit: 10, offset: 0 });
-      getFilters(categId);
-      console.log(params);
+    if (categ) {
+      getProducts({ categId: categ.id, limit: 10, offset: 0 });
+      getFilters(categ.id);
     }
-  }, [params, getProducts, getFilters, categId]);
+  }, [params, getProducts, getFilters, categ.id]);
 
   useEffect(() => {
     return () => {
@@ -62,8 +65,8 @@ const Category: FC<ICategoryPage> = ({
   }, [params, clearSearchFilters]);
 
   useEffect(() => {
-    getProducts({ categId: categId, filters: category.searchFilter, limit: 10, offset: 0 });
-  }, [category.searchFilter, getProducts, categId]);
+    getProducts({ categId: categ.id, filters: category.searchFilter, limit: 10, offset: 0 });
+  }, [category.searchFilter, getProducts, categ.id]);
 
   const handleAttributeSelect = (attrs: ICheckedAttribute[]) => {
     toggleAttribute(attrs);
@@ -80,7 +83,7 @@ const Category: FC<ICategoryPage> = ({
           <Grid item xs={3}>
             <Aside
               fields={category.filterFields}
-              categName={params?.category}
+              header={params?.category}
               defaultAttributes={category.searchFilter.attributes || []}
               onAttrSelect={handleAttributeSelect}
               onPriceChange={handlePriceChange}
@@ -91,15 +94,21 @@ const Category: FC<ICategoryPage> = ({
         <Grid item xs={isWidthUp("sm", width) ? 9 : 12} className={classes.cardContainer}>
           {category.products.length > 0 ? (
             <>
-              {isWidthUp("sm", width) && (
-                <FilterBar
-                  onChipClose={handleAttributeSelect}
-                  fields={category.filterFields}
-                  attributes={category.searchFilter.attributes}
-                  onChange={(mode) => toggleViewMode(mode)}
-                  isApp={category.viewModeisApp}
-                />
-              )}
+              <Grid item xs={12}>
+                {isWidthUp("sm", width) ? (
+                  <FilterBar
+                    onChipClose={handleAttributeSelect}
+                    fields={category.filterFields}
+                    attributes={category.searchFilter.attributes}
+                    onChange={(mode) => toggleViewMode(mode)}
+                    isApp={category.viewModeisApp}
+                  />
+                ) : (
+                  <div>
+                    <Icon>{categ.icon}</Icon> {categ.name}
+                  </div>
+                )}
+              </Grid>
               <Grid container>
                 {category.products.map((product: IProduct, index: number) => (
                   <Grid key={index} item xs={12} md={category.viewModeisApp ? 4 : 12}>
@@ -116,7 +125,7 @@ const Category: FC<ICategoryPage> = ({
             </>
           ) : (
             <Grid item xs={12} className={classes.noItem}>
-              Teesufki bu kateqoriyada heleki mal yoxdur
+              {lang.noProductInThisCategory}
             </Grid>
           )}
         </Grid>
@@ -127,7 +136,7 @@ const Category: FC<ICategoryPage> = ({
 
 const mapStateToProps = (state: IAppState) => ({
   category: state.category,
-  categories: state.layout.category,
+  categories: state.layout.categories,
   basket: state.header.basket,
 });
 export default connect(mapStateToProps, { ...categoryActions, toggleBasket })(withWidth()(Category));

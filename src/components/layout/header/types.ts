@@ -12,4 +12,5 @@ export interface ISearchResult {
   img: string;
   price: number;
   discount: number;
+  category: string;
 }

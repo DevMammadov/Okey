@@ -1,7 +1,6 @@
 import values from "data/value.json";
 import imgList from "data/images.json";
 import categoryList from "data/category.json";
-import subCategList from "data/sub-category.json";
 import productList from "data/products.json";
 import brands from "data/brands.json";
 import attributeList from "data/attributes.json";
@@ -48,7 +47,6 @@ export default class ProductApi {
         view: product.view,
         warranty: product.warranty,
         categoryId: categoryList.filter((c) => c.id === product.categoryId)[0]?.id,
-        subCategId: subCategList.filter((c) => c.id === product.subCategId)[0]?.id,
         attributes: attributes,
         colors: ProductColorList,
       };
@@ -110,7 +108,6 @@ export default class ProductApi {
           view: product.view,
           warranty: product.warranty,
           categoryId: categoryList.filter((c) => c.id === product.categoryId)[0]?.id,
-          subCategId: subCategList.filter((c) => c.id === product.subCategId)[0]?.id,
           image: imgList.filter((img) => img.productId === product.id && img.colorId === product.colorId)[0].name,
           attributes: productAttributes,
         });

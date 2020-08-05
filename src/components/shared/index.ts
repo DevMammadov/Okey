@@ -4,3 +4,4 @@ export * from "./card";
 export * from "./service-bar";
 export * from "./table";
 export * from "./counter";
+export * from "./form";

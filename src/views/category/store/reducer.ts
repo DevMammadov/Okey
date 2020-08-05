@@ -44,16 +44,13 @@ export default handleActions(
       filterFields: action.payload,
       loading: false,
     }),
-    [toggleAttribute]: (state, action: any) => {
-      // console.log(action.payload);
-      return {
-        ...state,
-        searchFilter: {
-          ...state.searchFilter,
-          attributes: action.payload,
-        },
-      };
-    },
+    [toggleAttribute]: (state, action: any) => ({
+      ...state,
+      searchFilter: {
+        ...state.searchFilter,
+        attributes: action.payload,
+      },
+    }),
     [togglePrice]: (state, action: any) => ({
       ...state,
       searchFilter: {
@@ -61,18 +58,14 @@ export default handleActions(
         price: action.payload,
       },
     }),
-    [clearSearchFilters]: (state) => {
-      return {
-        ...state,
-        searchFilter: {} as any,
-      };
-    },
-    [toggleViewMode]: (state, action: any) => {
-      return {
-        ...state,
-        viewModeisApp: action.payload,
-      };
-    },
+    [clearSearchFilters]: (state) => ({
+      ...state,
+      searchFilter: {} as any,
+    }),
+    [toggleViewMode]: (state, action: any) => ({
+      ...state,
+      viewModeisApp: action.payload,
+    }),
   },
   initialState
 );

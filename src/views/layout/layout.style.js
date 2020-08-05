@@ -37,10 +37,11 @@ export const useStyles = makeStyles((theme) => {
         paddingBottom: theme.spacing(2),
         "& section": {
           // all pages expect main page
-          width: "1300px",
+          width: 1300,
+          minHeight: 400,
           margin: "0 auto",
           background: theme.palette.common.white,
-          borderRadius: "6px",
+          borderRadius: 6,
         },
       },
     },
@@ -56,6 +57,21 @@ export const useStyles = makeStyles((theme) => {
         padding: 0,
       },
     },
-    [theme.breakpoints.down("sm")]: {},
+    [theme.breakpoints.down("sm")]: {
+      header: {
+        width: 411,
+        padding: theme.spacing(3, 0, 2, 0),
+        padding: 0,
+      },
+      main: {
+        "& section": {
+          "& section": {
+            // all pages expect main page
+            width: 411,
+            minHeight: 400,
+          },
+        },
+      },
+    },
   };
 });

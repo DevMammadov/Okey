@@ -5,14 +5,17 @@ import { useStyles } from "./layout.style";
 import { connect } from "react-redux";
 import { IAppState } from "store/reducers";
 import { layoutActions } from "./store/action";
-import { ICategory } from "types";
+import { ICategoryList, ICategory } from "types";
+import { withWidth, isWidthUp } from "@material-ui/core";
 
 interface ILayoutPage {
-  category: ICategory[];
+  categoryList: ICategoryList[];
+  categories: ICategory[];
   getCategory(): void;
+  width: any;
 }
 
-const App: FC<ILayoutPage> = ({ category, getCategory }) => {
+const App: FC<ILayoutPage> = ({ categoryList, getCategory, categories, width }) => {
   const classes = useStyles();
 
   useEffect(() => {
@@ -23,14 +26,16 @@ const App: FC<ILayoutPage> = ({ category, getCategory }) => {
     <div className={classes.root}>
       <div className={classes.contentWrapper}>
         <header className={classes.header}>
-          <Header />
+          <Header categoryList={categoryList} />
         </header>
-        <nav className={classes.menuNav}>
-          <Menu category={category} />
-        </nav>
+        {!isWidthUp(width, "sm") && (
+          <nav className={classes.menuNav}>
+            <Menu categoryList={categoryList} />
+          </nav>
+        )}
         <main className={classes.main}>
           <section>
-            <AppRouter category={category} />
+            <AppRouter category={categories} />
           </section>
         </main>
       </div>
@@ -42,4 +47,4 @@ const App: FC<ILayoutPage> = ({ category, getCategory }) => {
 };
 
 const mapStateToProps = (state: IAppState) => ({ ...state.layout });
-export default connect(mapStateToProps, layoutActions)(App);
+export default connect(mapStateToProps, layoutActions)(withWidth()(App));

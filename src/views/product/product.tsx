@@ -116,7 +116,6 @@ const Product: FC<IProductPage> = ({
                   view: productState.product?.view,
                   like: productState.product?.like,
                   categoryId: productState.product?.categoryId,
-                  subCategId: productState.product?.subCategId,
                   attributes: {} as any,
                 }}
                 onToggleBasket={handleAddToBasket}

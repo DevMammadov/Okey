@@ -24,42 +24,40 @@ export const FilterBar: FC<IFilterBar> = ({ onChange, isApp, onChipClose, attrib
   };
 
   return (
-    <Grid item xs={12}>
-      <Paper className={classes.filterBar}>
-        <div className={classes.chipContainer}>
-          {attributes?.map((attr, index) => (
-            <Chip
-              key={index}
-              avatar={
-                <Avatar>
-                  {fields?.attributes
-                    ?.filter((a) => a.attributeId === attr.attributeId)[0]
-                    ?.values.filter((v) => v.valueId === attr.valueId)[0]
-                    ?.value[0].toUpperCase()}
-                </Avatar>
-              }
-              label={stringCutter(
-                fields?.attributes
+    <Paper className={classes.filterBar}>
+      <div className={classes.chipContainer}>
+        {attributes?.map((attr, index) => (
+          <Chip
+            key={index}
+            avatar={
+              <Avatar>
+                {fields?.attributes
                   ?.filter((a) => a.attributeId === attr.attributeId)[0]
-                  ?.values.filter((v) => v.valueId === attr.valueId)[0]?.value,
-                20
-              )}
-              onDelete={() => handleDelete(attr.valueId, attr.attributeId)}
-              color="primary"
-              size="small"
-              className={classes.chip}
-            />
-          ))}
-        </div>
-        <div>
-          <IconButton onClick={() => onChange(true)} className={clsx(isApp && classes.activeViewMode)}>
-            <AppsIcon />
-          </IconButton>
-          <IconButton onClick={() => onChange(false)} className={clsx(!isApp && classes.activeViewMode)}>
-            <ViewListIcon />
-          </IconButton>
-        </div>
-      </Paper>
-    </Grid>
+                  ?.values.filter((v) => v.valueId === attr.valueId)[0]
+                  ?.value[0].toUpperCase()}
+              </Avatar>
+            }
+            label={stringCutter(
+              fields?.attributes
+                ?.filter((a) => a.attributeId === attr.attributeId)[0]
+                ?.values.filter((v) => v.valueId === attr.valueId)[0]?.value,
+              20
+            )}
+            onDelete={() => handleDelete(attr.valueId, attr.attributeId)}
+            color="primary"
+            size="small"
+            className={classes.chip}
+          />
+        ))}
+      </div>
+      <div>
+        <IconButton onClick={() => onChange(true)} className={clsx(isApp && classes.activeViewMode)}>
+          <AppsIcon />
+        </IconButton>
+        <IconButton onClick={() => onChange(false)} className={clsx(!isApp && classes.activeViewMode)}>
+          <ViewListIcon />
+        </IconButton>
+      </div>
+    </Paper>
   );
 };

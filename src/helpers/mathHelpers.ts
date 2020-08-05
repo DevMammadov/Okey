@@ -1,3 +1,7 @@
 export const round = (number: number) => {
-  return Math.round((number + Number.EPSILON) * 100) / 100;
+  let result = Math.round((number + Number.EPSILON) * 100) / 100;
+  if (isNaN(result)) {
+    return 0;
+  }
+  return result;
 };

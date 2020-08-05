@@ -15,6 +15,13 @@ export const useStyles = makeStyles((theme) => {
         fontWeight: "bold",
       },
     },
+    header: {
+      padding: 8,
+      fontSize: "2rem",
+      textTransform: "capitalize",
+      fontWeight: "bold",
+      color: theme.palette.warning.main,
+    },
     CollapseItem: {
       marginBottom: theme.spacing(1),
       borderRadius: theme.spacing(1),

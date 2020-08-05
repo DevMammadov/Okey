@@ -12,6 +12,7 @@ import { IBasketProduct } from "components/layout/header/types";
 import { toggleBasket } from "components/layout/header/store/action";
 import { ICategory } from "types";
 import { useHistory, useParams } from "react-router-dom";
+import { makeProductLink } from "routes/makeLink";
 
 export interface IMainPage {
   main: IMainPageState;
@@ -40,12 +41,7 @@ const Main: FC<IMainPage> = ({ main, basket, getMostViewed, toggleBasket, catego
     let product = main.mostViewed.filter((p) => p.name === name)[0];
     let categ = category.filter((c) => c.id === product.categoryId)[0];
 
-    if (product.subCategId) {
-      let subCateg = categ.subCategory.filter((s) => s.id === product.subCategId)[0]?.name.toLocaleLowerCase();
-      history.push(`/${categ?.name.toLocaleLowerCase()}/${subCateg}/p/${product.name.toLocaleLowerCase()}`);
-    } else {
-      history.push(`/${categ?.name.toLocaleLowerCase()}/p/${product?.name.replace(/ /g, "-").toLocaleLowerCase()}`);
-    }
+    history.push(makeProductLink(name, categ.name));
   };
 
   return (

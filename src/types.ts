@@ -7,7 +7,6 @@ export interface IGood {
   badge: string;
   warranty: string;
   categoryId: number;
-  subCategId: number | null;
   brandId: number;
   colorId: number; // selected color for showing element
 }
@@ -65,15 +64,13 @@ export interface IColor {
   code: string;
 }
 
-// ---------- Response types
-
-export interface ISubCategory {
+export interface IGroup {
   id: number;
   name: string;
   icon: string;
-  enabled: boolean;
-  deleted: boolean;
 }
+
+// ---------- Response types
 
 export interface ICategory {
   id: number;
@@ -81,5 +78,11 @@ export interface ICategory {
   icon: string;
   enabled: boolean;
   deleted: boolean;
-  subCategory: ISubCategory[];
+  groupId: number | null;
+}
+
+export interface ICategoryList {
+  groupName: string;
+  icon: string;
+  categs: ICategory[];
 }

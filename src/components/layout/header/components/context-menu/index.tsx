@@ -1,9 +1,10 @@
 import React, { useState, MouseEvent, FC } from "react";
-import { Badge, Button, Menu, Icon, ListSubheader, MenuItem } from "@material-ui/core";
+import { Badge, Button, Menu, Icon, ListSubheader, MenuItem, IconButton } from "@material-ui/core";
 import { useStyles } from "./context-menu.style";
 import withWidth, { isWidthUp, WithWidthProps } from "@material-ui/core/withWidth";
 import { IBasketProduct } from "../../types";
 import { useTranslator } from "localization";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { round } from "helpers";
 
 export interface IContextMenu extends WithWidthProps {
@@ -45,6 +46,11 @@ const ContextMenu: FC<IContextMenu> = ({
     setAnchorEl(null);
   };
 
+  const handleOpenBasket = () => {
+    setAnchorEl(null);
+    openBasket();
+  };
+
   const renderList = (list: IBasketProduct[]) => {
     return list?.map((product: IBasketProduct) => (
       <MenuItem key={product.id}>
@@ -68,7 +74,7 @@ const ContextMenu: FC<IContextMenu> = ({
           <Icon>local_mall</Icon>
           {buttonText ? buttonText : lang.complateOrder}
         </Button>
-        <Button onClick={openBasket} color="primary">
+        <Button onClick={handleOpenBasket} color="primary">
           <Icon>shopping_cart</Icon>
           {buttonText ? buttonText : lang.gotToBasket}
         </Button>
@@ -78,11 +84,11 @@ const ContextMenu: FC<IContextMenu> = ({
 
   return (
     <div className={className} style={style}>
-      <Button aria-controls="customized-menu" aria-haspopup="true" onClick={handleClick} className={classes.button}>
+      <IconButton aria-controls="customized-menu" aria-haspopup="true" onClick={handleClick}>
         <Badge badgeContent={list.length || 0} color="secondary" invisible={!list.length}>
-          <Icon fontSize={isWidthUp("sm", width) ? "large" : "default"}>{icon ? icon : "favorite"}</Icon>
+          <ShoppingCartIcon fontSize="large" className={classes.openButtonIcon} />
         </Badge>
-      </Button>
+      </IconButton>
       <Menu
         id="customized-menu"
         anchorEl={anchorEl}

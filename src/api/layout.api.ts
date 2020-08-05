@@ -1,22 +1,28 @@
-import subCategoryList from "data/sub-category.json";
 import categoryList from "data/category.json";
-import { ICategory } from "types";
+import categGroup from "data/categGroup.json";
+import { ICategoryList } from "types";
 
 export default class LayoutApi {
   static getCategory = () => {
-    let categs: ICategory[] = [];
+    let categories: ICategoryList[] = [];
 
-    for (let categ of categoryList) {
-      let subCategs = subCategoryList.filter((sb) => sb.categoryId === categ.id);
-      categs.push({
-        id: categ.id,
-        name: categ.name,
-        icon: categ.icon,
-        subCategory: subCategs,
-        deleted: categ.deleted,
-        enabled: categ.enabled,
-      });
+    categories.push({
+      groupName: "",
+      icon: "",
+      categs: categoryList.filter((c) => c.groupId === null && c.enabled && !c.deleted),
+    });
+
+    for (let group of categGroup) {
+      let cats = categoryList.filter((c) => c.groupId === group.id && c.enabled && !c.deleted);
+      if (cats.length > 0) {
+        categories.push({
+          groupName: group.name,
+          icon: group.icon,
+          categs: cats,
+        });
+      }
     }
-    return categs;
+
+    return categories;
   };
 }

@@ -1,14 +1,15 @@
 import React, { FC } from "react";
-import { List, ListSubheader, ListItem, ListItemText, Collapse, Paper } from "@material-ui/core";
+import { List, ListSubheader, ListItem, ListItemText, Collapse, Paper, Grid } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import { useStyles } from "./aside.style";
 import { IFilterField, IValue, IFilterAttribute, ICheckedAttribute } from "../../types";
 import { CheckBox } from "../checkbox";
 import { stringCutter } from "helpers";
 import { PriceFilter } from "../price-filter";
+import { unlink } from "routes/makeLink";
 
 export interface ICategoryAside {
-  categName: string;
+  header: string;
   onAttrSelect(attributes: ICheckedAttribute[]): void;
   onPriceChange(price: number[]): void;
   fields: IFilterField;
@@ -17,7 +18,7 @@ export interface ICategoryAside {
 }
 
 export const Aside: FC<ICategoryAside> = ({
-  categName,
+  header,
   onAttrSelect,
   onPriceChange,
   fields,
@@ -46,64 +47,62 @@ export const Aside: FC<ICategoryAside> = ({
   };
 
   return (
-    <List
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          {categName.replace("-", " ")}
-        </ListSubheader>
-      }
-      className={classes.root}
-    >
-      <Paper className={classes.CollapseItem}>
-        <ListItem className={classes.listHeader} button onClick={() => handleCollapse("Qiymet")}>
-          <ListItemText primary="Qiymet" />
-          {!closedList.includes("Qiymet") ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={!closedList.includes("Qiymet")} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding className={classes.nestedList}>
-            <ListItem>
-              <PriceFilter
-                defaultValue={defaultPrice}
-                onChange={(price) => onPriceChange(price)}
-                price={fields.price}
-              />
+    <>
+      <Grid item xs={12}>
+        <span className={classes.header}>{unlink(header)}</span>
+      </Grid>
+      <Grid item xs={12}>
+        <List component="nav" className={classes.root}>
+          <Paper className={classes.CollapseItem}>
+            <ListItem className={classes.listHeader} button onClick={() => handleCollapse("Qiymet")}>
+              <ListItemText primary="Qiymet" />
+              {!closedList.includes("Qiymet") ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-          </List>
-        </Collapse>
-      </Paper>
-      {fields.attributes?.map((attr: IFilterAttribute, index: number) => (
-        <Paper className={classes.CollapseItem} key={index}>
-          <ListItem className={classes.listHeader} button onClick={() => handleCollapse(attr.attribute)}>
-            <ListItemText primary={attr.attribute} />
-            {!closedList.includes(attr.attribute) ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={!closedList.includes(attr.attribute)} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding className={classes.nestedList}>
-              {attr.values.map((val: IValue, index: number) => (
-                <ListItem key={index}>
-                  <CheckBox
-                    onChange={() => handleCheckBoxCheck(val.valueId, attr.attributeId)}
-                    label={stringCutter(val.value, 32)}
-                    checked={defaultAttributes.some(
-                      (cl) => cl.valueId === val.valueId && cl.attributeId === attr.attributeId
-                    )}
-                    tabIndex={-1}
-                    className={classes.filterCheckbox}
-                    labelClass={classes.checkBoxLabel}
-                    disableRipple
-                    color="primary"
+            <Collapse in={!closedList.includes("Qiymet")} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding className={classes.nestedList}>
+                <ListItem>
+                  <PriceFilter
+                    defaultValue={defaultPrice}
+                    onChange={(price) => onPriceChange(price)}
+                    price={fields.price}
                   />
-                  <div className={classes.countBadge}>
-                    <span>{val.count} </span>
-                  </div>
                 </ListItem>
-              ))}
-            </List>
-          </Collapse>
-        </Paper>
-      ))}
-    </List>
+              </List>
+            </Collapse>
+          </Paper>
+          {fields.attributes?.map((attr: IFilterAttribute, index: number) => (
+            <Paper className={classes.CollapseItem} key={index}>
+              <ListItem className={classes.listHeader} button onClick={() => handleCollapse(attr.attribute)}>
+                <ListItemText primary={attr.attribute} />
+                {!closedList.includes(attr.attribute) ? <ExpandLess /> : <ExpandMore />}
+              </ListItem>
+              <Collapse in={!closedList.includes(attr.attribute)} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding className={classes.nestedList}>
+                  {attr.values.map((val: IValue, index: number) => (
+                    <ListItem key={index}>
+                      <CheckBox
+                        onChange={() => handleCheckBoxCheck(val.valueId, attr.attributeId)}
+                        label={stringCutter(val.value, 32)}
+                        checked={defaultAttributes.some(
+                          (cl) => cl.valueId === val.valueId && cl.attributeId === attr.attributeId
+                        )}
+                        tabIndex={-1}
+                        className={classes.filterCheckbox}
+                        labelClass={classes.checkBoxLabel}
+                        disableRipple
+                        color="primary"
+                      />
+                      <div className={classes.countBadge}>
+                        <span>{val.count} </span>
+                      </div>
+                    </ListItem>
+                  ))}
+                </List>
+              </Collapse>
+            </Paper>
+          ))}
+        </List>
+      </Grid>
+    </>
   );
 };

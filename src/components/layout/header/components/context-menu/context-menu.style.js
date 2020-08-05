@@ -34,15 +34,8 @@ export const useStyles = makeStyles((theme) => {
       display: "flex",
       justifyContent: "space-between",
     },
-    button: {
-      background: "none",
-      boxShadow: "0px 0px 0px 0px",
-      border: 0,
-      "&:hover": {
-        background: "none",
-        boxShadow: "0px 0px 0px 0px",
-        border: 0,
-      },
+    openButtonIcon: {
+      color: grey[700],
     },
     listFooter: {
       position: "sticky",
@@ -80,7 +73,7 @@ export const useStyles = makeStyles((theme) => {
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {},
     [theme.breakpoints.down("sm")]: {
-      button: {
+      openButtonIcon: {
         color: theme.palette.common.white,
       },
     },
