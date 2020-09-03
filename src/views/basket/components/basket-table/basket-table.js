@@ -18,6 +18,9 @@ export const useStyles = makeStyles((theme) => {
     money: {
       fontFamily: "JISAZNBold",
     },
+    removeButton: {
+      color: theme.palette.danger.main,
+    },
     [theme.breakpoints.down("xl")]: {},
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {},

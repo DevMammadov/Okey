@@ -1,10 +1,20 @@
 import React, { FC } from "react";
 import { useStyles } from "./basket-table";
 import { useTranslator } from "localization";
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@material-ui/core";
+import {
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Button,
+  IconButton,
+} from "@material-ui/core";
 import { IBasketProduct } from "components/layout/header/types";
 import { Counter } from "components/shared";
 import { round } from "helpers";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 export interface IProductCount {
   id: number;
@@ -20,6 +30,8 @@ export const BasketTable: FC<IBasketTable> = ({ data, onCountChange }) => {
   const lang = useTranslator("basket");
   const classes = useStyles();
 
+  const handleRemove = (id: number) => {};
+
   return (
     <TableContainer className={classes.container}>
       <Table className={classes.table} aria-label="customized table">
@@ -30,6 +42,7 @@ export const BasketTable: FC<IBasketTable> = ({ data, onCountChange }) => {
             <TableCell align="left">{lang.countOf}</TableCell>
             <TableCell align="left">{lang.priceOf}</TableCell>
             <TableCell align="left">{lang.totalCount}</TableCell>
+            <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -50,6 +63,11 @@ export const BasketTable: FC<IBasketTable> = ({ data, onCountChange }) => {
               </TableCell>
               <TableCell align="left">
                 {round(product.count * product.price)} <span className={classes.money}>M</span>
+              </TableCell>
+              <TableCell>
+                <IconButton onClick={() => handleRemove(product.id)} className={classes.removeButton}>
+                  <DeleteIcon />
+                </IconButton>
               </TableCell>
             </TableRow>
           ))}
