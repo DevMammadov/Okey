@@ -1,20 +1,12 @@
 import React, { FC } from "react";
 import { useStyles } from "./basket-table";
 import { useTranslator } from "localization";
-import {
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Button,
-  IconButton,
-} from "@material-ui/core";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@material-ui/core";
 import { IBasketProduct } from "components/layout/header/types";
 import { Counter } from "components/shared";
 import { round } from "helpers";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { useAlert } from "components/shared/alert/alert-provider";
 
 export interface IProductCount {
   id: number;
@@ -29,8 +21,11 @@ export interface IBasketTable {
 export const BasketTable: FC<IBasketTable> = ({ data, onCountChange }) => {
   const lang = useTranslator("basket");
   const classes = useStyles();
+  const alert = useAlert();
 
-  const handleRemove = (id: number) => {};
+  const handleRemove = (id: number) => {
+    const answ = alert.error("error occured");
+  };
 
   return (
     <TableContainer className={classes.container}>

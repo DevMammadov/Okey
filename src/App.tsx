@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { createBrowserHistory } from "history";
 import { createHistory } from "store";
 import { PersistGate } from "redux-persist/integration/react";
+import { AlertProvider } from "components/shared/alert/alert-provider";
 
 const history = createBrowserHistory();
 const { store, persistor } = createHistory(history);
@@ -16,7 +17,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <PersistGate persistor={persistor} loading={<div>loading</div>}>
-          <Routes />
+          <AlertProvider>
+            <Routes />
+          </AlertProvider>
         </PersistGate>
       </Provider>
     </ThemeProvider>
